@@ -1,6 +1,18 @@
 import datetime
 from django.db import models
 
+# ActiveBaseModel
+class ActiveBaseModel(models.Model):
+    active = models.SmallIntegerField(
+        verbose_name="状态",
+        default=1,
+        choices=(
+            (1,"激活"),
+            (2,"删除")
+        )
+    )
+    class Meta:
+        abstract = True
 
 # 部门
 class Department(models.Model):
@@ -143,7 +155,8 @@ class WorkOrder(models.Model):
         (3, "执行"),
         (4, "停滞"),
         (5, "完工"),
-        (6, "关闭")
+        (6, "关闭"),
+        (7, "撤销")
     )
     status = models.SmallIntegerField(verbose_name="状态",choices=status_choices,default=1)
 

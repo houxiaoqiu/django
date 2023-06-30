@@ -1,12 +1,30 @@
 {% extends 'layout.html' %}
 
+{% block css %}
+    <style>
+        .top-message-eeror {
+            position: fixed;
+            width: 200px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            top: 60px;
+        }
+    </style>
+{% endblock css %}
+
 {% block content %}
     <!-- 读取messages -->
-    <ul>
-        {% for obj in messages %}
-            <li>{{ obj.message }}</li>
-        {% endfor %}
-    </ul>
+    {% if messages %}
+        <div class="top-message-eeror">
+            {% for obj in messages %}
+                <div class="alert alert-{{ obj.level_tag }}">   
+                    {{ obj.message }}                  
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="container">
         <div style="margin-bottom: 10px;">
             <input id="btnAdd"  type="button" value="新增工单" class="btn btn-primary">
@@ -53,6 +71,10 @@
                             <input cid="{{ obj.id }}" class="btn btn-edit btn-primary btn-xs" type="button" value="编辑">
                             <!-- <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> -->
                             <input cid="{{ obj.id }}" class="btn btn-delete btn-danger btn-xs" type="button" value="删除">
+                        
+                            <a class="btn btn-danger btn-xs" href="/work/cancel/{{ obj.id }}">
+                                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> 撤销
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -263,5 +285,10 @@
         })
     }
     
+    setTimeout(function () {
+        $(".top-message-eeror").addClass('hide');
+    }, 5000);
+
   </script>
+
 {% endblock %}

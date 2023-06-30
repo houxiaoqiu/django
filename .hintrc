@@ -6,7 +6,8 @@
     "axe/structure": [
       "default",
       {
-        "list": "off"
+        "list": "off",
+        "listitem": "off"
       }
     ],
     "axe/name-role-value": [
@@ -15,6 +16,7 @@
         "button-name": "off"
       }
     ],
-    "button-type": "off"
+    "button-type": "off",
+    "no-inline-styles": "off"
   }
 }

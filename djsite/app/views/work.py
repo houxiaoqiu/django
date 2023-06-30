@@ -102,8 +102,13 @@ def work_order_edit_save(request):
 
 
 # 工单撤销
-def work_order_cancel(request):
+def work_order_cancel(request,pk):
+    # 更改订单状态 =【撤销】
+    wo_object = models.WorkOrder.objects.filter(id=pk, status=1).first()
+    if wo_object:
+        messages.add_message(request, messages.WARNING, "工单撤销失败")
+        return redirect('/work/list/')
 
 
-    messages.add_message(request, messages.SUCCESS, "工单删除成功")
+    messages.add_message(request, messages.ERROR, "工单撤销成功")
     return redirect('/work/list/')
