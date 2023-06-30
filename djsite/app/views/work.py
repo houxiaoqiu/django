@@ -4,8 +4,10 @@ from datetime import datetime
 from django import forms
 from django.http import HttpResponse
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from django.contrib.messages.api import get_messages
 
 from app import models
 from app.utils.bootstrap import BootStrapModelForm
@@ -21,6 +23,11 @@ class WorkOrderModelForm(BootStrapModelForm):
 
 # 工单列表
 def work_order_list(request):
+    ## 消息读取并删除：工单撤销信息
+    # messages = get_messages(request)
+    # for obj in messages:
+    #     print(obj.message)
+
     ## 列表
     queryset = models.WorkOrder.objects.all().order_by('-number')
     page_object = Pagination(request, queryset)
@@ -92,3 +99,11 @@ def work_order_edit_save(request):
         return JsonResponse({"status": True})
     
     return JsonResponse({"status": False, "error": form.errors})
+
+
+# 工单撤销
+def work_order_cancel(request):
+
+
+    messages.add_message(request, messages.SUCCESS, "工单删除成功")
+    return redirect('/work/list/')

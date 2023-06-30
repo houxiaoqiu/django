@@ -1,7 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
+    <!-- 读取messages -->
+    <ul>
+        {% for obj in messages %}
+            <li>{{ obj.message }}</li>
+        {% endfor %}
+    </ul>
     <div class="container">
         <div style="margin-bottom: 10px;">
             <input id="btnAdd"  type="button" value="新增工单" class="btn btn-primary">

@@ -259,3 +259,80 @@ Ajax
     vue:
 
 权限管理 drf + vue 
+
+django多App应用
+    方式1：
+        CRM
+            - app01
+            - app02
+            - ...
+            - app0n
+            - crm
+            - manage.py
+    方式2：
+        CRM
+            - apps
+                - app01
+                - app02
+                - ...
+                - app0n
+            crm
+            manage.py
+        创建方式
+            创建文件夹：apps 和 apps\app01、app02...app0n
+            创建django应用：python manage.py startapp app01 apps/app01
+            修改：apps\app01\apps.py
+                from django.apps import AppConfig
+                class AppConfig(AppConfig):
+                    default_auto_field = 'django.db.models.BigAutoField'
+                    # 修改  name = 'app01'
+                    name = 'apps.app01'
+            注册app：修改项目目录下 setting.py
+                INSTALLED_APPS = [
+                    ...
+                    'apps.app01.apps.App01.config',
+                    'apps.app02.apps.App02.config',
+                    ...
+                    'apps.app0n.apps.App0n.config',
+                ]
+
+资源管理
+    静态资源：
+        static\
+            css
+            js
+            image
+    媒体资源：用户上传的文件
+        media\
+            xxx
+            yyy
+            zzz
+        配置：
+            修改项目目录下 setting.py
+                MEDIA_RUL = "/media/"
+                MEDIA_ROOT = os.path.join(BASE_DIR, "media") 
+            修改项目目录下 urls.py
+                from django.urls import path,re_path
+                urlpatterns = [
+                    ...
+                    # 配置 media 用户数据目录
+                    re_path(r'^media/(?P<path>.*)$', serve, {'ducument_root': settings.MEDIA_ROOT}, name='media'),
+                    ...
+                ]
+        上传：
+            1. 手动编写
+            2. form组件
+            3. modelform组件
+
+messages组件
+    配置：settings.py 
+        MESSAGE_STORAGE
+        INSTALLED_APP
+        MIDDLEWARE
+        TEMPLATES
+
+读取settings.py
+    返回对象：return import_string(setting.MESSAGE_SOTRAGE)(request)
+    依照字符串寻找类对象：import_string(setting.MESSAGE_SOTRAGE)
+    对象：SessionStorage(request)
+

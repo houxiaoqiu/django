@@ -20,7 +20,7 @@ from django.urls import path, re_path
 from django.conf import settings
 from django.contrib import admin
 
-from app.views import index,department,user,partner,admin,account,task,work,chart,file
+from app.views import index,department,user,partner,admin,account,task,work,chart,file,vue
 
 
 urlpatterns = [
@@ -70,6 +70,7 @@ urlpatterns = [
     path('work/delete/',work.work_order_delete),
     path('work/edit/',work.work_order_edit),
     path('work/edit/save/',work.work_order_edit_save),
+    path('work/cancel/<int:pk>',work.work_order_cancel,name="work_order_cancel"),    # 撤单
 
     # 图表
     path('chart/list/',chart.chart_list),
@@ -80,5 +81,8 @@ urlpatterns = [
     path('file/upload/form/',file.upload_form),
     path('file/upload/modelform/',file.upload_modelform),
     path('file/upload/employee/',file.upload_employee),
+
+    # vue
+    path('vue/test01/',vue.vue_test01),
 
 ]
