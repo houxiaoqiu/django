@@ -132,3 +132,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# 短信模板
+SMS = 0
+
+# 导入本地配置文件
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+

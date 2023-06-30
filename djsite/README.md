@@ -336,3 +336,26 @@ messages组件
     依照字符串寻找类对象：import_string(setting.MESSAGE_SOTRAGE)
     对象：SessionStorage(request)
 
+本地配置
+    创建：local_settings.py
+        LANGUAGE_CODE = 'zh-hans'
+        
+    导入：local_settings.py 到 settings.py
+        ...
+        # 短信模板
+        SMS = 0
+        # 导入本地配置文件
+        try:
+            from .local_settings import *
+        except ImportError:
+            pass
+        ...
+项目设计
+    菜单
+        [主菜单]
+        登录
+        注册
+        [用户/logo]
+            系统管理
+            个人设置
+            注销
