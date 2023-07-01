@@ -339,7 +339,7 @@ messages组件
 本地配置
     创建：local_settings.py
         LANGUAGE_CODE = 'zh-hans'
-        
+
     导入：local_settings.py 到 settings.py
         ...
         # 短信模板
@@ -350,6 +350,22 @@ messages组件
         except ImportError:
             pass
         ...
+短信 腾讯短信
+    应用：注册、登录
+    环境：
+        注册腾讯云&开通云短信
+        创建应用，并获得:
+            【SDK AppID】
+            【App Key】
+        创建签名：
+            类型：网站、APP、小程序、公众号
+            签名类型：
+            获得：【签名内容】
+        创建模板
+            获得：【模板ID】
+    安装SDK
+        pip install qcloudsms_py
+
 项目设计
     菜单
         [主菜单]
