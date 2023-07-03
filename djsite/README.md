@@ -1,3 +1,4 @@
+
 Django
     安装：pip install django
     创建项目：django-admin startproject <mysite>    # 任意目录
@@ -216,7 +217,10 @@ cookie & session
         生成动态图片：
         定义画笔-文本：
         特殊字体文件：
-
+Web框架
+    webpy: pip install web.py
+图片处理
+    类库：pip install Pillow
 Ajax
     ajax请求：
         ajax({

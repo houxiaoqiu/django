@@ -12,12 +12,12 @@ print(value)
 # r = red.get("name")
 # print(r)
 
-# red.hset("xiao", "bai", "新")
-# red.hset("xiao", "age", 18)
-# red.save()
+red.hset("xiao", "bai", "新")
+red.hset("xiao", "age", 18)
+red.save()
 
-# r = red.hmget("xiao", "bai", "age")
-# print(r)
+r = red.hmget("xiao", "bai", "age")
+print(r)
 
 # r = red.hgetall("xiao")
 # print(r)
