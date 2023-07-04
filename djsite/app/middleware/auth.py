@@ -2,7 +2,6 @@ from django.utils.deprecation import MiddlewareMixin
 from django.shortcuts import HttpResponse,redirect
 from web import models
 
-
 # 
 class AuthMiddleware(MiddlewareMixin):
     """ 登录验证中间件 """
