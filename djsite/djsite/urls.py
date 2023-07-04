@@ -28,7 +28,11 @@ urlpatterns = [
     re_path(r'^media/(?P<path>.*)$', serve, {'ducument_root': settings.MEDIA_ROOT}, name='media'),
 
     # 首页
+<<<<<<< HEAD
     path('index/',home.index),
+=======
+    path('',home.index),
+>>>>>>> 562b281bc1794c7a30b47012c8c7fb141b1b5fc1
     
     # 用户注册
     path('register/',register.register),
