@@ -1,6 +1,7 @@
 from django.utils.deprecation import MiddlewareMixin
 from django.shortcuts import HttpResponse,redirect
-from web import models
+#from web import models
+import web
 
 
 # 
@@ -14,7 +15,7 @@ class AuthMiddleware(MiddlewareMixin):
         """ 新版本 """
         # 获取用户信息
         user_id = request.session.get('user_id',0)
-        user_object = models.User.objects.filter(id=user_id).first()
+        user_object = web.models.User.objects.filter(id=user_id).first()
         request.tracer = user_object
             
         # 如果用户已登录则继续，否则返回登录页面
