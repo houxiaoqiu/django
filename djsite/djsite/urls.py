@@ -20,13 +20,16 @@ from django.urls import path, re_path
 from django.conf import settings
 from django.contrib import admin
 
-from app.views import index,department,user,partner,admin,account,task,work,chart,file,vue,register
+from app.views import home,department,user,partner,admin,account,task,work,chart,file,vue,register
 
 
 urlpatterns = [
     # 配置 media 用户数据目录
     re_path(r'^media/(?P<path>.*)$', serve, {'ducument_root': settings.MEDIA_ROOT}, name='media'),
 
+    # 首页
+    path('',home.index),
+    
     # 用户注册
     path('register/',register.register),
 
