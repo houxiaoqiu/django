@@ -133,6 +133,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+# 登录白名单
+WHITE_REGEX_URL_LIST = [
+    "",
+    "/index/",
+    "/register/",
+    "/login/",
+    "/image/code/",
+    "/send/sms/'",
+    "/user/list/",
+    "/admin/add/",
+    "/admin/list/",
+    "/admin/?/reset/",
+    "/admin/?/edit/",
+]
+
 # 短信模板
 SMS = 0
 
