@@ -136,6 +136,15 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # 短信模板
 SMS = 0
 
+# 登录白名单
+WHITE_REGEX_URL_LIST = [
+    "/register/",
+    "/lgoin/",
+    "/image/code",
+    "",
+    "/index/",
+]
+
 # 导入本地配置文件
 try:
     from .local_settings import *

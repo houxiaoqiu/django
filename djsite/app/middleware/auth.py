@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
 from django.shortcuts import HttpResponse,redirect
 
@@ -7,6 +8,9 @@ class AuthMiddleware(MiddlewareMixin):
     def process_request(self,request):
         # 设置非验证页面
         if request.path_info in ["/login/","/image/code/","/index/",""]:
+            return
+        # 检查URL是否在白名单中，如果存在可以继续向后访问，否则进行登录判断
+        if request.path_info in settings.WHITE_REGEX_URL_LIST:
             return
         
         """ 新版本 """
