@@ -2,9 +2,10 @@ from django.shortcuts import redirect, render
 from app import models
 from app.utils.form import UserModelForm
 from app.utils.pagination import Pagination
+from rest_framework import viewsets
 
-# 用户列表
 def user_list(request):
+    """ 用户列表 """
     queryset = models.User.objects.all()
     page_object = Pagination(request,queryset,page_size=10)
     context = {
