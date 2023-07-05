@@ -6,7 +6,7 @@ class AuthMiddleware(MiddlewareMixin):
     """ 登录验证中间件 """
     def process_request(self,request):
         # 设置非验证页面
-        if request.path_info in ["/login/","/image/code/","/index/"]:
+        if request.path_info in ["/login/","/image/code/","/index/",""]:
             return
         
         """ 新版本 """
