@@ -38,6 +38,15 @@ ORM
     数据迁移命令
         site> python manage.py makemigrations
         site> python manage.py migrate  
+数据序列化
+    pip install djangorestframework 
+    可以通过在settings.json文件中添加extraPaths来解决：
+        "python.analysis.extraPaths": [
+            "./src",　　　　　　　　// 自定义模块的相对路径，可多个，可绝对路径　　
+            "./modules"
+        ]
+跨域请求
+    pip install django-cors-headers          //跨域请求
 
 编程
     project\

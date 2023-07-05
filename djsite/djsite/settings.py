@@ -40,21 +40,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
     'app.apps.AppConfig'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'app.middleware.auth.AuthMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'djsite.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
@@ -139,10 +145,12 @@ SMS = 0
 # 登录白名单
 WHITE_REGEX_URL_LIST = [
     "/register/",
-    "/lgoin/",
-    "/image/code",
+    "/login/",
+    "/image/code/",
     "",
     "/index/",
+    "/admin/list/",
+    "/admin/add/",
 ]
 
 # 导入本地配置文件

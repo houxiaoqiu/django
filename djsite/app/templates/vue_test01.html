@@ -11,7 +11,8 @@
 <body>
     <div id="app">
         <!-- 插值符改为了es6插值形式了 -->
-        计数:{[num]}
+        <p>标题：{[ message ]}</p>
+        <p>计数: {[num]}</p>
         <p><button @click="add">ADD</button></p>
     </div>
 
@@ -21,7 +22,8 @@
       let app = new Vue({
         el: '#app',
         data:{
-            num:1
+            num:1,
+            message: "vuejs测试",
         },
         methods:{
             add(){    

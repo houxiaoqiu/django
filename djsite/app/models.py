@@ -1,11 +1,9 @@
-import datetime
+
+from time import timezone
 from django.db import models
 
 class ActiveBaseModel(models.Model):
-    """ActiveBaseModel
-    Args:
-        models (_type_): _description_
-    """
+    """ 状态 """
     active = models.SmallIntegerField(
         verbose_name="状态",
         default=1,
@@ -33,27 +31,13 @@ class MeansBaseModel(models.Model):
     )
 
 class Department(models.Model):
-    """ 部门
-
-    Args:
-        models (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
+    """ 部门 """
     title = models.CharField(verbose_name='部门',max_length=32)
     def __str__(self):
         return self.title
     
 class User(models.Model):
-    """ 用户
-
-    Args:
-        models (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
+    """ 用户 """
     name = models.CharField(verbose_name='姓名',max_length=16)
     password = models.CharField(verbose_name='密码',max_length=64)
     age = models.IntegerField(verbose_name='年龄',default=18)
@@ -69,14 +53,7 @@ class User(models.Model):
         return self.name
     
 class UserInfo(models.Model):
-    """ 用户信息
-
-    Args:
-        models (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
+    """ 用户信息  """
     name = models.CharField(verbose_name='姓名',max_length=16)
     password = models.CharField(verbose_name='密码',max_length=64)
     age = models.IntegerField(verbose_name='年龄',default=18)
@@ -92,11 +69,7 @@ class UserInfo(models.Model):
         return self.name
 
 class Employee(models.Model):
-    """ 人员
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 人员 """
     name = models.CharField(verbose_name='姓名',max_length=16)
     age = models.IntegerField(verbose_name='年龄',default=18)
     gender_choices = ((1,"男"),(2,"女"),)
@@ -110,14 +83,7 @@ class Employee(models.Model):
     department = models.ForeignKey(verbose_name='部门',to="Department",to_field="id",null=True,blank=True,on_delete=models.SET_NULL,default=20)
 
 class Partner(models.Model):
-    """ 客商 business partner（客户&供应商）customers and merchants
-
-    Args:
-        models (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
+    """ 客商 business partner（客户&供应商）customers and merchants """
     number = models.CharField(verbose_name='客户代码',max_length=32,unique=True)
     name = models.CharField(verbose_name='客户名称',max_length=32,unique=True)
     short_name = models.CharField(verbose_name='客户简称',max_length=16,unique=True)
@@ -134,14 +100,7 @@ class Partner(models.Model):
         return self.name
 
 class Material(models.Model):
-    """ 物料
-
-    Args:
-        models (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
+    """ 物料 """
     number = models.CharField(verbose_name='物料编码',max_length=32,unique=True)
     code = models.CharField(verbose_name='物料代码',max_length=32)
     name = models.CharField(verbose_name='物料名称',max_length=32)
@@ -150,20 +109,12 @@ class Material(models.Model):
         return self.number
     
 class BasicUom(models.Model):
-    """ 基本计量单位
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 基本计量单位 """
     code = models.CharField(verbose_name='基本计量单位代码',max_length=32,unique=True)
     name  = models.CharField(verbose_name='基本计量单位',max_length=32)
 
 class UomGroup(models.Model):
-    """ 计量单位组
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 计量单位组 """
     uom_group_code = models.CharField(verbose_name='计量单位组代码',max_length=32,unique=True)
     name  = models.CharField(verbose_name='计量单位组',max_length=32,unique=True)
     level_choices = ((1,"主计量"),(2,"辅助计量"),)
@@ -172,11 +123,7 @@ class UomGroup(models.Model):
     basic_uom = models.ForeignKey(verbose_name='计量单位',to="BasicUom",to_field="id",on_delete=models.CASCADE) 
     
 class ProductOrder(models.Model):
-    """# 生产订单
-
-    Args:
-        models (_type_): _description_
-    """
+    """# 生产订单 """
     number = models.CharField(verbose_name='生产订单号',max_length=32,unique=True)
     create_date = models.DateField(verbose_name='单据日期')
     expect_date = models.DateField(verbose_name='计划完成日期')
@@ -184,36 +131,21 @@ class ProductOrder(models.Model):
     customer = models.ForeignKey(verbose_name='客户',to="Partner",to_field="id",null=True,blank=True,on_delete=models.SET_NULL,default=None)
     
 class ProductOrders(models.Model):
-    """# 生产订单明细
-
-    Args:
-        models (_type_): _description_
-    """
+    """# 生产订单明细   """
     number = models.CharField(verbose_name='生产订单行号',max_length=16,unique=True)
     expect_date = models.DateField(verbose_name='计划完成日期')
     production_order = models.ForeignKey(verbose_name='生产订单号',to="ProductOrder",to_field="id",null=True,blank=True,on_delete=models.SET_NULL,default=None)  
     quantity = models.DecimalField(verbose_name='数量',max_digits=10,decimal_places=2, default=0)
 
 class Admin(models.Model):
-    """# 管理员
-
-    Args:
-        models (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
+    """# 管理员 """
     username = models.CharField(verbose_name="用户名",max_length=32)
     password = models.CharField(verbose_name="密码",max_length=64)
     def __str__(self):
             return self.username
 
 class Task(models.Model):
-    """# 任务
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 任务 """
     level_choices = (
         (1, "紧急"),
         (2, "重要"),
@@ -225,11 +157,7 @@ class Task(models.Model):
     user = models.ForeignKey(verbose_name="负责人",to="Admin",to_field="id", on_delete=models.CASCADE)
 
 class WorkOrder(models.Model):
-    """# 派工单 WorkOrder
-
-    Args:
-        models (_type_): _description_
-    """
+    """# 派工单 WorkOrder """
     number = models.CharField(verbose_name='工单号',unique=True,max_length=64)
     create_date = models.DateField(verbose_name='单据日期')
     planned_start_date = models.DateField(verbose_name='计划开始日期')
@@ -251,116 +179,64 @@ class WorkOrder(models.Model):
     status = models.SmallIntegerField(verbose_name="状态",choices=status_choices,default=1)
 
 class WorkFrom(models.Model):
-    """ 报工单/转序单
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 报工单/转序单  """
     pass
 
 class ProcessTransferForm(models.Model):
-    """ 工序转移单
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 工序转移单 """
     pass
 
 class Equitpment(models.Model):
-    """ 设备
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 设备 """
     pass
 
 class ProcessRoute(models.Model):
-    """ 工艺路线
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 工艺路线 """
     pass
 
 class Workmanship(models.Model):
-    """ 标准工艺
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 标准工艺  """
     pass
 
 class MeansProduction(models.Model):
-    """ 生产资料
-    
-    Keyword arguments:
-    argument -- description
-    Return: return_description
-    """
+    """ 生产资料 """
 
 class WagesQtuota(models.Model):
-    """ 计件工资定额
-    
-    Keyword arguments:
-    argument -- description
-    Return: return_description
-    """
+    """ 计件工资定额  """
     pass
 
 class Wages(models.Model):
-    """ 计件工资
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 计件工资 """
     pass
 
 class Team(models.Model):
-    """ 班组
+    """ 班组 """
+    code = models.CharField(verbose_name='班组代码',max_length=16)
+    title = models.CharField(verbose_name='班组名称',max_length=32,default=None)
+    content = models.TextField(verbose_name='班组说明',default=None)
+    posttime = models.DateTimeField(verbose_name='记录时间',auto_now = True)
 
-    Args:
-        models (_type_): _description_
-    """
-    pass
+    class Meta:
+        db_table = "erp_team"
 
 class WorkCenter(models.Model):
-    """ 工作中心
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 工作中心 """
     pass
 
 class ProductInspectionForm(models.Model):
-    """ 检验单
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 检验单 """
     pass
 
 class InspectionSchema(models.Model):
-    """ 检验方案
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 检验方案 """
     pass
 
 class InspectionItem(models.Model):
-    """ 检验项目
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 检验项目 """
     pass
 
 class ProductionScheduling(models.Model):
-    """ 生产排程
-
-    Args:
-        models (_type_): _description_
-    """
+    """ 生产排程 """
     pass
 
 class AttendanceRecord(models.Model):

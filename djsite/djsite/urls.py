@@ -16,14 +16,20 @@ Including another URLconf
 """
 
 from django.views.static import serve
-from django.urls import path, re_path
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.contrib import admin
+from rest_framework import routers
 
-from app.views import home,department,user,partner,admin,account,task,work,chart,file,vue,register
+from app.views import home,department,user,partner,admin,account,task,work,chart,file,vue,register,team
 
+router = routers.DefaultRouter()
+router.register(r'team',team.TeamViewSet)
 
 urlpatterns = [
+    # rest_framework api
+    path('api/',include(router.urls)),
+
     # 配置 media 用户数据目录
     re_path(r'^media/(?P<path>.*)$', serve, {'ducument_root': settings.MEDIA_ROOT}, name='media'),
 
