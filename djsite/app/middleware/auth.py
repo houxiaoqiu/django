@@ -1,10 +1,5 @@
 from django.utils.deprecation import MiddlewareMixin
 from django.shortcuts import HttpResponse,redirect
-<<<<<<< HEAD
-from web import models
-=======
-# from web import models
->>>>>>> 562b281bc1794c7a30b47012c8c7fb141b1b5fc1
 
 # 
 class AuthMiddleware(MiddlewareMixin):
