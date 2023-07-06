@@ -4,11 +4,15 @@ Frontends
     node （windows安装：.msi）
     npm instll axios
     创建vue3项目
-        npm init vite-app <frontends>
+        npm init vite-app <frontends>   // 便捷安装
+        npm init vite@latest            // 最新版本安装
     切换vue3项目目录: 
         cd frontends
     安装相应依赖
         npm install
+    安装其他
+        npm install less
+        npm install vue-router@版本号
     启动服务
         npm run dev 
 
@@ -62,7 +66,7 @@ vite 前端构建工具
     TypeScript
 
     状态管理 Pinia 
-    
+
     插件
 
     项目入口文件：index.html
