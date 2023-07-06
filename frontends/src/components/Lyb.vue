@@ -16,7 +16,7 @@
             <td>{{ item.author }}</td>
             <td>{{ item.content }}</td>
             <td>
-              <button class="btn btn-success" title="编辑" @click="editLy(item)" style="margin: 0 10px;">
+              <button class="btn btn-success" title="编辑" @click="editLyb(item)" style="margin: 0 10px;">
                 <i class="glyphicon glyphicon-pencil"></i>
               </button>
               <button class="btn btn-danger" title="删除" @click="deleteLyb(item)">
