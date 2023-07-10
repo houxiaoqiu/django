@@ -1,0 +1,158 @@
+[33mcommit b971c53a97568dd5d3a212fd69fa37407e25878a[m[33m ([m[1;36mHEAD -> [m[1;32merp[m[33m, [m[1;31morigin/erp[m[33m)[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 6 17:27:18 2023 +0800
+
+    vue config
+
+[33mcommit 53a41489e8520a8c0073dc2b5224e0bb7e3984ce[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 6 16:27:21 2023 +0800
+
+    vue
+
+[33mcommit c2b44ff9794c4a1ddbd7245a66328ca50f88dd50[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 6 08:35:27 2023 +0800
+
+    vue+django
+
+[33mcommit 1e17967a7f23597536a3fedd8d0e6a63200b5605[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jul 6 00:42:29 2023 +0800
+
+    django+vue3
+
+[33mcommit fc1d824b5c16ba9e7410e809253e0ee24603f866[m
+Merge: 095c781 a44d82f
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Wed Jul 5 20:05:08 2023 +0800
+
+    zhan99 erp
+
+[33mcommit 095c7812d4bfc674b49093a52d431acfbc3e0128[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 6b770ad a316032
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Wed Jul 5 19:50:19 2023 +0800
+
+    zhan99
+
+[33mcommit 6b770addc3e7811810c42ae83eb6864359f196cc[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Wed Jul 5 19:47:28 2023 +0800
+
+    zhan99 auth.py settings.py
+
+[33mcommit a44d82fa61ced2328df2ea05625ca13ab4feb924[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 17:17:45 2023 +0800
+
+    erp - api
+
+[33mcommit 9196fb187f1799b23224fca2dcc57f2a476472ba[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 09:04:44 2023 +0800
+
+    index
+
+[33mcommit a316032c93b2759980122e318f67bb387f68ae29[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 08:11:05 2023 +0800
+
+    index
+
+[33mcommit 7dd9e89e52747c68435af5fde5ac27cd49eaa4fc[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 08:05:02 2023 +0800
+
+    index
+
+[33mcommit f19f0d05f252c18f322a5d171ef57d1d66335605[m
+Merge: c64b251 562b281
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 07:53:46 2023 +0800
+
+    Merge branch 'main' of github.com:houxiaoqiu/django
+
+[33mcommit c64b2514828d84e65e2c0bc0cc2c8beab5e3cbdd[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 07:50:34 2023 +0800
+
+    from notebook
+
+[33mcommit 562b281bc1794c7a30b47012c8c7fb141b1b5fc1[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Tue Jul 4 16:35:31 2023 +0800
+
+    home page
+
+[33mcommit b0803d72d30cca57e0ad232efe3b5c12159ef316[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Tue Jul 4 16:11:08 2023 +0800
+
+    auth.py
+
+[33mcommit bc717893d4888788ed5bc417299600bc48b9a67f[m[33m ([m[1;31morigin/mom[m[33m, [m[1;32mmom[m[33m)[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Mon Jul 3 08:15:37 2023 +0800
+
+    redis
+
+[33mcommit bf2125389ea3dcb3f3baa95040440b418d2b0676[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Sat Jul 1 15:07:46 2023 +0800
+
+    redis settings
+
+[33mcommit 650772cba88fafdc42af2c8fc4a76ece2e37df62[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Fri Jun 30 20:14:14 2023 +0800
+
+    from local_setting import *
+
+[33mcommit 08cdaf579bca5ef399744f070c6a0d63b4c1f711[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 16:04:33 2023 +0800
+
+    订单撤销消息
+
+[33mcommit 19e4561ba635317bff1292391012eafd4f6a217a[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 14:41:27 2023 +0800
+
+    message
+
+[33mcommit 4a393c1b98a3fa1305ba4bac9d534587c27c7cc1[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 08:32:24 2023 +0800
+
+    change site to djsite
+
+[33mcommit 730421261de2a4d4874921c61755c398b4759e8f[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 08:01:33 2023 +0800
+
+    change djsite to site
+
+[33mcommit 95d6a7bb6c13ae981438e38fa1ed7f002ebcb9d1[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jun 29 17:43:53 2023 +0800
+
+    .gitignore
+
+[33mcommit 583f457f0bb6e981d1e5a7887f8389e8f314d550[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jun 29 07:09:10 2023 +0800
+
+    djsite
+
+[33mcommit 4fbb06e408788b37382269f6b11c68124afec981[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jun 29 07:03:26 2023 +0800
+
+    modify readme.md
+
+[33mcommit 0658c8910fba50f0eb0e938c73416da83b2520bf[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jun 29 00:13:59 2023 +0800
+
+    Initial commit
