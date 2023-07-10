@@ -66,30 +66,39 @@
 		<div class='main-container'>
 			<div class="container-top">
 		        <ul class="all">
-		          <li class="item">综合</li>
+		          <li 
+                class="item"
+                @click="handleZonghe"
+              >综合</li>
 		          <li class="item split">|</li>
-		          <li class="item">最新课程</li>
+		          <li 
+                class="item"
+                @click="handleNewCourse"
+              >最新课程</li>
 		          <li class="item split">|</li>
-		          <li class="item">最多购买 </li>
+		          <li 
+                class="item"
+                @click="mostbuy"
+              >最多购买 
+              </li>
 		          <li class="item split">|</li>
-		          <li class="item-price">
+		          <li 
+                class="item-price"
+                @click="handlePrice"
+              >
 		            <span>价格</span>  
 		            <span class="arrow">
-		              <i
-		                  class="el-icon-caret-top"
-		              ></i>
-		              <i
-		                  class="el-icon-caret-bottom"
-		              ></i>
+		              <el-icon><caret-top></caret-top></el-icon>
+                  <el-icon><caret-bottom></caret-bottom></el-icon>
 		            </span>
 		          </li>
 		        </ul>
 		        <ul class="right">
 		          <li class="right-item">
-		            <el-radio-group>
-		              <el-radio label="1">免费课程</el-radio>
-		              <el-radio label="2">会员课程</el-radio>
-		            </el-radio-group>
+		            <el-radio-group v-model="radio">
+                  <el-radio label="1">免费课程</el-radio>
+                  <el-radio label="2">会员课程</el-radio>
+                </el-radio-group>
 		          </li>
 		        </ul>
 		      </div>
@@ -146,6 +155,8 @@ let currentId = reactive({
   scategory:{id:''},
   clevel:{id:''}
 })
+//字体图标
+import { CaretTop, CaretBottom } from "@element-plus/icons-vue";
 //mixin
 import mixin from '../mixins/courseType.js'
 let { courseTypeFn } = mixin();
@@ -185,7 +196,11 @@ let queryCoursePrams = reactive({
   entity:{
     firstCategory:'',
     secondCategory:'',
-    courseLevel:''
+    tags:'',
+    courseLevel:'',
+    isMember:'',
+    isFree:'',
+    sortBy:'',
   }
 })
 const querySearchCourse = ()=>{
@@ -194,6 +209,8 @@ const querySearchCourse = ()=>{
 		total.value = res.data.pageInfo.total;
 	})
 }
+// 免费课程/会员课程
+let radio = ref('0');
 //生命周期
 onBeforeMount(()=>{
 	//请求一级分类
@@ -217,8 +234,10 @@ const handleCurrentChange = ( val )=>{
 
 //点击分类
 const buildingCondition = ( type , id )=>{
-
   if (type === 'fcategory') {
+    queryCoursePrams.entity.isMember = '';
+    queryCoursePrams.entity.isFree = '';
+    radio.value = '0';
     currentId['scategory'].id = '';
     currentId['clevel'].id = '';
     currentId[type].id = id;
@@ -231,6 +250,9 @@ const buildingCondition = ( type , id )=>{
     return;
   }
   if( type === 'scategory' ){
+    queryCoursePrams.entity.isMember = '';
+    queryCoursePrams.entity.isFree = '';
+    radio.value = '0';
     currentId['clevel'].id = '';
     currentId[type].id = id;
     queryCoursePrams.entity.courseLevel = '';
@@ -245,6 +267,35 @@ const buildingCondition = ( type , id )=>{
     querySearchCourse();
     return;
   }
+}
+// 免费课程/会员课程切换
+watch( radio , (newVal,oldVal)=>{
+  if( newVal == '1' ){
+    queryCoursePrams.entity.isMember = '';
+    queryCoursePrams.entity.isFree = '1';
+  }else if( newVal == '2' ){
+    queryCoursePrams.entity.isFree = '';
+    queryCoursePrams.entity.isMember = '1';
+  }
+  querySearchCourse();
+})
+
+//排序样式
+let priceSortBy = ref('1');
+//综合
+const handleZonghe = ()=>{
+
+}
+//最新课程
+const handleNewCourse = ()=>{
+
+}
+//最多购买
+const mostBuy = ()=>{
+
+}
+//价格
+const handlePrice = ()=>{
 
 }
 
