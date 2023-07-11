@@ -55,3 +55,11 @@ export function  getSetting(){
 		url: '/api/setting/get',
 	})
 }
+
+//课程详情
+export function getCourseDetail( params ){
+	return request({
+		url:'/api/course/getDetail',
+		params,
+	})
+}

@@ -7,35 +7,37 @@
 	          <li class="route-item" style="cursor: pointer">
 	            <router-link to="/course" style="color: #fff">课程</router-link>
 	          </li>
-	          <li class="route-item"><i class="el-icon-arrow-right"></i></li>
-	          <li class="route-item" style="cursor: pointer">免费课/会员课程</li>
-	          <li class="route-item"><i class="el-icon-arrow-right"></i></li>
-	          <li class="route-item">前端路由课程1</li>
+	          <li class="route-item"><el-icon><arrow-right/></el-icon></li>
+	          <li class="route-item" style="cursor: pointer">
+              {{courseInfo.discountPrice === 0 ? '免费课' : '会员课程'}}
+            </li>
+	          <li class="route-item"><el-icon><arrow-right/></el-icon></li>
+	          <li class="route-item">{{ courseInfo.courseName }}</li>
 	        </ul>
-	        <div class="name">前端路由课程2</div>
+	        <div class="name">{{ courseInfo.courseName }}</div>
 	        <div class="info">
 	          <div class="Avat">
 	            <img src="../assets/img/Avat62.png" alt="" />
 	          </div>
 	          <ul class="teacherName">
 	            <li class="name-item">
-	              前端路由课程3
+	              {{ courseInfo.courseName }}
 	              <img src="../assets/img/teacherStart.png" alt="" />
 	            </li>
 	            <li class="name-item">金牌讲师</li>
 	          </ul>
 	          <ul class="access">
 	            <li class="access-item">难度</li>
-	            <li class="access-item">高级</li>
-	            <li class="access-item">·</li>
-	            <li class="access-item">时长</li>
-	            <li class="access-item">100个小时</li>
-	            <li class="access-item">·</li>
-	            <li class="access-item">学习人数</li>
-	            <li class="access-item">200人</li>
-	            <li class="access-item">·</li>
-	            <li class="access-item">综合评分</li>
-	            <li class="access-item">10.00</li>
+              <li class="access-item">{{courseTypeFn(courseInfo.courseLevel) }}</li>
+              <li class="access-item">·</li>
+              <li class="access-item">时长</li>
+              <li class="access-item">{{courseInfo.totalHour}}个小时</li>
+              <li class="access-item">·</li>
+              <li class="access-item">学习人数</li>
+              <li class="access-item">{{courseInfo.purchaseCounter + courseInfo.purchaseCnt}}人</li>
+              <li class="access-item">·</li>
+              <li class="access-item">综合评分</li>
+              <li class="access-item">10.00</li>
 	          </ul>
 	        </div>
 	      </div>
@@ -43,42 +45,40 @@
 
 	    <div class="info-nav">
 	      <div class="nav-container">
-	        <div class="chapter-item" @click="activeChange=true">
-	          <div :class="activeChange ? 'active1':''">章节</div>
-	          <div class="line" :class="activeChange ? 'active2':''"
-            ></div>
+	        <div class="chapter-item" @click='active=true'> 
+	          <div :class="active?'active1':''">章节</div>
+	          <div class="line" :class='active?"active2":""'></div>
 	        </div>
-	        <div class="chapter-item" @click="activeChange=false">
-	          <div :class="!activeChange ? 'active1':''">下载资料</div>
-	          <div  class="line" :class="!activeChange ? 'active2':''"
-            ></div>
+	        <div class="chapter-item" @click='active=false'>
+	          <div :class="!active ? 'active1':''">下载资料</div>
+	          <div class="line" :class='!active ? "active2" : ""'></div>
 	        </div>
 	      </div>
 	    </div>
-	    <div class="course" v-if='activeChange'>
+	    <div class="course" v-if='active'>
 	      <div class="main">
 	        <div class="introduction">
 	          <div class="desc">
-	            该课程暂无介绍
+	            课程暂无描述
 	          </div>
 	          <div class="btn">
 	            <button class="btn-item active">立即购买</button>
 	            <button class="btn-item">加入购物车</button>
 	          </div>
 	        </div>
-	        <div class="video" v-for="(item,index) in 4" :key="index">
-	          <div class="chapterName">章节标题</div>
-	          <div class="chapterDesc">章节描述</div>
+	        <div class="video" v-for="item in courseChapters" :key="item.id">
+	          <div class="chapterName">{{item.chapterName}}</div>
+            <div class="chapterDesc">{{item.description}}</div>
 	          <ul class="videos">
-	            <li class="video-item" v-for="(k,i) in 4" :key="i">
+	            <li class="video-item" v-for="k in item.children" :key="k.id">
 	              <div class="video-itemIcon">
 	                <i class="el-icon-video-camera"></i>
 	              </div>
 
 	              <div class="item-name">
 	                <span class="shipin">视频：</span>
-	                <span class="chapterName">课程标题</span>
-	                <span class="free">试看</span>
+	                <span class="chapterName">{{ k.chapterName }}</span>
+	                <span class="free" v-if="k.publicType === 2">试看</span>
 	              </div>
 	              <button class="btn-learn">开始学习</button>
 	              <div class="clearfloat"></div>
@@ -88,10 +88,10 @@
 	      </div>
 	    </div>
 	    <div v-else>
-	      <div v-if='download'>
-	        <div class="down">
+	      <div v-if='attachments.length > 0'>
+	        <div class="down" v-for='item in attachments' :key='item.id'>
 	          <div class="source">
-	            <span class="downloadCourse">哈哈哈哈哈</span>
+	            <span class="downloadCourse">{{item.attachmentName}}</span>
 	            <button class="downloadbtn">下载资料</button>
 	          </div>
 	        </div>
@@ -107,14 +107,40 @@
 </template>
 
 <script setup>
+//字体图标
+import { ArrowRight } from "@element-plus/icons-vue";
+//mixin
+import mixin from '../mixins/courseType.js'
+let { courseTypeFn } = mixin();
 //组件
 import Header from '../components/common/Header.vue'
 import Foot from '../components/common/Foot.vue'
+//api
+import { getCourseDetail } from '../utils/api/courseManage'
+//切换章节和下载资料
+let active = ref(true);
+//课程id
+import { useRoute } from 'vue-router'
+let route = useRoute();
+let courseId = route.params.id;
+//课程详情的数据
+let courseInfo = ref({});
+//课程章节
+let courseChapters = ref([]);
+//课程资料
+let attachments = ref([]);
+//生命周期
+onBeforeMount(()=>{
+  getCourseDetail({
+    courseId
+  }).then(res=>{
+    courseInfo.value = res.data.data;
+    console.log( res.data.data );
+    courseChapters.value = res.data.data.bizCourseChapters;
+    attachments.value = res.data.data.bizCourseAttachments;
+  })
+})
 
-//切换课程和资料
-let activeChange = ref(true);
-//判断资料是否存在
-let download = ref(true);
 </script>
 
 <style scoped>
