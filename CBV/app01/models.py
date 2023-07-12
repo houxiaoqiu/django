@@ -10,7 +10,7 @@ class Student(models.Model):
     description = models.TextField(max_length=1024,default='1',verbose_name="个性签名")
 
     class Meta:
-        db_table = "tb_student"
+        db_table = "app01_student"
         verbose_name = "学生"
         verbose_name_plural = verbose_name
     
@@ -26,7 +26,7 @@ class Book(models.Model):
     publish = models.ForeignKey("Publish",on_delete=models.SET_NULL, null=True, blank=True,verbose_name='出版商')
     
     class Meta:
-        db_table = "tb_book"
+        db_table = "app01_book"
         verbose_name = "书籍"
         verbose_name_plural = verbose_name
 
@@ -39,9 +39,10 @@ class Publish(models.Model):
     email = models.EmailField(verbose_name="出版商邮箱")
 
     class Meta:
-        db_table = "tb_publish"
+        db_table = "app01_publish"
         verbose_name = "出版商"
         verbose_name_plural = verbose_name
     
     def __str__(self):
         return self.name
+

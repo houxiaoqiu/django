@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Student,Book,Publish
-from .serializers import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
+from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
 
 
 # Create your views here.

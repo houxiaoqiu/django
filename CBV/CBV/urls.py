@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,re_path,include
-from rest_framework.routers import DefaultRouter
+#from rest_framework.routers import DefaultRouter
 
 from user.views import login,LoginView
 # from drfdemo.views import StudentView,StudentDetailView
@@ -27,4 +27,5 @@ urlpatterns = [
     # path('student/',StudentView.as_view()),
     # re_path('student/(\d+)/',StudentDetailView.as_view()),
     path('drfdemo/',include("drfdemo.urls")),  # 子路由
+    path('app01/',include("app01.urls")),  # 子路由
 ]
