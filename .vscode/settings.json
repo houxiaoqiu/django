@@ -1,1 +1,11 @@
-{}
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "CBV",
+            "database": "${workspaceFolder:django}/CBV/db.sqlite3"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
