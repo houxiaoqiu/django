@@ -15,14 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,re_path
+from django.urls import path,re_path,include
+from rest_framework.routers import DefaultRouter
 
 from user.views import login,LoginView
-from drfdemo.views import StudentView,StudentDetailView
+# from drfdemo.views import StudentView,StudentDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view()),
-    path('student/',StudentView.as_view()),
-    re_path('student/(\d+)/',StudentDetailView.as_view()),
+    # path('student/',StudentView.as_view()),
+    # re_path('student/(\d+)/',StudentDetailView.as_view()),
+    path('drfdemo/',include("drfdemo.urls")),  # 子路由
 ]

@@ -7,9 +7,12 @@ class Student(models.Model):
     gender = models.BooleanField(default=1,verbose_name="性别")
     age = models.IntegerField(null=True,verbose_name="年龄")
     class_number = models.CharField(max_length=5,null=True,verbose_name="班级编号")
+    description = models.TextField(max_length=1024,null=True,verbose_name="个性签名")
 
     class Meta:
         db_table = "tb_student"
+        verbose_name = "学生"
+        verbose_name_plural = verbose_name
 
 class Book(models.Model):
     title = models.CharField(max_length=32,verbose_name="书名")
