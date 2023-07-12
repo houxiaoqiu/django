@@ -5,6 +5,12 @@
             "driver": "SQLite",
             "name": "CBV",
             "database": "${workspaceFolder:django}/CBV/db.sqlite3"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "cbv",
+            "database": "${workspaceFolder:django}/CBV/db.sqlite3"
         }
     ],
     "sqltools.useNodeRuntime": true
