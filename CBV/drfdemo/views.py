@@ -4,6 +4,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import CreateModelMixin, ListModelMixin,\
+    RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
 
 from .models import Student,Book,Publish,Author
 from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
@@ -150,24 +152,26 @@ class PublishModelSerializer(serializers.ModelSerializer):
 #             return Response(serializer.data)
 #         except Exception as e:
 #             return Response(serializer.errors)
-class PublishView(GenericAPIView):
+class PublishView(GenericAPIView,ListModelMixin,CreateModelMixin):
     queryset = Publish.objects
     serializer_class = PublishModelSerializer
 
     # 查询全部记录
     def get(self, request):
-        serializer = self.get_serializer(instance=self.get_queryset(), many=True)
-        return Response(serializer.data)
+        # serializer = self.get_serializer(instance=self.get_queryset(), many=True)
+        # return Response(serializer.data)
+        return self.list(request)
     
     # 新增记录
     def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)            
-            serializer.save()
-            return Response(serializer.data)
-        except Exception as e:
-            return Response(serializer.errors)
+        # serializer = self.get_serializer(data=request.data)
+        # try:
+        #     serializer.is_valid(raise_exception=True)            
+        #     serializer.save()
+        #     return Response(serializer.data)
+        # except Exception as e:
+        #     return Response(serializer.errors)
+        return self.create(request)
 
 """ 详细 Publish """
 # class PublishDetailView(APIView):
@@ -190,23 +194,26 @@ class PublishView(GenericAPIView):
 #     def delete(self, request, id):
 #         author = Publish.objects.get(pk=id).delete()
 #         return Response()
-class PublishDetailView(GenericAPIView):
+class PublishDetailView(GenericAPIView,RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin):
     queryset = Publish.objects
     serializer_class = PublishModelSerializer
     # 查询指定记录
     def get(self, request, pk):
-        serializer = self.get_serializer(instance=self.get_object(), many=False)
-        return Response(serializer.data)
+        # serializer = self.get_serializer(instance=self.get_object(), many=False)
+        # return Response(serializer.data)
+        return self.retrieve(request,pk)
     # 更新记录
     def put(self, request, pk):
-        serializer = self.get_serializer(instance=self.get_object(),data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data)
-        except Exception as e:
-            return Response(serializer.errors)
+        # serializer = self.get_serializer(instance=self.get_object(),data=request.data)
+        # try:
+        #     serializer.is_valid(raise_exception=True)
+        #     serializer.save()
+        #     return Response(serializer.data)
+        # except Exception as e:
+        #     return Response(serializer.errors)
+        return self.update(request,pk)
     # 删除记录    
     def delete(self, request, pk):
-        self.get_object().delete()
-        return Response()
+        # self.get_object().delete()
+        # return Response()
+        return self.destroy(request,pk)
