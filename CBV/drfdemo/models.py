@@ -55,6 +55,6 @@ class Author(models.Model):
         db_table = "tb_author"
         verbose_name = "作者"
         verbose_name_plural = verbose_name
-        
+            
     def __str__(self):
         return self.name

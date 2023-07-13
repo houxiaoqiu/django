@@ -3,11 +3,12 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import serializers
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin,CreateModelMixin, \
-    RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
+# from rest_framework.generics import GenericAPIView
+# from rest_framework.mixins import ListModelMixin,CreateModelMixin, \
+    # RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
 # from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
-from rest_framework.viewsets import ViewSetMixin
+# from rest_framework.viewsets import ViewSetMixin
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Student,Book,Publish,Author
 from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
@@ -137,8 +138,15 @@ class PublishModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publish
         fields = "__all__"
+        
+    # 反序列化校验字段
+    def validate_name(self,value):
+        if value.endswith("出版社"):
+            return value
+        else:
+            raise serializers.ValidationError('出版商名称须以“出版社”结尾')
 
-class PublishView(ViewSetMixin,GenericAPIView,ListModelMixin,CreateModelMixin,\
-                  RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin):
+""" 集成视图 Publish """
+class PublishView(ModelViewSet):
     queryset = Publish.objects
     serializer_class = PublishModelSerializer
