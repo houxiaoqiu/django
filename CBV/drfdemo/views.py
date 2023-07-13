@@ -3,10 +3,11 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import serializers
 from rest_framework.views import APIView
-# from rest_framework.generics import GenericAPIView
-# from rest_framework.mixins import CreateModelMixin, ListModelMixin,\
-#     RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
-from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import ListModelMixin,CreateModelMixin, \
+    RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
+# from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ViewSetMixin
 
 from .models import Student,Book,Publish,Author
 from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
@@ -137,10 +138,7 @@ class PublishModelSerializer(serializers.ModelSerializer):
         model = Publish
         fields = "__all__"
 
-class PublishView(ListCreateAPIView):
-    queryset = Publish.objects
-    serializer_class = PublishModelSerializer
-
-class PublishDetailView(RetrieveUpdateDestroyAPIView):
+class PublishView(ViewSetMixin,GenericAPIView,ListModelMixin,CreateModelMixin,\
+                  RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin):
     queryset = Publish.objects
     serializer_class = PublishModelSerializer
