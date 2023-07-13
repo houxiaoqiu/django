@@ -81,6 +81,15 @@ class AuthorSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=32)
     age = serializers.IntegerField()
 
+    def create(self, validated_data):
+        author_obj = Author.objects.create(**validated_data)
+        return author_obj
+    
+    def update(self, instance, validated_data):
+        Author.objects.filter(pk=instance.pk).update(**validated_data)
+        author_obj = Author.objects.filter(pk=instance.pk).first()
+        return author_obj
+
 """ 查询 Author """
 class AuthorView(APIView):
     
@@ -94,8 +103,77 @@ class AuthorView(APIView):
         try:
             serializer.is_valid(raise_exception=True)
             # 新增记录
-            stu = Author.objects.create(**serializer.validated_data)
-            ser = AuthorSerializer(instance=stu, many=False)
-            return Response(ser.data)
+            serializer.save()
+            return Response(serializer.data)
         except Exception as e:
             return Response(serializer.errors)
+
+""" 详细 Author """
+class AuthorDetailView(APIView):
+    
+    def get(self, request, id):
+        author = Author.objects.get(pk=id)
+        serializer = AuthorSerializer(instance=author,many=False)
+        return Response(serializer.data)
+    
+    def put(self, request, id):
+        author = Author.objects.get(pk=id)
+        serializer = AuthorSerializer(instance=author,data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+            # 更新记录
+            serializer.save()
+            return Response(serializer.data)
+        except Exception as e:
+            return Response(serializer.errors)
+        
+    def delete(self, request, id):
+        # 删除记录
+        author = Author.objects.get(pk=id).delete()
+        return Response()
+    
+""" 序列化 Publish """
+class PublishModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Publish
+        fields = "__all__"
+
+class PublishView(APIView):
+    
+    def get(self, request):
+        publish_list = Publish.objects.all()
+        serializer = PublishModelSerializer(instance=publish_list, many=True)
+        return Response(serializer.data)
+    def post(self, request):
+        serializer = PublishModelSerializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+            # 新增记录
+            serializer.save()
+            return Response(serializer.data)
+        except Exception as e:
+            return Response(serializer.errors)
+
+""" 详细 Publish """
+class PublishDetailView(APIView):
+    
+    def get(self, request, id):
+        publish = Publish.objects.get(pk=id)
+        serializer = PublishModelSerializer(instance=publish,many=False)
+        return Response(serializer.data)
+    
+    def put(self, request, id):
+        publish = Publish.objects.get(pk=id)
+        serializer = PublishModelSerializer(instance=publish,data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+            # 更新记录
+            serializer.save()
+            return Response(serializer.data)
+        except Exception as e:
+            return Response(serializer.errors)
+        
+    def delete(self, request, id):
+        # 删除记录
+        author = Publish.objects.get(pk=id).delete()
+        return Response()

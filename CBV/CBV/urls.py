@@ -19,7 +19,7 @@ from django.urls import path,re_path,include
 #from rest_framework.routers import DefaultRouter
 
 from user.views import login,LoginView
-from drfdemo.views import StudentView,StudentDetailView,AuthorView
+from drfdemo.views import StudentView,StudentDetailView,AuthorView,AuthorDetailView,PublishView,PublishDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,9 @@ urlpatterns = [
     path('student/',StudentView.as_view()),
     re_path('student/(\d+)/',StudentDetailView.as_view()),
     path('authors/', AuthorView.as_view()),
+    re_path('authors/(\d+)/', AuthorDetailView.as_view()),
+    path('publishes/', PublishView.as_view()),
+    re_path('publishes/(\d+)/', PublishDetailView.as_view()),
     path('drfdemo/',include("drfdemo.urls")),  # 子路由
     path('app01/',include("app01.urls")),  # 子路由
 ]
