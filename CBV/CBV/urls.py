@@ -29,7 +29,7 @@ urlpatterns = [
     path('authors/', AuthorView.as_view()),
     re_path('authors/(\d+)/', AuthorDetailView.as_view()),
     path('publishes/', PublishView.as_view()),
-    re_path('publishes/(\d+)/', PublishDetailView.as_view()),
+    re_path('publishes/(?P<pk>\d+)/', PublishDetailView.as_view()),
     path('drfdemo/',include("drfdemo.urls")),  # 子路由
     path('app01/',include("app01.urls")),  # 子路由
 ]
