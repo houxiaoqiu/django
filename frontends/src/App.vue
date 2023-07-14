@@ -1,6 +1,7 @@
 <template>
   <div>
     <Home/>
+    <Register/>
     <div  class="row">
       <Lyb/>
     </div>
@@ -9,14 +10,16 @@
 
 <script>
   import Lyb from './components/Lyb.vue'
-  import Home from './components/Home.vue'
+  import Register from './views/Register.vue'
+  import Home from './views/Home.vue'
 
   export default {
     name: 'App',
     components: {
       Home,
-      Lyb
-    }
+      Register,
+      Lyb,
+    },
   }
 </script>
 
