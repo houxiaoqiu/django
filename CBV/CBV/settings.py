@@ -31,29 +31,38 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
+    'simpleui', # admin界面美化，必须写在 .admin 之上 pip install django-simpleui
+    'django.contrib.admin', # django 内置的admin
+    'django.contrib.auth',  # 系统认证
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'user.apps.UserConfig',
-    'drfdemo.apps.DrfdemoConfig',
-    'app01.apps.App01Config',
+    'corsheaders',  # 跨域支持
+    'user',
+    'drfdemo',
+    'app01',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',    # 跨域资源共享中间件，设置务必位于 .CommonMiddleware 之上
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',    # 
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'CBV.urls'
+
+# 跨域请求
+CORS_ORIGIN_ALLOW_ALL = True    # 允许任意客户端发送请求访问当前服务端
+# CORS_ORIGIN_WHITELIST = [     # 允许访问的客户端白名单
+    # "http://localhost:3000",
+    # ]    
 
 TEMPLATES = [
     {

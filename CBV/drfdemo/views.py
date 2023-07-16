@@ -81,60 +81,18 @@ class StudentDetailView(APIView):
             return Response(serializer.errors)
 
 # """ 序列化 Author """
-class AuthorSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=32)
-    age = serializers.IntegerField()
+class AuthorModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Author
+        fields = "__all__"
 
-    def create(self, validated_data):
-        author_obj = Author.objects.create(**validated_data)
-        return author_obj
-    
-    def update(self, instance, validated_data):
-        Author.objects.filter(pk=instance.pk).update(**validated_data)
-        author_obj = Author.objects.filter(pk=instance.pk).first()
-        return author_obj
+""" 集成视图 Author """
+class AuthorView(ModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorModelSerializer
 
-""" 查询 Author """
-class AuthorView(APIView):
-    # 查询全部记录
-    def get(self, request):
-        authors = Author.objects.all()
-        serializer = AuthorSerializer(instance=authors,many=True)
-        return Response(serializer.data)
-    # 新增记录
-    def post(self, request):
-        serializer = AuthorSerializer(data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data)
-        except Exception as e:
-            return Response(serializer.errors)
-
-""" 详细 Author """
-class AuthorDetailView(APIView):
-    # 查询全部记录
-    def get(self, request, id):
-        author = Author.objects.get(pk=id)
-        serializer = AuthorSerializer(instance=author,many=False)
-        return Response(serializer.data)
-    # 更新记录
-    def put(self, request, id):
-        author = Author.objects.get(pk=id)
-        serializer = AuthorSerializer(instance=author,data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data)
-        except Exception as e:
-            return Response(serializer.errors)
-    # 删除记录    
-    def delete(self, request, id):    
-        author = Author.objects.get(pk=id).delete()
-        return Response()
-    
 """ 序列化 Publish """
-class PublishModelSerializer(serializers.ModelSerializer):
+class PublishModelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Publish
         fields = "__all__"
@@ -148,5 +106,5 @@ class PublishModelSerializer(serializers.ModelSerializer):
 
 """ 集成视图 Publish """
 class PublishView(ModelViewSet):
-    queryset = Publish.objects
+    queryset = Publish.objects.all()
     serializer_class = PublishModelSerializer

@@ -16,22 +16,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,re_path,include
-#from rest_framework.routers import DefaultRouter
+from rest_framework import routers
 
 from user.views import login,LoginView
-from drfdemo.views import StudentView,StudentDetailView,AuthorView,AuthorDetailView,PublishView  #,PublishDetailView
+from drfdemo.views import StudentView,StudentDetailView,AuthorView,PublishView  #,PublishDetailView,AuthorDetailView
+
+router = routers.DefaultRouter()
+router.register(r'author', AuthorView)
+router.register(r'publish', PublishView)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view()),
     path('student/',StudentView.as_view()),
     re_path('student/(\d+)/',StudentDetailView.as_view()),
-    path('authors/', AuthorView.as_view()),
-    re_path('authors/(\d+)/', AuthorDetailView.as_view()),
+    path('authors/', AuthorView.as_view({ "get":"list","post":"create" })),
+    #re_path('authors/(\d+)/', AuthorDetailView.as_view()),
     # path('publishes/', PublishView.as_view()),
     # re_path('publishes/(?P<pk>\d+)/', PublishDetailView.as_view()),
     path('publishes/', PublishView.as_view({ "get":"list","post":"create" })),
     re_path('publishes/(?P<pk>\d+)/', PublishView.as_view({ "get":"retrieve","put":"update","delete":"destroy" })),
     path('drfdemo/',include("drfdemo.urls")),  # 子路由
     path('app01/',include("app01.urls")),  # 子路由
+    path('api/',include(router.urls))
 ]

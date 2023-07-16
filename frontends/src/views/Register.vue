@@ -1,31 +1,63 @@
 <template>
     <h1>注册</h1>
-    <button @click="send">点击发送请求</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>出版社</th>
+          <th>邮箱</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in register_list" :key="item.url">
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+        </tr>
+      </tbody>
+    </table>
 </template>
 
 <script>
-import httptool from '../http'
-export default {
-    name: "Register",
-    components: {
+import axios from 'axios';
+import {reactive, onMounted, toRefs} from 'vue'
 
-    },
-    methods: {
-        send() {
-          httptool.get(url: "http://127.0.0.1:8000/publishes/",config: {
-            params: {
-                ordering: "-id",
-                age: 18,
-            },
-            headers: {"Company": "vue Company"},
-          }).then(response=>{
-            console.log(responese);
-            console.log(response.data);
-          }).catch(error=>{
-            console.log(error);
-            console.log(error.response);
-          });  
-        }
+// import httptool from '../http'
+export default {
+    name: 'Register',
+    setup(){
+      let base_url = "http://127.0.0.1:8000/api/publish/";
+      
+      const register_blank = {url:'', name: '', email: ''};
+
+      const state = reactive({
+        register_list: [],
+        register: Object.assign({}, register_blank)
+      });
+
+      const getRegister = ()=>{
+        axios.get(base_url).then(res=>{
+          state.register_list = res.data;
+          state.register = Object.assign({}, register_blank)
+        }).catch(err=>{
+          console.log(err);
+        })
+      };
+
+      const editRegister = (item)=>{
+        state.register.url = item.url;
+        state.register.name = item.name;
+        state.register.email = item.email;
+      };
+
+      onMounted(()=>{
+        getRegister();
+      });
+
+      return{
+        ...toRefs(state),
+        editRegister,
+
+      };
     }
+
 }
 </script>

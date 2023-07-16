@@ -49,8 +49,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  import {reactive, onMounted, toRefs} from 'vue'
+  import axios from 'axios';
+  import {reactive, onMounted, toRefs} from 'vue';
 
   export default {
     name: 'Lyb',
