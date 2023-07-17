@@ -1,15 +1,34 @@
 <template>
-    <Menu></Menu>
-    <h1>Home</h1>
+    <Header></Header>
+    <NavSwiper></NavSwiper>
+    <div ref="target">
+		<NewGoodCourse v-if='targetIsVisible'></NewGoodCourse>
+	</div>
+    <Footer></Footer>
 </template>
 
-<script>
-import Menu from '../components/Menu.vue'
+<script setup>
 
-export default {
-    name: "Home",
-    components: {
-        Menu,
-    }
-}
+    import { ref, defineAsyncComponent } from 'vue'
+    import { useIntersectionObserver } from '@vueuse/core'
+    import Header from '../components/common/Header.vue'
+    import NavSwiper from '../components/home/NavSwiper.vue'
+    import Footer from '../components/common/Footer.vue'
+
+    const NewGoodCourse = defineAsyncComponent(() =>
+    import('../components/home/NewGoodCourse.vue')
+    );
+
+    const target = ref(null);
+    const targetIsVisible = ref(false);
+
+    const { stop } = useIntersectionObserver(
+    target,
+    ([{ isIntersecting }]) => {
+        if( isIntersecting ) {
+            targetIsVisible.value = isIntersecting
+        }
+    },
+    );
+
 </script>

@@ -11,7 +11,8 @@ export default defineConfig({
 	],
   	server:{
 		proxy:{
-			'/api':'http://testapi.xuexiluxian.cn'
+			'/api': 'http://testapi.xuexiluxian.cn',
+			'/cbv': 'http://127.0.0.1:8000'
 		}
 	}
 })

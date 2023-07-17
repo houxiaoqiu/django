@@ -8,9 +8,7 @@
 </template>
 
 <script setup>
-import { useIntersectionObserver } from '@vueuse/core'
 
-import Header from '../components/common/Header.vue'
 import NavSwiper from '../components/home/NavSwiper.vue'
 
 const NewGoodCourse = defineAsyncComponent(() =>

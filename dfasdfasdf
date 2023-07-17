@@ -1,0 +1,303 @@
+[33mcommit a05d5a6aab07ae2ff6715c802f53e16c7045cdff[m[33m ([m[1;36mHEAD -> [m[1;32merp[m[33m)[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Sun Jul 16 23:13:12 2023 +0800
+
+    cbv
+
+[33mcommit b7111448b399f22a5918b8ff39b7def168612925[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Fri Jul 14 21:40:15 2023 +0800
+
+    register
+
+[33mcommit 93f6e521b916e8d01a1a45adfdf41cbbf6a55d1e[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jul 14 15:40:09 2023 +0800
+
+    vue Home
+
+[33mcommit 6160b2d87489a4817ec532dd612740e910c8f06a[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jul 13 17:24:09 2023 +0800
+
+     backends drf end!
+
+[33mcommit 7a41c40684731b9e9b15dc99d0c46052f487e92a[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 13 16:07:16 2023 +0800
+
+    ViewSetMixin
+
+[33mcommit 956a1309cdb197e193a02b0988a61b1e2ae26bbf[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 13 14:08:11 2023 +0800
+
+    ListCreateAPIView,RetrieveUpdateDestoryAPIView
+
+[33mcommit a049099984587ca9dbc9b65591cbf65a69b2f773[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 13 13:32:16 2023 +0800
+
+     mixin-1
+
+[33mcommit c838970d20129c57eab2825b27585917d564fa97[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 13 12:59:13 2023 +0800
+
+     GenericAPIView
+
+[33mcommit 16e44a229ec65c1ecbf24541628df5ab14263191[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 13 11:40:21 2023 +0800
+
+     rdf
+
+[33mcommit 96963f8f5703dd7d0d2f57e46156f2e184d8961b[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jul 13 04:46:06 2023 +0800
+
+    author book publish
+
+[33mcommit 24babbad715de77cc2ef9e2a244eab5f7f67f1fc[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 12 17:20:59 2023 +0800
+
+    app01
+
+[33mcommit 54559778680df084ccc5a6d2d67daebe243df989[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 12 16:11:51 2023 +0800
+
+    drfdemo
+
+[33mcommit f2a95a5c8de6a0feafd8905f4d7fc701f58e6d74[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 12 13:20:10 2023 +0800
+
+    drfdemo
+
+[33mcommit 4bd05b8b1fc6f10a9ce7a744d977469c0eaa145c[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Tue Jul 11 17:15:35 2023 +0800
+
+    cbv
+
+[33mcommit 743210f3fb4af0bb0273add1953f4e83f9985b5c[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Tue Jul 11 16:25:42 2023 +0800
+
+    cbv
+
+[33mcommit 8556c93b051351ec3fa6dc5e87926f35846622ee[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Tue Jul 11 10:53:20 2023 +0800
+
+    vite_vue 21
+
+[33mcommit cba1a1c334fe08a6a1654e4dd0b90c21ae2071fe[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Tue Jul 11 09:00:44 2023 +0800
+
+    vite-vue 20
+
+[33mcommit bd3b5544e522095e1c287683d24cf63dc6e9c5c4[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Tue Jul 11 01:08:27 2023 +0800
+
+    vite-vue 19
+
+[33mcommit 4ca1e5f82b18e21fdd750c8d790c9a8729d81645[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Mon Jul 10 23:35:10 2023 +0800
+
+    vite-vue course:17
+
+[33mcommit d14131ee793af5f4409e4d8b4703ac3ecf2051d5[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Mon Jul 10 23:25:12 2023 +0800
+
+    vite-vue course:16
+
+[33mcommit 12aa0447388df8b14fba3089d21e26b5f7e2ff03[m
+Merge: f361fb5 a09b203
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Mon Jul 10 17:59:46 2023 +0800
+
+    vite-vue course:15
+
+[33mcommit f361fb5c440f9f7f6ff4c3021cadfdf1043e9a19[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Mon Jul 10 17:17:11 2023 +0800
+
+    clear
+
+[33mcommit a09b203ea43e225facf0b8be015e94a5ab914d1b[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Mon Jul 10 16:40:00 2023 +0800
+
+    vite_vue
+
+[33mcommit 99265a8a46c3a3cc06b2a4b68c0fa3f2703dd6ed[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Mon Jul 10 16:17:26 2023 +0800
+
+    vite_vue
+
+[33mcommit b971c53a97568dd5d3a212fd69fa37407e25878a[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 6 17:27:18 2023 +0800
+
+    vue config
+
+[33mcommit 53a41489e8520a8c0073dc2b5224e0bb7e3984ce[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 6 16:27:21 2023 +0800
+
+    vue
+
+[33mcommit c2b44ff9794c4a1ddbd7245a66328ca50f88dd50[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jul 6 08:35:27 2023 +0800
+
+    vue+django
+
+[33mcommit 1e17967a7f23597536a3fedd8d0e6a63200b5605[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jul 6 00:42:29 2023 +0800
+
+    django+vue3
+
+[33mcommit fc1d824b5c16ba9e7410e809253e0ee24603f866[m
+Merge: 095c781 a44d82f
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Wed Jul 5 20:05:08 2023 +0800
+
+    zhan99 erp
+
+[33mcommit 095c7812d4bfc674b49093a52d431acfbc3e0128[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 6b770ad a316032
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Wed Jul 5 19:50:19 2023 +0800
+
+    zhan99
+
+[33mcommit 6b770addc3e7811810c42ae83eb6864359f196cc[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Wed Jul 5 19:47:28 2023 +0800
+
+    zhan99 auth.py settings.py
+
+[33mcommit a44d82fa61ced2328df2ea05625ca13ab4feb924[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 17:17:45 2023 +0800
+
+    erp - api
+
+[33mcommit 9196fb187f1799b23224fca2dcc57f2a476472ba[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 09:04:44 2023 +0800
+
+    index
+
+[33mcommit a316032c93b2759980122e318f67bb387f68ae29[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 08:11:05 2023 +0800
+
+    index
+
+[33mcommit 7dd9e89e52747c68435af5fde5ac27cd49eaa4fc[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 08:05:02 2023 +0800
+
+    index
+
+[33mcommit f19f0d05f252c18f322a5d171ef57d1d66335605[m
+Merge: c64b251 562b281
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 07:53:46 2023 +0800
+
+    Merge branch 'main' of github.com:houxiaoqiu/django
+
+[33mcommit c64b2514828d84e65e2c0bc0cc2c8beab5e3cbdd[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Wed Jul 5 07:50:34 2023 +0800
+
+    from notebook
+
+[33mcommit 562b281bc1794c7a30b47012c8c7fb141b1b5fc1[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Tue Jul 4 16:35:31 2023 +0800
+
+    home page
+
+[33mcommit b0803d72d30cca57e0ad232efe3b5c12159ef316[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Tue Jul 4 16:11:08 2023 +0800
+
+    auth.py
+
+[33mcommit bc717893d4888788ed5bc417299600bc48b9a67f[m[33m ([m[1;31morigin/mom[m[33m, [m[1;32mmom[m[33m)[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Mon Jul 3 08:15:37 2023 +0800
+
+    redis
+
+[33mcommit bf2125389ea3dcb3f3baa95040440b418d2b0676[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Sat Jul 1 15:07:46 2023 +0800
+
+    redis settings
+
+[33mcommit 650772cba88fafdc42af2c8fc4a76ece2e37df62[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Fri Jun 30 20:14:14 2023 +0800
+
+    from local_setting import *
+
+[33mcommit 08cdaf579bca5ef399744f070c6a0d63b4c1f711[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 16:04:33 2023 +0800
+
+    订单撤销消息
+
+[33mcommit 19e4561ba635317bff1292391012eafd4f6a217a[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 14:41:27 2023 +0800
+
+    message
+
+[33mcommit 4a393c1b98a3fa1305ba4bac9d534587c27c7cc1[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 08:32:24 2023 +0800
+
+    change site to djsite
+
+[33mcommit 730421261de2a4d4874921c61755c398b4759e8f[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Fri Jun 30 08:01:33 2023 +0800
+
+    change djsite to site
+
+[33mcommit 95d6a7bb6c13ae981438e38fa1ed7f002ebcb9d1[m
+Author: houxiaoqiu@163.com <houxiaoqiu@163.com>
+Date:   Thu Jun 29 17:43:53 2023 +0800
+
+    .gitignore
+
+[33mcommit 583f457f0bb6e981d1e5a7887f8389e8f314d550[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jun 29 07:09:10 2023 +0800
+
+    djsite
+
+[33mcommit 4fbb06e408788b37382269f6b11c68124afec981[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jun 29 07:03:26 2023 +0800
+
+    modify readme.md
+
+[33mcommit 0658c8910fba50f0eb0e938c73416da83b2520bf[m
+Author: houxiaoqiu <houxiaoqiu@163.com>
+Date:   Thu Jun 29 00:13:59 2023 +0800
+
+    Initial commit
