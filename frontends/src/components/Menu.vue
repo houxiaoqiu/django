@@ -1,13 +1,10 @@
 <template>
     <div >
-        <p>home_total={{ home_total }}</p>
-        <p>要发送给父组件的数据：num={{ num }}</p>
-        <button @click="add">{{ num }}</button>
         <ul>
-            <li><a href="">首页</a></li>
-            <li><a href="">商品</a></li>
-            <li><a href="">服务</a></li>
-            <li><a href="">注册/登录</a></li>
+            <li><a><router-link to="/">首页</router-link></a></li>
+            <li><a><router-link to="/">商品</router-link></a></li>
+            <li><a href="" @click.prevent="goto('/publish')">Publish</a></li>
+            <li><a><router-link to="/register">注册/登录</router-link></a></li>
         </ul>
     </div>
 </template>
@@ -15,23 +12,13 @@
 <script>
 export default {
     name: "Menu",
-    props: {
-        home_total: {
-            type: Number,
-            default: 99
-        }
-    },
-    data() {
-        return {
-            num: 100,
-            message: "Hello,我来自Menu组件。"
-        }
-    },
     methods: {
-        add() {
-            this.num++;
-            this.$emit("add_num",this.num,this.message);
-        }
+        goto(url){
+            this.$router.push(url);
+            // this.$router.back();
+            // this.$router.go(1);
+            // this.$router.forward();
+        },
     }
 }    
 </script>

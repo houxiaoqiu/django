@@ -1,14 +1,14 @@
 <template>
     <menu></menu>
-    <h1>Home</h1>
+    <h1>Publish</h1>
 </template>
 
 <script>
 import Menu from '../components/Menu.vue'
 
 export default {
-    name: "Home",
-    components: {
+    name: "Publish",
+    components:{
         Menu,
     }
 }
