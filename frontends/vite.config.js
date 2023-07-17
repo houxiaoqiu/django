@@ -1,10 +1,8 @@
-import { defineConfig } from "vite";
-
-const envResolver = {
-    "build": () => ({ ...viteBaseConfig, ...viteProdConfig }),
-    "serve": () => ({ ...viteBaseConfig, ...viteDevConfig })
-}
-
-// export default defineConfig( config : ({ command : "build" | "serve" , mode : string }) => {
-//     return envResolver[command]();
-// })
+// vite.config.js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+ 
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue()]
+})

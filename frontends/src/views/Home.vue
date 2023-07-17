@@ -1,5 +1,5 @@
 <template>
-    <menu></menu>
+    <Menu></Menu>
     <h1>Home</h1>
 </template>
 

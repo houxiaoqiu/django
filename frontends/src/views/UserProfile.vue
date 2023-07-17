@@ -11,6 +11,8 @@
 
 export default {
     name: "UserProfile",
+    components:{
 
+    }
 }
 </script>

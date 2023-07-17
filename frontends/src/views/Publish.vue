@@ -1,5 +1,5 @@
 <template>
-    <menu></menu>
+    <Menu></Menu>
     <h1>Publish</h1>
 </template>
 
