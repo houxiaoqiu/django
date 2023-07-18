@@ -149,7 +149,7 @@
 		   	</div>
 		</div>
 	</div>
-	<Foot></Foot>
+	<Footer></Footer>
 </template>
 
 
@@ -160,7 +160,7 @@ import mixin from '../mixins/courseType.js'
 let { courseTypeFn } = mixin();
 //组件
 import Header from '../components/common/Header.vue'
-import Foot from '../components/common/Foot.vue'
+import Footer from '../components/common/Footer.vue'
 //api
 import { getFirstCategorys , getSecondCategorys , searchCourse } from '../utils/api/courseManage'
 //获取一级分类的数据

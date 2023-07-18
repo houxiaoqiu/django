@@ -15,11 +15,14 @@
     "vue-router": "^4.0.13"
   },
   "devDependencies": {
+    "@iconify-json/ep": "^1.1.11",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "@vue/compiler-sfc": "^3.0.4",
     "element-plus": "^2.3.8",
     "unplugin-auto-import": "^0.16.6",
+    "unplugin-icons": "^0.16.5",
+    "unplugin-vue-components": "^0.25.1",
     "vite": "^4.4.2-rc.13"
   }
 }

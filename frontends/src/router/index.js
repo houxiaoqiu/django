@@ -20,6 +20,12 @@ const routes = [
             import(/* webpackChunkName: "register" */ "../views/Register.vue")
     },
     {
+        path: "/admin",
+        name: "Admin",
+        component: () =>
+            import(/* webpackChunkName: "admin" */ "../views/Admin.vue")
+    },
+    {
         path: "/publish",
         name: "Publish",
         component: () =>
@@ -45,6 +51,18 @@ const routes = [
             },
         ],
     },
+    {
+        path: "/course",
+        name: "Course",
+        component: () =>
+            import(/* webpackChunkName: "course" */ "../views/Course.vue"),
+    },
+    {
+        path: "/course-info/:id",
+        name: "CourseInfo",
+        component: () =>
+            import(/* webpackChunkName: "courseinfo" */ "../views/CourseInfo.vue"),
+    },
 
 ];
 
@@ -60,7 +78,7 @@ router.beforeEach((to, from, next) => {
 
 //后置守卫：
 router.afterEach((to, from, failure) => {
-    if(!failure) sendToAnalytics(to.fullPath)
+    if (!failure) sendToAnalytics(to.fullPath)
 })
 
 export default router;
