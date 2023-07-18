@@ -26,10 +26,21 @@ const routes = [
             import(/* webpackChunkName: "admin" */ "../views/Admin.vue"),
         children: [
             {
-                path: "publish",
-                name: "Publish",
+                path: "",
                 component: () =>
                     import(/* webpackChunkName: "publish" */ "../views/Publish.vue")
+            },
+            {
+                path: "/about",
+                name: "About",
+                component: () =>
+                    import(/* webpackChunkName: "about" */ "../views/About.vue"),
+            },
+            {
+                path: "/:xxx(.*)*",
+                name: "Error",
+                component: () => 
+                    import(/* webpackChunkName: "about" */ "../components/common/Error.vue"),
             },
         ],
     },
@@ -71,6 +82,7 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "courseinfo" */ "../views/CourseInfo.vue"),
     },
+    
 
 ];
 

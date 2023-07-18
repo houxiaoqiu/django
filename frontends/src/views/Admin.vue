@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { isCollapse } from '../components/layout/isCollapse'
-// import { RouterView } from 'vue-router'
+//import { RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -13,7 +13,8 @@ import { isCollapse } from '../components/layout/isCollapse'
                 <AppHeader />
                 <el-main>
                     <el-scrollbar>
-                        <RouterView />
+                        <router-view></router-view>
+                        <!-- <RouterView /> -->
                     </el-scrollbar>
                 </el-main>
             </el-container>
@@ -29,6 +30,7 @@ import { isCollapse } from '../components/layout/isCollapse'
 }
 .el-main {
     background-color: #f4f4f5;
+    padding-right: 0;
 }
 .el-aside {
     height: 100vh;

@@ -1,4 +1,5 @@
 <template>
+  <h5 class="mb-2">Admin</h5>
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -58,6 +59,14 @@
   .el-menu {
     background-color: #e9e9eb;
     height: 100vh;
+  }
+  .mb-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 60px;
+    background-color: #e9e9eb;
   }
   </style>
   
