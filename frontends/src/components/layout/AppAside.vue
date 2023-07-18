@@ -55,5 +55,9 @@
     width: 200px;
     min-height: 400px;
   }
+  .el-menu {
+    background-color: #e9e9eb;
+    height: 100vh;
+  }
   </style>
   
