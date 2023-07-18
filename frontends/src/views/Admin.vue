@@ -1,25 +1,25 @@
 <script setup lang="ts">
-    //import { Menu as IconMenu, Message, User as IconUser, Setting } from '@element-plus/icons-vue'
+import { isCollapse } from '../components/layout/isCollapse'
 </script>
 
 <template>
-    <el-icon>
-        <i-ep-menu></i-ep-menu>
-    </el-icon>
-    <el-icon>
-        <i-ep-Message /> 
-    </el-icon>
-    <el-icon>
-        <i-ep-User />
-    </el-icon>
-    <el-icon>
-       <i-ep-Setting /> 
-    </el-icon>
-    <el-icon>
-       <i-ep-View /> 
-    </el-icon>
+    <div class="common-layout">
+        <el-container>
+            <el-aside :width="isCollapse ? '64px' : '200px'">
+                <AppAside />
+            </el-aside>
+            <el-container class="header-and-main">
+                <AppHeader />
+                <el-main>Main</el-main>
+            </el-container>
+        </el-container>
+    </div>
 </template>
+  
 
-<style>
-
+<style lang="scss" scoped>
+.header-and-main {
+    flex-direction: column;
+}
 </style>
+

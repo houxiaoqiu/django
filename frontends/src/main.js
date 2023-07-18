@@ -7,6 +7,7 @@ import store from './store'
 import ElementPlus from 'element-plus'
 // 引用所有样式
 import 'element-plus/dist/index.css'
+import './assets/css/index.scss'
 // 引入中文语言
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // 
