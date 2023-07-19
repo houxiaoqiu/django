@@ -2,7 +2,7 @@
   <el-scrollbar>
     <el-menu unique-opened router :collapse="isCollapse">
       <a href="/" class="logo">
-        <img src="./vite.svg" alt="">
+        <img src="@/assets/img/vite.svg" alt="">
         <h1>Admin</h1>
       </a>
       <el-sub-menu index="1">

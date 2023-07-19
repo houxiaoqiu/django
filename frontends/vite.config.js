@@ -6,7 +6,9 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import path from 'path'
  
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -33,11 +35,11 @@ export default defineConfig({
       autoInstall: true,
     }),
   ],
-  // resolve: {
-  //   alias: {
-  //     "@": fileURLToPath(new URL("./src", import.meta.url))
-  //   },
-  // },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname,'src')
+    },
+  },
   server:{
 		proxy:{
 			'/api': {

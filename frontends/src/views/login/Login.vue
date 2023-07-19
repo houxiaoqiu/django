@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { login } from "@/utils/api/users"
 
 const form = reactive({
     phone: "13464730744",
@@ -8,9 +9,19 @@ const form = reactive({
 const onSubmit = async () => {
     await loginRef.value?.validate().catch((err) => {
         ElMessage.error('表单验证失败')
-        throw err
+        throw err       // return new Promise(() => {})
     })
-    console.log("正式登录请求")
+    //正式登录请求
+    //const res = login(form)
+    const data = login(form).then((res) => {
+        if (!res.data.success) {
+            ElMessage.error('登录信息有误')
+            throw new Error("登录失败")
+        }
+        return res.data
+    })
+
+    console.log(data)   //后续存储处理
 }
 
 //验证规则
@@ -54,7 +65,7 @@ const loginRef = ref<FormInstance>()
                 <el-input v-model="form.phone" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input v-model="form.password" />
+                <el-input type="password" v-model="form.password" />
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">登录</el-button>
