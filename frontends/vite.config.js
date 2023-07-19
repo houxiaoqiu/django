@@ -49,6 +49,11 @@ export default defineConfig({
       '/cbv': {
         target: loadEnv("",process.cwd()).VITE_CVB_API_URL,  //'http://127.0.0.1:8000',
         changeOrigin: true,
+      },
+      '/front': {
+        // http://39.97.218.60/front/ad/getAdList
+        target: loadEnv("",process.cwd()).VITE_USER_API_URL,  //'http://127.0.0.1:8000',
+        changeOrigin: true,
       }
 		}
 	}

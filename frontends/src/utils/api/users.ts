@@ -1,4 +1,4 @@
-import server from "@/utils/api/request"
+import service from "@/utils/api/request"
 
 // 用户登录，参数类型
 type LoginInfo = {
@@ -15,7 +15,7 @@ type LoginResult = {
 }
 // 用户登录请求
 export const login = (loginInfo: LoginInfo) => {
-    return server<LoginResult>({
+    return service<LoginResult>({
         method: "POST",
         url: "/front/user/login",
         data: 'phone=${loginInfo.phone}&password=${loginInfo.password}',    //数据类型=application/x-www.form-urlencoded
