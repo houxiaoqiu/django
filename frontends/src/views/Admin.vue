@@ -6,7 +6,7 @@ import { isCollapse } from '../components/layout/isCollapse'
 <template>
     <div class="common-layout">
         <el-container>
-            <el-aside :width="isCollapse ? '64px' : '200px'">
+            <el-aside :width="isCollapse ? '60px' : '200px'">   
                 <AppAside />
             </el-aside>
             <el-container class="header-and-main">
@@ -33,6 +33,7 @@ import { isCollapse } from '../components/layout/isCollapse'
     padding-right: 0;
 }
 .el-aside {
+    background-color: #e9e9eb;
     height: 100vh;
 }
 </style>

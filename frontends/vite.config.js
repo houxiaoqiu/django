@@ -1,5 +1,5 @@
 // vite.config.js
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv, ConfigEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -40,8 +40,14 @@ export default defineConfig({
   // },
   server:{
 		proxy:{
-			'/api':'http://testapi.xuexiluxian.cn',
-      '/cbv': 'http://127.0.0.1:8000'
+			'/api': {
+        target: loadEnv("", process.cwd()).VITE_XXLX_API_URL,  //'http://testapi.xuexiluxian.cn',
+        changeOrigin: true,
+      },
+      '/cbv': {
+        target: loadEnv("",process.cwd()).VITE_CVB_API_URL,  //'http://127.0.0.1:8000',
+        changeOrigin: true,
+      }
 		}
 	}
 })
