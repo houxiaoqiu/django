@@ -10,7 +10,8 @@ from rest_framework.views import APIView
 # from rest_framework.viewsets import ViewSetMixin
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Student,Book,Publish,Author
+from .models import Student,Book,Publish,Author,\
+    NaturalPerson,LegalPerson,Employee,User,Department
 from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
 
 
@@ -108,3 +109,53 @@ class PublishModelSerializer(serializers.HyperlinkedModelSerializer):
 class PublishView(ModelViewSet):
     queryset = Publish.objects.all()
     serializer_class = PublishModelSerializer
+
+""" 自然人 NaturalPerson """
+class NaturalPersonModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = NaturalPerson
+        fields = "__all__"
+
+class NaturalPersonView(ModelViewSet):
+    queryset = NaturalPerson.objects.all()
+    serializer_class = NaturalPersonModelSerializer
+          
+""" 法人 LegalPerson """
+class LegalPersonModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = LegalPerson
+        fields = "__all__"
+
+class LegalPersonView(ModelViewSet):
+    queryset = LegalPerson.objects.all()
+    serializer_class = LegalPersonModelSerializer
+
+""" 雇员 Employee """
+class EmployeeModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Employee
+        fields = "__all__"
+
+class EmployeeView(ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeModelSerializer
+
+""" 用户 User """
+class UserModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = "__all__"
+
+class UserView(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
+
+""" 部门 Department """
+class DepartmentModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Department
+        fields = "__all__"
+
+class DepartmentView(ModelViewSet):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentModelSerializer

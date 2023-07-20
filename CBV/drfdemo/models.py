@@ -104,7 +104,7 @@ class NaturalPerson(Contacts):
         verbose_name="人员"
         verbose_name_plural = verbose_name
 
-class LealPerson(Contacts):
+class LegalPerson(Contacts):
     short_name = models.CharField(max_length=16,verbose_name="简称")
     address = models.CharField(max_length=128,verbose_name="地址")
     representative = models.ForeignKey(
@@ -137,7 +137,7 @@ class Employee(models.Model):
         on_delete=models.CASCADE, 
         verbose_name="雇员")
     employer = models.ForeignKey(
-        LealPerson, 
+        LegalPerson, 
         on_delete=models.CASCADE, 
         verbose_name="雇主")
 
@@ -148,7 +148,7 @@ class Employee(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=32,verbose_name="部门名称")
     leal_person = models.ForeignKey(
-        LealPerson,
+        LegalPerson,
         on_delete=models.CASCADE, 
         verbose_name="法人单位")
     parent_name = models.ForeignKey(
