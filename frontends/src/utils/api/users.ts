@@ -17,7 +17,7 @@ type LoginResult = {
 export const login = (loginInfo: LoginInfo) => {
     return service<LoginResult>({
         method: "POST",
-        url: "/front/user/login",
+        url: "/drfdemo/user",                                                 // "/front/user/login",
         data: 'phone=${loginInfo.phone}&password=${loginInfo.password}',    //数据类型=application/x-www.form-urlencoded
         //data: loginInfo,     //数据类型=json
 

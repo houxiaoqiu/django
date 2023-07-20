@@ -93,9 +93,22 @@ class Contacts(models.Model):
         abstract = True
         verbose_name = "联系人"
         verbose_name_plural = verbose_name
+    def __str__(self):
+        return self.name
 
 class NaturalPerson(Contacts):
-    gender = models.CharField(max_length=16,verbose_name="性别")
+    Male = 'M'
+    Female = 'F'
+    Unknown = 'U'
+    gender_choices = (
+        (Male,'男'),
+        (Female,'女'),
+        (Unknown,'未知'),)
+    gender = models.CharField(
+        max_length=1,
+        choices=gender_choices,
+        default=Unknown,
+        verbose_name="性别")
     birthday = models.DateField(verbose_name="生日")
     telephone = models.CharField(max_length=16,verbose_name="电话号码")
     email = models.CharField(max_length=64,verbose_name="电子邮箱")
@@ -160,3 +173,5 @@ class Department(models.Model):
     class Meta:
         verbose_name="部门"
         verbose_name_plural = verbose_name
+    def __str__(self):
+        return self.name
