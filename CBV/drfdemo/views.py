@@ -1,4 +1,5 @@
 
+import re
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import serializers
@@ -34,6 +35,58 @@ class LoginView(TokenObtainPairView):
         result['token'] = result.pop('access')
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
+""" 用户注册"""
+class RegisterView(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        email = request.data.get('email')
+        password = request.data.get('password')
+        password_confirmation = request.data.get('password_confirmation')
+        # 校验参数是否为空
+        if not all([username,email,password,password_confirmation]):
+            return Response(
+                {'error': "所有参数均不能为空"},
+                status = status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        # 校验用户是否已注册
+        if User.objects.filter(username=username).exists(): 
+            return Response(
+                { "errors": "用户已注册"},
+                status = status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        # 校验密码是否一致
+        if password != password_confirmation:
+            return Response(
+                { "errors": "密码与确认密码不一致"},
+                status = status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        # 校验密码长度
+        if not ( 6 <= len(password) <= 18 ):
+            return Response(
+                { "errors": "密码长度不满足6~18位"},
+                status = status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        # 校验邮箱
+        if User.objects.filter(email=email).exists(): 
+            return Response(
+                { "errors": "该邮箱已被其他注册用户使用"},
+                status = status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        if not re.match(r'^[a-z0-9][\w.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$',email):
+            return Response(
+                { "errors": "邮箱格式不正确"},
+                status = status.HTTP_422_UNPROCESSABLE_ENTITY                
+            )
+        # 创建用户
+        obj = User.objects.create_user(username=username,email=email,password=password)
+        # 返回用户信息
+        res = {
+                "id": obj.id, 
+                "username": obj.username,                            
+                "email": obj.email,
+            }
+        return Response(res,status=status.HTTP_201_CREATED)
+        
 """ Student """
 class StudentViewSet(ModelViewSet):
     queryset = Student.objects.all()

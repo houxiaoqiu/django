@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,13 +68,9 @@ CORS_ORIGIN_ALLOW_ALL = True    # 允许任意客户端发送请求访问当前�
     # "http://localhost:3000",
     # ]    
 
-# 配置登录鉴权方式
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
+
+
+
 
 
 TEMPLATES = [
@@ -147,3 +146,39 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 指定自定义用户类
 AUTH_USER_MODEL = 'drfdemo.User'
+
+# 配置登录鉴权方式
+REST_FRAMEWORK = {
+    # 登录鉴权方式
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+# Token 相关配置
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),      # 访问令牌的有效时间
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),        # 刷新令牌的有效时间
+    
+    "ROTATE_REFRESH_TOKENS": False,       # 若为True，则刷新后新的refresh_token有更新的有效时间
+    "BLACKLIST_AFTER_ROTATION": True,     # 若为True，则刷新后的token将添加到黑名单中
+    "UPDATE_LAST_LOGIN": False,
+    
+    "ALGORITHM": "HS256",       # 对称算法：HS256 HS384 HS512  非对称算法： RSA
+    "SIGNING_KEY": "SECRET_KEY",  # if signing_key,verifying_key will be ignore.
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    
+    "AUTH_HEADER_TYPES": ("Bearer",),   # Authorization: Bearer <token>
+    "Auth_HEADER_NAME": "HTTP_AUTHORIZATION",   # if HTTP_X_ACCESS_TOKEN, X_ACCESS_TOKEN: Bearer <token>
+    "USER_ID_FIELD": "id",              # 使用唯一不变的数据库字段，将包含在生成的令牌中用以标识用户
+    "USER_ID_CLAIM": "user_id",
+}
+
+# 配置自定义多字段用户登录验证
+AUTHENTICATION_BACKENDS = [
+    'common.authenticate.MyBackends',
+]

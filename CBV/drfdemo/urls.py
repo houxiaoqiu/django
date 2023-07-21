@@ -1,12 +1,16 @@
 """ drddemo 子路由 """
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-# from rest_framework_simplejwt.views import TokenObtainPairView
-
+from rest_framework_simplejwt.views import TokenRefreshView,\
+    TokenVerifyView,TokenObtainPairView
 from . import views
 
 urlpatterns = [
-    path('login/',views.LoginView.as_view())
+    path('login/',views.LoginView.as_view()),       # 登录
+    path('register/',views.RegisterView.as_view()),     # 注册
+    path('token/verify/', TokenVerifyView.as_view()),         # 校验 Token
+    path('token/refresh/', TokenRefreshView.as_view()),     # 刷新 Token
+    # path('login',TokenObtainPairView.as_view(),name='login') # 登录
 ]
 
 router = DefaultRouter()    # 可处理视图的路由

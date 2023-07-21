@@ -141,10 +141,11 @@ class User(AbstractUser,BaseModel):
     # password = models.CharField(max_length=16,verbose_name="密码")
     mobile = models.CharField(verbose_name="手机号",max_length=11,default='')
     avatar = models.ImageField(verbose_name='用户头像',blank=True,null=True)
-    # person = models.ForeignKey(
-    #     NaturalPerson,
-    #     on_delete=models.CASCADE, 
-    #     verbose_name="用户")
+    person = models.ForeignKey(
+        NaturalPerson,
+        on_delete=models.SET_NULL, 
+        null=True,
+        verbose_name="用户")
 
     class Meta:
         verbose_name="用户"
