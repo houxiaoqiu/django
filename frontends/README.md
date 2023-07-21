@@ -73,3 +73,8 @@ vite 前端构建工具
 
     静态资源
 
+    配置文件 .env
+        VITE_XXLX_API_URL = http://testapi.xuexiluxian.cn
+        VITE_CVB_API_URL = http://127.0.0.1:8000
+        VITE_USER_API_URL = http://39.97.218.60
+

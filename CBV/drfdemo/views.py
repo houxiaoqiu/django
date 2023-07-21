@@ -14,8 +14,25 @@ from .models import Student,Book,Publish,Author,\
     NaturalPerson,LegalPerson,Employee,User,Department
 from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
 
-
-# Create your views here.
+# 用户登录
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework import status
+from rest_framework_simplejwt.exceptions import TokenError,InvalidToken
+from rest_framework.response import Response
+class LoginView(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except TokenError as e:
+            raise InvalidToken(e.args[0])
+        result = serializer.validated_data
+        result['id'] = serializer.user.id
+        result['mobile'] = serializer.user.mobile
+        result['email'] = serializer.user.email
+        result['username'] = serializer.user.username
+        result['token'] = result.pop('access')
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 """ Student """
 class StudentViewSet(ModelViewSet):

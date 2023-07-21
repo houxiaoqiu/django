@@ -2,8 +2,8 @@
 import { login } from "@/utils/api/users"
 
 const form = reactive({
-    phone: "13464730744",
-    password: "123",
+    account: "13464730744",
+    password: "123456",
 })
 
 const onSubmit = async () => {
@@ -26,7 +26,7 @@ const onSubmit = async () => {
 
 //验证规则
 const rules = reactive<FormRules>({
-    phone: [
+    account: [
         {
             require: true,
             message: "电话号码不能为空",
@@ -59,10 +59,17 @@ const loginRef = ref<FormInstance>()
 
 <template>
     <div class="login">
-        <el-form :model="form" :rules="rules" ref="loginRef" label-width="120px" label-position="top" size="large">
+        <el-form 
+            :model="form" 
+            :rules="rules" 
+            ref="loginRef" 
+            label-width="120px" 
+            label-position="top" 
+            size="large"
+        >
             <h1>登录</h1>
-            <el-form-item label="手机号" prop="phone">
-                <el-input v-model="form.phone" />
+            <el-form-item label="帐号" prop="account">
+                <el-input v-model="form.account" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="form.password" />

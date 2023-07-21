@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser  # django用户认证模型
+
+from common.db import BaseModel
 
 # Create your models here.
-
 class Student(models.Model):
     name = models.CharField(max_length=100,verbose_name="姓名")
     gender = models.BooleanField(default=1,verbose_name="性别")
@@ -93,10 +95,11 @@ class Contacts(models.Model):
         abstract = True
         verbose_name = "联系人"
         verbose_name_plural = verbose_name
+        db_table = 'Contacts'
     def __str__(self):
         return self.name
 
-class NaturalPerson(Contacts):
+class NaturalPerson(Contacts,BaseModel):
     Male = 'M'
     Female = 'F'
     Unknown = 'U'
@@ -117,7 +120,7 @@ class NaturalPerson(Contacts):
         verbose_name="人员"
         verbose_name_plural = verbose_name
 
-class LegalPerson(Contacts):
+class LegalPerson(Contacts,BaseModel):
     short_name = models.CharField(max_length=16,verbose_name="简称")
     address = models.CharField(max_length=128,verbose_name="地址")
     representative = models.ForeignKey(
@@ -131,20 +134,24 @@ class LegalPerson(Contacts):
         verbose_name="法人单位"
         verbose_name_plural = verbose_name
 
-class User(models.Model):
-    app = models.CharField(max_length=32,verbose_name="应用系统")
-    account = models.CharField(max_length=16,verbose_name="帐号")
-    password = models.CharField(max_length=16,verbose_name="密码")
-    person = models.ForeignKey(
-        NaturalPerson,
-        on_delete=models.CASCADE, 
-        verbose_name="用户")
+
+class User(AbstractUser,BaseModel):
+    # username = models.CharField(max_length=16,verbose_name="帐号")
+    # email = models.CharField(max_length=16,verbose_name="邮箱")
+    # password = models.CharField(max_length=16,verbose_name="密码")
+    mobile = models.CharField(verbose_name="手机号",max_length=11,default='')
+    avatar = models.ImageField(verbose_name='用户头像',blank=True,null=True)
+    # person = models.ForeignKey(
+    #     NaturalPerson,
+    #     on_delete=models.CASCADE, 
+    #     verbose_name="用户")
 
     class Meta:
         verbose_name="用户"
         verbose_name_plural = verbose_name
+        db_table = "drfdemo_user"
 
-class Employee(models.Model):
+class Employee(BaseModel):
     person = models.OneToOneField(
         NaturalPerson, 
         on_delete=models.CASCADE, 
@@ -158,7 +165,7 @@ class Employee(models.Model):
         verbose_name="雇员"
         verbose_name_plural = verbose_name
 
-class Department(models.Model):
+class Department(BaseModel):
     name = models.CharField(max_length=32,verbose_name="部门名称")
     leal_person = models.ForeignKey(
         LegalPerson,
@@ -175,3 +182,4 @@ class Department(models.Model):
         verbose_name_plural = verbose_name
     def __str__(self):
         return self.name
+    

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',     # 登录鉴权
     'corsheaders',  # 跨域支持
     'user',
     'drfdemo',
@@ -63,6 +64,15 @@ CORS_ORIGIN_ALLOW_ALL = True    # 允许任意客户端发送请求访问当前�
 # CORS_ORIGIN_WHITELIST = [     # 允许访问的客户端白名单
     # "http://localhost:3000",
     # ]    
+
+# 配置登录鉴权方式
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
 
 TEMPLATES = [
     {
@@ -134,3 +144,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 指定自定义用户类
+AUTH_USER_MODEL = 'drfdemo.User'
