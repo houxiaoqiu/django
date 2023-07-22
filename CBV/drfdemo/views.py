@@ -1,25 +1,24 @@
 
 import re
-from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import status
 from rest_framework import serializers
+from rest_framework.response import Response
 from rest_framework.views import APIView
-# from rest_framework.generics import GenericAPIView
-# from rest_framework.mixins import ListModelMixin,CreateModelMixin, \
-    # RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
-# from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
-# from rest_framework.viewsets import ViewSetMixin
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet,GenericViewSet,ViewSetMixin
+# from rest_framework.generics import GenericAPIView,ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.mixins import RetrieveModelMixin,\
+    ListModelMixin,CreateModelMixin,UpdateModelMixin,DestroyModelMixin
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.exceptions import TokenError,InvalidToken
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Student,Book,Publish,Author,\
     NaturalPerson,LegalPerson,Employee,User,Department
-from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer
+from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer,\
+    UserModelSerializer
+from common.permissions import IsOwnerOrReadOnly
 
-# 用户登录
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework import status
-from rest_framework_simplejwt.exceptions import TokenError,InvalidToken
-from rest_framework.response import Response
+""" 用户登录 """
 class LoginView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -27,6 +26,7 @@ class LoginView(TokenObtainPairView):
             serializer.is_valid(raise_exception=True)
         except TokenError as e:
             raise InvalidToken(e.args[0])
+        # 自定义成功之后返回的结果
         result = serializer.validated_data
         result['id'] = serializer.user.id
         result['mobile'] = serializer.user.mobile
@@ -35,7 +35,7 @@ class LoginView(TokenObtainPairView):
         result['token'] = result.pop('access')
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
-""" 用户注册"""
+""" 用户注册 """
 class RegisterView(APIView):
     def post(self, request):
         username = request.data.get('username')
@@ -87,6 +87,32 @@ class RegisterView(APIView):
             }
         return Response(res,status=status.HTTP_201_CREATED)
         
+""" 用户信息 """
+class UserView(GenericViewSet,RetrieveModelMixin):
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
+    # 设置认证用户才能有权访问
+    # permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
+    # 上传头像
+    def upload_avatar(self, request, *args, **kwargs):
+        avatar = request.data.get('avatar')
+        if not avatar:
+            return Response(
+                {'error':"上传失败,文件不能为空！"},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        if avatar.size > 1024 * 300:
+            return Response(
+                {'error':"上传失败,文件大小不能超过300kb!"},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        obj = self.get_object()           
+        serializer = self.get_serializer(obj,data={"avatar": avatar},partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'url':serializer.data['avatar']})
+
 """ Student """
 class StudentViewSet(ModelViewSet):
     queryset = Student.objects.all()
@@ -101,7 +127,6 @@ class BookViewSet(ModelViewSet):
 class PublishViewSet(ModelViewSet):
     queryset = Publish.objects.all()
     serializer_class = PublishModelSerializer
-
 
 # """ 序列化 Student """
 class StudentSerializer(serializers.Serializer):
@@ -211,14 +236,14 @@ class EmployeeView(ModelViewSet):
     serializer_class = EmployeeModelSerializer
 
 """ 用户 User """
-class UserModelSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
+# class UserModelSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = "__all__"
 
-class UserView(ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserModelSerializer
+# class UserView(ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserModelSerializer
 
 """ 部门 Department """
 class DepartmentModelSerializer(serializers.HyperlinkedModelSerializer):

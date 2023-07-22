@@ -8,8 +8,10 @@ from . import views
 urlpatterns = [
     path('login/',views.LoginView.as_view()),       # 登录
     path('register/',views.RegisterView.as_view()),     # 注册
-    path('token/verify/', TokenVerifyView.as_view()),         # 校验 Token
+    path('token/verify/', TokenVerifyView.as_view()),      # 校验 Token
     path('token/refresh/', TokenRefreshView.as_view()),     # 刷新 Token
+    path('users/<int:pk>/', views.UserView.as_view({'get':'retrieve'})),    # 获取指定用户信息
+    path('users/<int:pk>/avatar/upload', views.UserView.as_view({'post':'upload_avatar'})),    # 上传用户头像
     # path('login',TokenObtainPairView.as_view(),name='login') # 登录
 ]
 

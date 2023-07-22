@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -17,7 +18,6 @@ from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',     # 登录鉴权
+    'rest_framework.authtoken',
     'corsheaders',  # 跨域支持
     'user',
     'drfdemo',
@@ -67,10 +68,6 @@ CORS_ORIGIN_ALLOW_ALL = True    # 允许任意客户端发送请求访问当前�
 # CORS_ORIGIN_WHITELIST = [     # 允许访问的客户端白名单
     # "http://localhost:3000",
     # ]    
-
-
-
-
 
 
 TEMPLATES = [
@@ -151,10 +148,17 @@ AUTH_USER_MODEL = 'drfdemo.User'
 REST_FRAMEWORK = {
     # 登录鉴权方式
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',     # 基本认证
+        'rest_framework.authentication.SessionAuthentication',   # session认证
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAdminUser',
+        # 'rest_framework.permissions.IsAuthenticated', # 已经登录认证的用户才能访问
+        'rest_framework.permissions.AllowAny',
+    ),
+    # 'EXCEPTION_HANDLER': 'common.exceptions.except_handler',
 }
 
 # Token 相关配置
@@ -171,14 +175,39 @@ SIMPLE_JWT = {
     "VERIFYING_KEY": None,
     "AUDIENCE": None,
     "ISSUER": None,
+    'JWK_URL': None,
+    'LEEWAY': 0,
     
     "AUTH_HEADER_TYPES": ("Bearer",),   # Authorization: Bearer <token>
     "Auth_HEADER_NAME": "HTTP_AUTHORIZATION",   # if HTTP_X_ACCESS_TOKEN, X_ACCESS_TOKEN: Bearer <token>
     "USER_ID_FIELD": "id",              # 使用唯一不变的数据库字段，将包含在生成的令牌中用以标识用户
     "USER_ID_CLAIM": "user_id",
+    # "USER_AUTHENTICATION_RULE": 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+    # "AUTH_TOKEN_CLASSES": ('rest_framework_simplejwt.tokens.AccessToken',),
+    # "TOKEN_TYPE_CLAIM": 'token_type',
+    # 'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+    
+    # 'JTI_CLAIM': 'jti',
+    
+    # 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    # 'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+# jwt设置
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': timedelta(days=1),  # 设置 JWT Token 的有效时间
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',  # 设置 请求头中的前缀，不写默认是"JWT "
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'utils.jwt_handler.jwt_response_payload_handler',
+}
+
 
 # 配置自定义多字段用户登录验证
 AUTHENTICATION_BACKENDS = [
     'common.authenticate.MyBackends',
 ]
+
+# 设置 media 用户目录, 上传文件保存路径
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
