@@ -10,7 +10,7 @@ from rest_framework.mixins import RetrieveModelMixin,\
     ListModelMixin,CreateModelMixin,UpdateModelMixin,DestroyModelMixin
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import TokenError,InvalidToken
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 
 from .models import Student,Book,Publish,Author,\
     NaturalPerson,LegalPerson,Employee,User,Department
@@ -92,8 +92,8 @@ class UserView(GenericViewSet,RetrieveModelMixin):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
     # 设置认证用户才能有权访问
-    # permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     # 上传头像
     def upload_avatar(self, request, *args, **kwargs):
         avatar = request.data.get('avatar')
@@ -111,6 +111,7 @@ class UserView(GenericViewSet,RetrieveModelMixin):
         serializer = self.get_serializer(obj,data={"avatar": avatar},partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        # serializer.save(owner=self.request.user)
         return Response({'url':serializer.data['avatar']})
 
 """ Student """

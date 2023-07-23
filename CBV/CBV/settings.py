@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',     # 登录鉴权
-    'rest_framework.authtoken',
+    'rest_framework.authtoken',     # Token验证
     'corsheaders',  # 跨域支持
     'user',
     'drfdemo',
@@ -150,13 +150,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',     # 基本认证
         'rest_framework.authentication.SessionAuthentication',   # session认证
-        'rest_framework.authentication.TokenAuthentication',
+        #添加Token验证，若是Token过时，不须要登陆的界面也不能访问，最好配置在具体的页面
+        # 'rest_framework.authentication.TokenAuthentication',     
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         # 'rest_framework.permissions.IsAdminUser',
-        # 'rest_framework.permissions.IsAuthenticated', # 已经登录认证的用户才能访问
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated', # 已经登录认证的用户才能访问
+        # 'rest_framework.permissions.AllowAny',
     ),
     # 'EXCEPTION_HANDLER': 'common.exceptions.except_handler',
 }
