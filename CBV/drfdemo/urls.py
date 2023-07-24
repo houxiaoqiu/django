@@ -1,9 +1,10 @@
 """ drddemo 子路由 """
-from django.urls import path
+from django.urls import path,re_path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView,\
     TokenVerifyView,TokenObtainPairView
 from . import views
+from common import FileView
 
 urlpatterns = [
     path('login/',views.LoginView.as_view()),       # 登录
@@ -12,6 +13,10 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view()),     # 刷新 Token
     path('users/<int:pk>/', views.UserView.as_view({'get':'retrieve'})),    # 获取指定用户信息
     path('users/<int:pk>/avatar/upload', views.UserView.as_view({'post':'upload_avatar'})),    # 上传用户头像
+    re_path(r'media/(.+?)/',FileView.ImageView.as_view()),  
+    path('address/',views.AddrVeiw.as_view({
+        "post":"create","get": "list"
+        })),     # 地址
 ]
 
 router = DefaultRouter()    # 可处理视图的路由
@@ -23,6 +28,7 @@ router.register('legalperson',views.LegalPersonView)
 router.register('employee',views.EmployeeView)
 router.register('user',views.UserView)
 router.register('department',views.DepartmentView)
+# router.register('media/(.+?)',FileView.FielView)
 
 urlpatterns += router.urls  # 将此子路由信息追加到主路由列表中
 

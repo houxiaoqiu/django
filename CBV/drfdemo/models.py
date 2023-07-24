@@ -19,6 +19,22 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
+""" 用户地址 """
+class Addr(models.Model):
+    user = models.ForeignKey('User',verbose_name='所属用户',on_delete=models.CASCADE)
+    phone = models.CharField(verbose_name='手机号码',max_length=16)
+    name = models.CharField(verbose_name='联系人',max_length=32)
+    province = models.CharField(verbose_name='省份',max_length=32)
+    city = models.CharField(verbose_name='城市',max_length=32)
+    county = models.CharField(verbose_name='区县',max_length=32)
+    address = models.CharField(verbose_name='详细地址',max_length=128,null=True, 
+        blank=True,)
+    is_default = models.BooleanField(verbose_name='是否默认地址',default=True)
+
+    class Meta:
+        verbose_name = "地址"
+        verbose_name_plural = verbose_name
+
 class Book(models.Model):
     title = models.CharField(max_length=32,verbose_name="书籍名称")
     price = models.DecimalField(max_digits=6, decimal_places=2,verbose_name="价格")

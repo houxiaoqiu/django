@@ -20,6 +20,7 @@ from rest_framework import routers
 
 from user.views import login,LoginView
 from drfdemo.views import StudentView,StudentDetailView,AuthorView,PublishView  #,PublishDetailView,AuthorDetailView
+# from common import FileView
 
 router = routers.DefaultRouter()
 router.register(r'author', AuthorView)
@@ -39,5 +40,6 @@ urlpatterns = [
     re_path('publishes/(?P<pk>\d+)/', PublishView.as_view({ "get":"retrieve","put":"update","delete":"destroy" })),
     path('drfdemo/',include("drfdemo.urls")),  # 子路由
     path('app01/',include("app01.urls")),  # 子路由
-    path('api/',include(router.urls))
+    path('api/',include(router.urls)),
+    # re_path('media/(.+?)/',FileView.ImageView.as_view()), 
 ]

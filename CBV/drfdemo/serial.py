@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Student,Book,Publish,User
+from .models import Addr, Student,Book,Publish,User
 
 """ 序列化 Student """
 class StudentModelSerializer(serializers.ModelSerializer):
@@ -33,3 +33,9 @@ class UserModelSerializer(serializers.ModelSerializer):
         #         'required': True,
         #     },
         # }
+
+""" 序列化 Addr """
+class AddrModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Addr
+        fields = '__all__'

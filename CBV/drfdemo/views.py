@@ -8,9 +8,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import TokenError,InvalidToken
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 
-from .models import Student,Book,Publish,Author,\
+from .models import Addr, Student,Book,Publish,Author,\
     NaturalPerson,LegalPerson,Employee,User,Department
-from .serial import StudentModelSerializer,BookModelSerializer,PublishModelSerializer,\
+from .serial import AddrModelSerializer, StudentModelSerializer,\
+    BookModelSerializer,PublishModelSerializer,\
     UserModelSerializer
 from common.permissions import IsOwnerOrReadOnly
 
@@ -108,6 +109,16 @@ class UserView(GenericViewSet,mixins.RetrieveModelMixin):
         serializer.save()
         # serializer.save(owner=self.request.user)
         return Response({'url': serializer.data['avatar']})
+
+""" 地址 """
+class AddrVeiw(GenericViewSet,
+               mixins.ListModelMixin,
+               mixins.CreateModelMixin,
+               mixins.DestroyModelMixin,
+               mixins.UpdateModelMixin):
+    queryset = Addr.objects.all()
+    serializer_class = AddrModelSerializer
+
 
 """ Student """
 class StudentViewSet(ModelViewSet):
