@@ -12,7 +12,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view()),     # 刷新 Token
     path('users/<int:pk>/', views.UserView.as_view({'get':'retrieve'})),    # 获取指定用户信息
     path('users/<int:pk>/avatar/upload', views.UserView.as_view({'post':'upload_avatar'})),    # 上传用户头像
-    # path('login',TokenObtainPairView.as_view(),name='login') # 登录
 ]
 
 router = DefaultRouter()    # 可处理视图的路由

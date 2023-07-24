@@ -25,3 +25,11 @@ class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id','username','last_name','email','mobile','avatar']
+        # read_only_fields = ('id')   # 不参与反序列化（只读）
+        # extra_kwargs = {            # 更改字段校验规则
+        #     'mobile':{
+        #         'min_length': 11,
+        #         'max_length': 14,
+        #         'required': True,
+        #     },
+        # }

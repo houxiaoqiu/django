@@ -144,20 +144,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 指定自定义用户类
 AUTH_USER_MODEL = 'drfdemo.User'
 
-# 配置登录鉴权方式
+# DRF 配置
 REST_FRAMEWORK = {
     # 登录鉴权方式
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',     # 基本认证
+        'rest_framework.authentication.BasicAuthentication',     # 基本认证方式
         'rest_framework.authentication.SessionAuthentication',   # session认证
         #添加Token验证，若是Token过时，不须要登陆的界面也不能访问，最好配置在具体的页面
         # 'rest_framework.authentication.TokenAuthentication',     
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    # 默认全局权限配置
     'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAdminUser',
+        # 'rest_framework.permissions.IsAdminUser',   # 只允许管理员用户访问
         'rest_framework.permissions.IsAuthenticated', # 已经登录认证的用户才能访问
-        # 'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.AllowAny',      # 允许所有用户进行所有操作
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',   # 允许认证用户完全操作，未认证用户只能GET读取
     ),
     # 'EXCEPTION_HANDLER': 'common.exceptions.except_handler',
 }

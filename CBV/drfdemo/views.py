@@ -1,13 +1,9 @@
 
 import re
-from rest_framework import status
-from rest_framework import serializers
+from rest_framework import status,serializers,mixins
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet,GenericViewSet,ViewSetMixin
-# from rest_framework.generics import GenericAPIView,ListCreateAPIView,RetrieveUpdateDestroyAPIView
-from rest_framework.mixins import RetrieveModelMixin,\
-    ListModelMixin,CreateModelMixin,UpdateModelMixin,DestroyModelMixin
+from rest_framework.viewsets import ModelViewSet,GenericViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import TokenError,InvalidToken
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
@@ -88,31 +84,30 @@ class RegisterView(APIView):
         return Response(res,status=status.HTTP_201_CREATED)
         
 """ 用户信息 """
-class UserView(GenericViewSet,RetrieveModelMixin):
+class UserView(GenericViewSet,mixins.RetrieveModelMixin):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
-    # 设置认证用户才能有权访问
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
-    # permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    # 设置认证方式，用户通过认证才能有权访问: 访问权限 = 只有登录的用户才可访问；
+    permission_classes = [IsAuthenticated|IsOwnerOrReadOnly]     
     # 上传头像
     def upload_avatar(self, request, *args, **kwargs):
         avatar = request.data.get('avatar')
         if not avatar:
             return Response(
                 {'error':"上传失败,文件不能为空！"},
-                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
             )
         if avatar.size > 1024 * 300:
             return Response(
                 {'error':"上传失败,文件大小不能超过300kb!"},
-                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
             )
-        obj = self.get_object()           
-        serializer = self.get_serializer(obj,data={"avatar": avatar},partial=True)
+        user = self.get_object()           
+        serializer = self.get_serializer(user, data={"avatar": avatar},partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         # serializer.save(owner=self.request.user)
-        return Response({'url':serializer.data['avatar']})
+        return Response({'url': serializer.data['avatar']})
 
 """ Student """
 class StudentViewSet(ModelViewSet):

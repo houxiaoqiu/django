@@ -1,4 +1,5 @@
-from rest_framework import permissions 
+from rest_framework import permissions
+# from snippets.permissions import IsOwnerOrReadOnly
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """ 控制对象级别权限 """
@@ -10,3 +11,5 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Write permissions are only allowed to the owner of the snippet.
         return obj.owner == request.user
+
+        
