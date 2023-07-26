@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.admin', # django 内置的admin
     'django.contrib.auth',  # 系统认证
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',  # 启用sessions应用
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware', # 启用sessions中间件
     'corsheaders.middleware.CorsMiddleware',    # 跨域资源共享中间件，设置务必位于 .CommonMiddleware 之上
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',    # 
