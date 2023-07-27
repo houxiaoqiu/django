@@ -55,10 +55,12 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware', # 启用sessions中间件
     'corsheaders.middleware.CorsMiddleware',    # 跨域资源共享中间件，设置务必位于 .CommonMiddleware 之上
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',    # 
+    'django.middleware.csrf.CsrfViewMiddleware',    # 跨站伪造请求攻击
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'middleware.mymiddleware.MyMW',
+    # 'middleware.mymiddleware.VisitLimit',
 ]
 
 ROOT_URLCONF = 'CBV.urls'
@@ -96,6 +98,20 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# Chaches
+# 数据库缓存
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_chache_table',
+        'TIMEOUT': 300,
+        'OPTIONS': {
+            'MAX_ENTRIES': 300,
+            'CULL_FREQUENCY': 2,
+        }
     }
 }
 

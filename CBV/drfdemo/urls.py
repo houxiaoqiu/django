@@ -3,6 +3,7 @@ from django.urls import path,re_path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView,\
     TokenVerifyView,TokenObtainPairView
+from django.views.decorators.cache import cache_page
 from . import views
 from common import FileView
 
@@ -11,7 +12,7 @@ urlpatterns = [
     path('register/',views.RegisterView.as_view()),     # 注册
     path('token/verify/', TokenVerifyView.as_view()),      # 校验 Token
     path('token/refresh/', TokenRefreshView.as_view()),     # 刷新 Token
-    path('users/<int:pk>/', views.UserView.as_view({'get':'retrieve'})),    # 获取指定用户信息
+    path('users/<int:pk>/', cache_page(60)(views.UserView.as_view({'get':'retrieve'}))),    # 获取指定用户信息
     path('users/<int:pk>/avatar/upload', views.UserView.as_view({'post':'upload_avatar'})),    # 上传用户头像
     re_path(r'media/(.+?)/',FileView.ImageView.as_view()),  
     path('address/',views.AddrVeiw.as_view({

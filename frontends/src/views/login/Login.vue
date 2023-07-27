@@ -2,8 +2,8 @@
 import { login } from "@/utils/api/users"
 
 const form = reactive({
-    account: "13464730744",
-    password: "123456",
+    username: "13464730744",
+    password: "HyperNewBee363",
 })
 
 const onSubmit = async () => {
@@ -19,6 +19,7 @@ const onSubmit = async () => {
             throw new Error("登录失败")
         }
         return res.data
+        
     })
 
     console.log(data)   //后续存储处理
@@ -26,7 +27,7 @@ const onSubmit = async () => {
 
 //验证规则
 const rules = reactive<FormRules>({
-    account: [
+    username: [
         {
             require: true,
             message: "电话号码不能为空",
@@ -68,8 +69,8 @@ const loginRef = ref<FormInstance>()
             size="large"
         >
             <h1>登录</h1>
-            <el-form-item label="帐号" prop="account">
-                <el-input v-model="form.account" />
+            <el-form-item label="帐号" prop="username">
+                <el-input v-model="form.username" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="form.password" />

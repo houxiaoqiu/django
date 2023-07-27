@@ -1,5 +1,6 @@
 
 import re
+from django.http import HttpResponse
 from rest_framework import status,serializers,mixins
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,6 +8,7 @@ from rest_framework.viewsets import ModelViewSet,GenericViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import TokenError,InvalidToken
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
+from django.contrib.auth import authenticate,login,logout
 
 from .models import Addr, Student,Book,Publish,Author,\
     NaturalPerson,LegalPerson,Employee,User,Department
@@ -31,6 +33,11 @@ class LoginView(TokenObtainPairView):
         result['username'] = serializer.user.username
         result['token'] = result.pop('access')
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+""" 用户登出 """
+def logout_view(request):
+    logout(request)
+    return HttpResponse('---已退出')
 
 """ 用户注册 """
 class RegisterView(APIView):

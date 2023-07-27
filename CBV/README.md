@@ -96,3 +96,6 @@ JWT
     请求URL：/media/image/图片名称
     请求方式：GET
     视图：FileView
+
+缓存
+    python manage.py createcachetable 
