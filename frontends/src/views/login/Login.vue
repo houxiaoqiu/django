@@ -19,10 +19,10 @@ const onSubmit = async () => {
             throw new Error("登录失败")
         }
         return res.data
-        
     })
 
     console.log(data)   //后续存储处理
+
 }
 
 //验证规则
