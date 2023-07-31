@@ -7,14 +7,13 @@ import { isCollapse } from '../components/layout/isCollapse'
     <div class="common-layout">
         <el-container>
             <el-aside :width="isCollapse ? '60px' : '200px'">   
-                <AppAside />
+                <AppAside_rbac />
             </el-aside>
             <el-container class="header-and-main">
                 <AppHeader />
                 <el-main>
                     <el-scrollbar>
                         <router-view></router-view>
-                        <!-- <RouterView /> -->
                     </el-scrollbar>
                 </el-main>
             </el-container>
