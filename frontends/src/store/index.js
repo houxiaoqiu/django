@@ -1,6 +1,6 @@
 import { createPinia } from 'pinia'
 import piniaPluginPersist from 'pinia-plugin-persist'
-import { createStore } from 'vuex'
+// import { createStore } from 'vuex'
 
 const store = createPinia()
 store.use(piniaPluginPersist)
@@ -39,7 +39,15 @@ const createStore = {
             state.routers = Json.stringify(routers);
             localStorage.setItem('routers', state.routers);
 
+            state.role = role;
+            localStorage.setItem('role', role);
         }
-    }
+    },
+    actions: {
+
+    },
+    modules: {
+
+    },
 }
 

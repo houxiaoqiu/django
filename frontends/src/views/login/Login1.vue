@@ -2,10 +2,21 @@
 import { login } from "@/utils/api/users"
 import { ElMessage, FormRules, FormInstance } from "element-plus";
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
-const form = reactive({
+const store = useStore();
+const router = useRouter();
+
+const state = reactive({
     username: "13464730744",
     password: "HyperNewBee363",
+    role: "user",
+    roleList: [
+        {text: "管理员", value: "admin"},
+        {text: "经理", value: "manager"},
+        {text: "普通用户", value: "user"},
+    ]
 })
 
 const onSubmit = async () => {
@@ -15,7 +26,7 @@ const onSubmit = async () => {
     })
     //正式登录请求
     //const res = login(form)
-    const data = login(form).then((res) => {
+    const data = login(state).then((res) => {
         if (!res.data.success) {
             ElMessage.error('登录信息有误')
             throw new Error("登录失败")
@@ -24,8 +35,17 @@ const onSubmit = async () => {
     })
 
     console.log(data)   //后续存储处理
-    
+}
 
+// 伪代码
+function doLogin() {
+    const context = {
+        token:"https://vben.vvbin.cn/assets/header-1b5fa5f8.jpg",
+        role: state.role,
+
+    };
+    store.commit("login", context);
+    router.replace({ name: "/admin" })
 }
 
 //验证规则
@@ -64,7 +84,7 @@ const loginRef = ref<FormInstance>()
 <template>
     <div class="login">
         <el-form 
-            :model="form" 
+            :model="state" 
             :rules="rules" 
             ref="loginRef" 
             label-width="120px" 
@@ -73,10 +93,13 @@ const loginRef = ref<FormInstance>()
         >
             <h1>登录</h1>
             <el-form-item label="帐号" prop="username">
-                <el-input v-model="form.username" />
+                <el-input v-model="state.username" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input type="password" v-model="form.password" />
+                <el-input type="password" v-model="state.password" />
+            </el-form-item>
+            <el-form-item label="角色" prop="role">
+                <el-input type="text" v-model="state.role" />
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">登录</el-button>
