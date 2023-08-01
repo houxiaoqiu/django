@@ -1,4 +1,4 @@
-import { createPinia } from 'pinia'
+import { defineStore, createPinia } from 'pinia'
 import piniaPluginPersist from 'pinia-plugin-persist'
 // import { createStore } from 'vuex'
 
@@ -6,6 +6,32 @@ const store = createPinia()
 store.use(piniaPluginPersist)
 
 export default store
+
+export const useMainStore = defineStore('main', {
+    state: () => {
+        return {
+            count: 100,
+            foo: "bar",
+            arr: [1,2,3],
+        }
+    },
+    
+    getters: {},
+    
+    actions: {
+        changeState (num) {
+            // this.$patch( state =>{
+            //     this.count += num
+            //     this.foo = 'hello'
+            //     this.arr.push(4)
+            // }) 
+            this.count += num
+            this.foo = 'hello'
+            this.arr.push(num)           
+        }
+    },
+
+})
 
 const createStore = {
     state: {

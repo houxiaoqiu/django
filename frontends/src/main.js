@@ -1,6 +1,5 @@
-import { createApp } from 'vue'
+// import { createApp } from 'vue'
 import App from './App.vue'
-
 import router from "./router/index"
 import store from './store'
 // 全局引用
@@ -14,7 +13,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-
+// 根实例
 const app = createApp(App)
 
 // 全局注册el-icon

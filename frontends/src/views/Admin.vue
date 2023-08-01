@@ -7,7 +7,7 @@ import { isCollapse } from '../components/layout/isCollapse'
     <div class="common-layout">
         <el-container>
             <el-aside :width="isCollapse ? '60px' : '200px'">   
-                <AppAside_rbac />
+                <AppAside />
             </el-aside>
             <el-container class="header-and-main">
                 <AppHeader />
