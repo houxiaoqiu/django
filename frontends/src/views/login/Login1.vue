@@ -13,10 +13,10 @@ const state = reactive({
     password: "HyperNewBee363",
     role: "user",
     roleList: [
-        {text: "管理员", value: "admin"},
-        {text: "经理", value: "manager"},
-        {text: "普通用户", value: "user"},
-    ]
+        {label: "管理员", value: "admin"},
+        {label: "经理", value: "manager"},
+        {label: "普通用户", value: "user"},
+    ],
 })
 
 const onSubmit = async () => {
@@ -40,12 +40,12 @@ const onSubmit = async () => {
 // 伪代码
 function doLogin() {
     const context = {
-        token:"https://vben.vvbin.cn/assets/header-1b5fa5f8.jpg",
+        token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.",
         role: state.role,
 
     };
-    store.commit("login", context);
-    router.replace({ name: "/admin" })
+    store.commit("login", context);     //保存vuex
+    router.replace({ name: "/admin" })  //跳转
 }
 
 //验证规则
@@ -99,10 +99,19 @@ const loginRef = ref<FormInstance>()
                 <el-input type="password" v-model="state.password" />
             </el-form-item>
             <el-form-item label="角色" prop="role">
-                <el-input type="text" v-model="state.role" />
+                <el-select clearable v-model="state.role" placeholder="请选择" >
+                    <optin 
+                        v-for="(item,index) in state.roleList" 
+                        :key="index"
+                        :label="item.label"
+                        :value="item.value">
+                        {{ item.label }}
+                    </optin>
+                </el-select> 
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">登录</el-button>
+                <!-- <el-button type="primary" @click="onSubmit" >登录</el-button> -->
+                <el-button type="primary" @click="doLogin" >登录</el-button>
             </el-form-item>
         </el-form>
     </div>
