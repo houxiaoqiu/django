@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { login } from "@/utils/api/users"
+import { useTokenStore } from "@/store/token"
 import { ElMessage, FormRules, FormInstance } from "element-plus";
-import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
+// import { reactive, ref } from "vue";
+// import { useRouter } from "vue-router";
 
-const store = useStore();
 const router = useRouter();
+// 调用 token 存储空间
+const tokenStore = useTokenStore();
 
 const state = reactive({
     username: "13464730744",
@@ -20,12 +21,13 @@ const state = reactive({
 })
 
 const onSubmit = async () => {
+    // isLoading.value = ture
+    // 表单验证
     await loginRef.value?.validate().catch((err) => {
         ElMessage.error('表单验证失败')
         throw err       // return new Promise(() => {})
     })
     //正式登录请求
-    //const res = login(form)
     const data = login(state).then((res) => {
         if (!res.data.success) {
             ElMessage.error('登录信息有误')
@@ -35,6 +37,13 @@ const onSubmit = async () => {
     })
 
     console.log(data)   //后续存储处理
+
+    // 保存 token
+    tokenStore.saveToken(data.token)
+    // tokenStore.saveToken(data.content)
+    // isLoading.value = false
+    ElMessage.success("登录成功")
+    router.push("/admin")
 }
 
 // 伪代码
@@ -111,7 +120,7 @@ const loginRef = ref<FormInstance>()
             </el-form-item>
             <el-form-item>
                 <!-- <el-button type="primary" @click="onSubmit" >登录</el-button> -->
-                <el-button type="primary" @click="doLogin" >登录</el-button>
+                <el-button type="primary" @click="onSubmit" >登录</el-button>
             </el-form-item>
         </el-form>
     </div>
