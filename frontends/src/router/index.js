@@ -31,6 +31,24 @@ const routes = [
                     import(/* webpackChunkName: "publish" */ "../views/Publish.vue")
             },
             {
+                path: "/shopping",
+                name: "Shopping",
+                component: () =>
+                    import(/* webpackChunkName: "about" */ "../components/shopping/Shopping.vue"),
+            },
+            {
+                path: "/shoppinglist",
+                name: "ShoppingList",
+                component: () =>
+                    import(/* webpackChunkName: "about" */ "../components/shopping/ShoppingList.vue"),
+            },
+            {
+                path: "/shoppingcart",
+                name: "ShoppingCart",
+                component: () =>
+                    import(/* webpackChunkName: "about" */ "../components/shopping/ShoppingCart.vue"),
+            },
+            {
                 path: "/about",
                 name: "About",
                 component: () =>

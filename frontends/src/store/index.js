@@ -16,7 +16,12 @@ export const useMainStore = defineStore('main', {
         }
     },
     
-    getters: {},
+    getters: {
+        count10 (state) {
+            console.log('count10 被调用了')
+            return state.count +10
+        }
+    },
     
     actions: {
         changeState (num) {

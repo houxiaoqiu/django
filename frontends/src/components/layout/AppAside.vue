@@ -12,11 +12,11 @@
         </template>
         <el-menu-item-group>
           <template #title><span>Group One</span></template>
-          <el-menu-item index="/about">item one</el-menu-item>
-          <el-menu-item index="/admin">item two</el-menu-item>
+          <el-menu-item index="/shoppinglist">商品列表</el-menu-item>
+          <el-menu-item index="/shoppingcart">购物车</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
+          <el-menu-item index="/shopping">购物车示例</el-menu-item>
         </el-menu-item-group>
         <el-sub-menu index="1-4">
           <template #title><span>item four</span></template>
