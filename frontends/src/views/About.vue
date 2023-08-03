@@ -16,6 +16,15 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useMainStore } from '@/store'
+import  drfdemo  from '@/utils/api/request';
+
+drfdemo({
+  method: "GET",
+  // http://localhost:8000/drfdemo/login/
+  url: "/drfdemo/users/1/",
+}).then((res) => {
+  console.log(res.status)
+})
 
 const mainStore = useMainStore()
 

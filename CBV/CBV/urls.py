@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path,include
 from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
 
 from user.views import login,LoginView
 from drfdemo.views import StudentView,StudentDetailView,AuthorView,PublishView  #,PublishDetailView,AuthorDetailView
@@ -42,4 +43,5 @@ urlpatterns = [
     path('app01/',include("app01.urls")),  # 子路由
     path('api/',include(router.urls)),
     # re_path('media/(.+?)/',FileView.ImageView.as_view()), 
+    path('docs/',include_docs_urls(title='Core_API'))
 ]

@@ -93,6 +93,12 @@ class RegisterView(APIView):
         
 """ 用户信息 """
 class UserView(GenericViewSet,mixins.RetrieveModelMixin):
+    """
+        get:
+        返回用户信息
+        post:
+        上传用户头像
+    """
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
     # 设置认证方式，用户通过认证才能有权访问: 访问权限 = 只有登录的用户才可访问；

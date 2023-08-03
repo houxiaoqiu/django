@@ -1,9 +1,8 @@
-import service from "@/utils/api/request"
+import drfdemo from "@/utils/api/request"
 
 // 用户登录-参数类型
 type LoginInfo = {
     username: string
-    code?: string
     password: string
 }
 // 用户登录-返回数据类型
@@ -18,9 +17,9 @@ type LoginResult = {
 
 // 用户请求登录
 export const login = (loginInfo: LoginInfo) => {
-    return service<LoginResult>({
+    return drfdemo<LoginResult>({
         method: "POST",
-        url: '/drfdemo/login',
+        url: 'drfdemo/login',
         data: loginInfo,
     })
 }

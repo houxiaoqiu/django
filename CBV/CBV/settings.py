@@ -167,8 +167,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',     # 基本认证方式
         'rest_framework.authentication.SessionAuthentication',   # session认证
         #添加Token验证，若是Token过时，不须要登陆的界面也不能访问，最好配置在具体的页面
-        # 'rest_framework.authentication.TokenAuthentication',     
+        # 'rest_framework.authentication.TokenAuthentication', 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
     ),
     # 默认全局权限配置
     'DEFAULT_PERMISSION_CLASSES': (
@@ -177,6 +178,12 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.AllowAny',      # 允许所有用户进行所有操作
         # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',   # 允许认证用户完全操作，未认证用户只能GET读取
     ),
+    # 'DEFAULT_SCHEMA_CLASS': (
+    #     'rest_framework.schemas.openapi.AutoSchema',
+    #     # 'rest_framework.schemas.coreapi.AutoSchema',
+    # ),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',    # coreAPI
+    # Swagger Swagger Swagger Swagger
     # 'EXCEPTION_HANDLER': 'common.exceptions.except_handler',
 }
 
