@@ -19,7 +19,7 @@ type LoginResult = {
 export const login = (loginInfo: LoginInfo) => {
     return drfdemo<LoginResult>({
         method: "POST",
-        url: 'drfdemo/login',
+        url: '/drfdemo/login/',
         data: loginInfo,
     })
 }
