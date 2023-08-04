@@ -1,4 +1,4 @@
-import drfdemo from "@/utils/api/request"
+import service from "@/utils/api/request"
 
 // 用户登录-参数类型
 type LoginInfo = {
@@ -16,12 +16,13 @@ type LoginResult = {
 }
 
 // 用户请求登录
-export const login = (loginInfo: LoginInfo) => {
-    return drfdemo<LoginResult>({
+export const login = async (loginInfo: LoginInfo) => {
+    const res = await service<LoginResult>({
         method: "POST",
         url: '/drfdemo/login/',
         data: loginInfo,
     })
+    return res
 }
 /**
  * 请求类型 application/x-www.form-fulencoded

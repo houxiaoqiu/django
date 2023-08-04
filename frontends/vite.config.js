@@ -7,7 +7,6 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import path from 'path'
- 
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -35,11 +34,13 @@ export default defineConfig({
       autoInstall: true,
     }),
   ],
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname,'src')
     },
   },
+
   server:{
 		proxy:{
 			'/api': {
@@ -54,11 +55,7 @@ export default defineConfig({
         target: loadEnv("",process.cwd()).VITE_CVB_API_URL,  //'http://127.0.0.1:8000',
         changeOrigin: true,
       },
-      '/front': {
-        // http://39.97.218.60/front/ad/getAdList
-        target: loadEnv("",process.cwd()).VITE_USER_API_URL,  //'http://127.0.0.1:8000',
-        changeOrigin: true,
-      }
 		}
-	}
+	},
+
 })

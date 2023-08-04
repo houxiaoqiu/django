@@ -1,63 +1,57 @@
 <script setup lang="ts">
 import { login } from "@/api/users"
 import { FormInstance, FormRules } from "element-plus";
-// import { useTokenStore } from "@/store/token"
-// import { reactive, ref } from "vue";
-// import { useRouter } from "vue-router";
+import { useTokenStore } from "@/store/token"
 
 const router = useRouter();
 // 定义表单标识 （用于提交表单验证）
 const formRef = ref<FormInstance>()
 // 调用 token 存储空间
-// const tokenStore = useTokenStore();
+const tokenStore = useTokenStore();
 
-// const state = reactive({
-//     username: "hxq",
-//     password: "HyperNewBee363",
-//     role: "user",
-//     roleList: [
-//         { label: "管理员", value: "admin" },
-//         { label: "经理", value: "manager" },
-//         { label: "普通用户", value: "user" },
-//     ],
-// })
+// 是否登录加载状态
+const isLoading = ref(false)
 
-const form = reactive({
-    username: "13464730744",
+const state = reactive({
+    username: "hxq",
     password: "HyperNewBee363",
+    role: "user",
+    roleList: [
+        { label: "管理员", value: "admin" },
+        { label: "经理", value: "manager" },
+        { label: "普通用户", value: "user" },
+    ],
 })
 
 const onSubmit = async () => {
-    // isLoading.value = ture
+    isLoading.value = true
     // 表单验证
     await formRef.value?.validate().catch((err) => {
         ElMessage.error('表单验证失败')
+        isLoading.value = false
         throw err
         // return new Promise(() => {})
     })
 
     //正式登录请求
-    login(form).then((res) => {
-        console.log(res.data)
-        console.log("提交表单数据-1")
-    })
-
-    const data = login(form).then((res) => {
-        if (!res.data.token) {
+    const data = await login(state).then((res) => {
+        if (res.data.id < 1) {
             ElMessage.error('登录信息有误')
+            isLoading.value = false
             throw new Error("登录失败")
         }
         return res.data
     })
-
-    const res = login(form)
-    console.log(res)
-    console.log("提交表单数据-2")
+    
+    console.log("1")
+    console.log(data)
+    console.log("2")
+    console.log(data.refresh)
 
     // 保存 token
-    //tokenStore.saveToken(data.token)
-    // tokenStore.saveToken(data.content)
-    // isLoading.value = false
+    tokenStore.saveToken(data.refresh)
+
+    isLoading.value = false
     ElMessage.success("登录成功")
     // router.push("/admin")
 }
@@ -95,13 +89,13 @@ const rules = reactive<FormRules>({
 
 <template>
     <div class="login">
-        <el-form :model="form" :rules="rules" ref="formRef" label-width="120px" label-position="top" size="large">
+        <el-form :model="state" :rules="rules" ref="formRef" label-width="120px" label-position="top" size="large">
             <h1>登录</h1>
             <el-form-item label="帐号" prop="username">
-                <el-input v-model="form.username" />
+                <el-input v-model="state.username" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input type="password" v-model="form.password" />
+                <el-input type="password" v-model="state.password" />
             </el-form-item>
             <!-- <el-form-item label="角色" prop="role">
                 <el-select clearable v-model="state.role" placeholder="请选择" >
@@ -116,7 +110,7 @@ const rules = reactive<FormRules>({
             </el-form-item> -->
             <el-form-item>
                 <!-- <el-button type="primary" @click="onSubmit" >登录</el-button> -->
-                <el-button type="primary" @click="onSubmit">登录</el-button>
+                <el-button type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
             </el-form-item>
         </el-form>
     </div>

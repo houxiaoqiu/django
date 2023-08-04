@@ -5,23 +5,20 @@ const service = axios.create({
   baseURL: import.meta.env.VITE_CVB_API_URL,
 });
 
-const drfdemo = axios.create({
-  baseURL: "http://localhost:8000",
-});
 
 //2. 请求拦截器
-service.interceptors.request.use(config => {
-  return config;
-}, error => {
-  Promise.reject(error);
-});
+// service.interceptors.request.use(config => {
+//   return config;
+// }, error => {
+//   Promise.reject(error);
+// });
 
-//3. 响应拦截器
-service.interceptors.response.use(response => {
-  //判断code码
-  return response.data;
-},error => {
-  return Promise.reject(error);
-});
+// //3. 响应拦截器
+// service.interceptors.response.use(response => {
+//   //判断code码
+//   return response.data;
+// },error => {
+//   return Promise.reject(error);
+// });
 
-export default drfdemo;
+export default  service
