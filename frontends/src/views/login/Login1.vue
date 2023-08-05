@@ -46,7 +46,7 @@ const onSubmit = async () => {
     console.log(data)
 
     // 保存 token
-    tokenStore.saveToken(data.refresh)
+    tokenStore.saveToken(data.token)
 
     isLoading.value = false
     ElMessage.success("登录成功")

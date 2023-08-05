@@ -1,9 +1,9 @@
 import { defineStore, createPinia } from 'pinia'
 
 interface Token {
-    access_token: string
+    access: string
     token_type: string
-    refresh_token: string
+    refresh: string
     expires_in: number
     user_id: string
 }
@@ -12,7 +12,7 @@ export const useTokenStore = defineStore('usertoken', () => {
     // ref 相当于 state
     const tokenJson = ref("")
     // computed 相当于 getters
-    const token = computed(() => {
+    const token = computed<Token>(() => {
         try {
             return JSON.parse(tokenJson.value || window.localStorage.getItem("TokenInfo") || "{}")
         } catch (err) {
