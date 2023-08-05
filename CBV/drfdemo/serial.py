@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import Addr, Student,Book,Publish,User
 
@@ -33,6 +34,14 @@ class UserModelSerializer(serializers.ModelSerializer):
         #         'required': True,
         #     },
         # }
+
+""" 自定义 JWT 序列化器 """
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data['id'] = self.user.id
+        data['username'] = self.user.username
+        return data
 
 """ 序列化 Addr """
 class AddrModelSerializer(serializers.ModelSerializer):

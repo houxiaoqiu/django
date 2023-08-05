@@ -15,7 +15,6 @@ from pathlib import Path
 from datetime import timedelta
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -168,7 +167,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',   # session认证
         #添加Token验证，若是Token过时，不须要登陆的界面也不能访问，最好配置在具体的页面
         # 'rest_framework.authentication.TokenAuthentication', 
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTStatelessUserAuthentication',  # 5.1.0 改用此命名，但 JWTAuthentication 仍可用
         
     ),
     # 默认全局权限配置
@@ -189,14 +189,14 @@ REST_FRAMEWORK = {
 
 # Token 相关配置
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),      # 访问令牌的有效时间
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),     # 访问令牌的有效时间
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),        # 刷新令牌的有效时间
     
     "ROTATE_REFRESH_TOKENS": False,       # 若为True，则刷新后新的refresh_token有更新的有效时间
     "BLACKLIST_AFTER_ROTATION": True,     # 若为True，则刷新后的token将添加到黑名单中
     "UPDATE_LAST_LOGIN": False,
     
-    "ALGORITHM": "HS256",       # 对称算法：HS256 HS384 HS512  非对称算法： RSA
+    "ALGORITHM": "HS256",         # 对称算法：HS256 HS384 HS512  非对称算法： RSA
     "SIGNING_KEY": "SECRET_KEY",  # if signing_key,verifying_key will be ignore.
     "VERIFYING_KEY": None,
     "AUDIENCE": None,
@@ -218,6 +218,14 @@ SIMPLE_JWT = {
     # 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     # 'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    
+    # "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "drfdemo.serial.CustomTokenObtainPairSerializer",
+    "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
+    "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
+    "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
+    "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
+    "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
 # jwt设置

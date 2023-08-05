@@ -14,11 +14,11 @@ from .models import Addr, Student,Book,Publish,Author,\
     NaturalPerson,LegalPerson,Employee,User,Department
 from .serial import AddrModelSerializer, StudentModelSerializer,\
     BookModelSerializer,PublishModelSerializer,\
-    UserModelSerializer
+    UserModelSerializer,CustomTokenObtainPairSerializer
 from common.permissions import IsOwnerOrReadOnly
 
 """ 用户登录 """
-class LoginView(TokenObtainPairView):
+class LoginView1(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         try:
@@ -34,6 +34,30 @@ class LoginView(TokenObtainPairView):
         result['token'] = result.pop('access')
         
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
+    
+class LoginView(TokenObtainPairView):
+    customTokenObtainPaireSerializer = CustomTokenObtainPairSerializer
+    
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except TokenError as e:
+            raise InvalidToken(e.args[0])
+        # 自定义成功之后返回的结果
+        response_data = {
+            'token': {
+                'refresh': serializer.validated_data['refresh'],
+                'access': serializer.validated_data['access'],
+            },
+            'massage': 'success',
+            'state': 1,
+            'success': True,
+            'id': serializer.validated_data['id'],
+            'username': serializer.validated_data['username']
+        }
+        
+        return Response(response_data, status=status.HTTP_200_OK)
 
 """ 用户登出 """
 def logout_view(request):

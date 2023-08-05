@@ -42,11 +42,8 @@ const onSubmit = async () => {
         }
         return res.data
     })
-    
-    console.log("1")
+
     console.log(data)
-    console.log("2")
-    console.log(data.refresh)
 
     // 保存 token
     tokenStore.saveToken(data.refresh)
