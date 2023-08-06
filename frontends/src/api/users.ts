@@ -9,10 +9,10 @@ type LoginInfo = {
 type LoginResult = {
     id: number
     username: string
-    mobile: string
-    email: string
-    token: string
+    message: string
+    success: boolean
     refresh: string
+    access: string
 }
 
 // 用户请求登录

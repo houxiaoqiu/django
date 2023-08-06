@@ -1,22 +1,24 @@
-import { defineStore, createPinia } from 'pinia'
+import { defineStore } from 'pinia'
 
 interface Token {
-    access: string
-    token_type: string
     refresh: string
-    expires_in: number
-    user_id: string
+    access: string
+    success: boolean
+    massage: string
+    id: number
+    username: string
 }
 
 export const useTokenStore = defineStore('usertoken', () => {
     // ref 相当于 state
     const tokenJson = ref("")
     // computed 相当于 getters
-    const token = computed<Token>(() => {
+    const token = computed(() => {
         try {
-            return JSON.parse(tokenJson.value || window.localStorage.getItem("TokenInfo") || "{}")
+            // 如果token是字符串，还没做到json: return JSON.parse(tokenJson.value) 
+            return (tokenJson.value || window.localStorage.getItem("TokenInfo") || "")
         } catch (err) {
-            ElMessage.error("字符转化json格式失败...")
+            ElMessage.error("json字符串格式有误,对象转换失败...")
             window.localStorage.setItem("TokenInfo","")
             throw err
         }

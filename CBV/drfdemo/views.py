@@ -36,6 +36,7 @@ class LoginView1(TokenObtainPairView):
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
     
 class LoginView(TokenObtainPairView):
+    
     customTokenObtainPaireSerializer = CustomTokenObtainPairSerializer
     
     def post(self, request, *args, **kwargs):
@@ -46,17 +47,13 @@ class LoginView(TokenObtainPairView):
             raise InvalidToken(e.args[0])
         # 自定义成功之后返回的结果
         response_data = {
-            'token': {
-                'refresh': serializer.validated_data['refresh'],
-                'access': serializer.validated_data['access'],
-            },
+            'refresh': serializer.validated_data['refresh'],
+            'access': serializer.validated_data['access'],
             'massage': 'success',
-            'state': 1,
             'success': True,
             'id': serializer.validated_data['id'],
             'username': serializer.validated_data['username']
         }
-        
         return Response(response_data, status=status.HTTP_200_OK)
 
 """ 用户登出 """

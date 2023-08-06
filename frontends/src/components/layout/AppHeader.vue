@@ -29,7 +29,7 @@ import { isCollapse } from './isCollapse'
             <template #dropdown>
             <el-dropdown-menu>
                 <el-dropdown-item>用户</el-dropdown-item>
-                <el-dropdown-item ><a href="/login1">登录</a></el-dropdown-item>
+                <el-dropdown-item ><a href="/login">登录</a></el-dropdown-item>
                 <el-dropdown-item divided >退出</el-dropdown-item>
             </el-dropdown-menu>
             </template>

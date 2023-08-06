@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useTokenStore } from "@/store/token";
 
 const routes = [
     {
@@ -8,22 +9,24 @@ const routes = [
             import(/* webpackChunkName: "login" */ "@/views/login/Login.vue")
     },
     {
-        path: "/",
-        name: "Home",
-        component: () =>
-            import(/* webpackChunkName: "home" */ "@/views/Home.vue")
-    },
-    {
         path: "/register",
         name: "Register",
         component: () =>
             import(/* webpackChunkName: "register" */ "@/views/Register.vue")
     },
     {
+        path: "/",
+        name: "Home",
+        component: () =>
+            import(/* webpackChunkName: "home" */ "@/views/Home.vue"),
+        // meta: { requiresAuth: true}     // 要求验证
+    },
+    {
         path: "/admin",
         name: "Admin",
         component: () =>
             import(/* webpackChunkName: "admin" */ "@/views/Admin.vue"),
+        meta: { requiresAuth: true},     // 要求验证
         children: [
             {
                 path: "",
@@ -100,14 +103,7 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "courseinfo" */ "@/views/CourseInfo.vue"),
     },
-    {
-        path: "/login1",
-        name: "Login1",
-        component: () =>
-            import(/* webpackChunkName: "login" */ "@/views/login/Login1.vue"),
-    },
-    
-    
+
 
 ];
 
@@ -116,9 +112,32 @@ const router = createRouter({
     routes,
 });
 
-//导航守卫：页面跳转之前执行
+//前置守卫：页面跳转之前执行（导航守卫）
 router.beforeEach((to, from, next) => {
-    next();
+
+    if (to.path === '/login') return next();
+    //判断其他页面是否有token
+    const tokenStore = useTokenStore()
+    //存在继续往后走
+    if (tokenStore) return next();
+    // this.$router.push(name:‘login‘) #没有this,无法使用
+    ElMessage.warning('未登录，请先登录！')
+    router.push({name: 'login'})
+        
+
+
+    // if (to.matched.some(r=>r.meta?.requiresAuth)) {
+    //     const tokenStore = useTokenStore()
+    //     if (tokenStore.token) {
+    //         console.log("tokenStore.token:",tokenStore.token)
+    //         next({ name: "Login", query: { redirect: to.fullPath } })
+    //     }else{
+    //         alert('refresh值不正确')
+    //         next({name: "Login"})
+    //     }
+    // }else{
+    //     next();
+    // }
 });
 
 //后置守卫：
