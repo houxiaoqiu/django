@@ -49,7 +49,7 @@ class LoginView(TokenObtainPairView):
         response_data = {
             'refresh': serializer.validated_data['refresh'],
             'access': serializer.validated_data['access'],
-            'massage': 'success',
+            'message': 'success',
             'success': True,
             'id': serializer.validated_data['id'],
             'username': serializer.validated_data['username']
@@ -110,6 +110,7 @@ class RegisterView(APIView):
                 "id": obj.id, 
                 "username": obj.username,                            
                 "email": obj.email,
+                "avatar": obj.avatar,
             }
         return Response(res,status=status.HTTP_201_CREATED)
         

@@ -34,6 +34,20 @@ const routes = [
                     import(/* webpackChunkName: "publish" */ "@/views/Publish.vue")
             },
             {
+                path: "/user",
+                name: "User",
+                component: () =>
+                    import(/* webpackChunkName: "user" */ "@/views/User.vue"),
+                children: [
+                    {
+                        path: "userprofile",
+                        name: "UserProfile",
+                        component: () =>
+                            import(/* webpackChunkName: "userprofile" */ "@/views/UserProfile.vue")
+                    },
+                ],
+            },
+            {
                 path: "/shopping",
                 name: "Shopping",
                 component: () =>
@@ -63,6 +77,7 @@ const routes = [
                 component: () => 
                     import(/* webpackChunkName: "about" */ "@/components/common/Error.vue"),
             },
+
         ],
     },
     {
@@ -78,20 +93,6 @@ const routes = [
             import(/* webpackChunkName: "userprofile" */ "@/views/UserProfile.vue")
     },
     {
-        path: "/user",
-        name: "User",
-        component: () =>
-            import(/* webpackChunkName: "user" */ "@/views/User.vue"),
-        children: [
-            {
-                path: "userprofile",
-                name: "UserProfile",
-                component: () =>
-                    import(/* webpackChunkName: "userprofile" */ "@/views/UserProfile.vue")
-            },
-        ],
-    },
-    {
         path: "/course",
         name: "Course",
         component: () =>
@@ -103,8 +104,6 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "courseinfo" */ "@/views/CourseInfo.vue"),
     },
-
-
 ];
 
 const router = createRouter({
@@ -122,7 +121,7 @@ router.beforeEach((to, from, next) => {
     if (tokenStore) return next();
     // this.$router.push(name:‘login‘) #没有this,无法使用
     ElMessage.warning('未登录，请先登录！')
-    router.push({name: 'login'})
+    router.push({name: 'Login'})
         
 
 

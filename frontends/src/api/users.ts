@@ -4,7 +4,7 @@ import service from "@/utils/api/request"
 type LoginInfo = {
     username: string
     password: string
-}
+};
 // 用户登录-返回数据类型
 type LoginResult = {
     id: number
@@ -13,7 +13,12 @@ type LoginResult = {
     success: boolean
     refresh: string
     access: string
-}
+    content: {
+        isUpdatedPassword: boolean
+        portrait: string
+        username: string
+    }
+};
 
 // 用户请求登录
 export const login = async (loginInfo: LoginInfo) => {
@@ -23,7 +28,22 @@ export const login = async (loginInfo: LoginInfo) => {
         data: loginInfo,
     })
     return res
-}
+};
+
+//获取用户信息
+type UserProfile = {
+    id: number
+    username: string
+    avatar: string 
+};
+
+export const getUserProfile = () => {
+    return service<UserProfile>({
+        method: "GET",
+        url: "/drfdemo/users/1/",
+    })
+};
+
 /**
  * 请求类型 application/x-www.form-fulencoded
  *      拼接：data: '属性1=值1&属性2=值2'
