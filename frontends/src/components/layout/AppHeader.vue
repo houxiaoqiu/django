@@ -1,6 +1,49 @@
 <script setup lang="ts">
 import { isCollapse } from './isCollapse'
 
+const router = useRouter();
+
+const handleDropDownCommand = (command: string | number | object, row: any)  => {
+	console.log("command的命令是：")
+    console.log(command)
+    console.log("==========================================")
+    switch (command) {
+		case "login":
+
+        case 'chargePassword':
+			// 修改密码
+			ElMessage('点击修改密码');
+			break;
+		case 'logout':
+			// 退出系统
+			// token为登录时保存的信息
+			// 先获取保存的用户信息
+			// localStorage.getItem("msm-user");
+			// localStorage.getItem("msm-token");
+			// logout(localStorage.getItem('msm-token')).then(response => {
+				// 接收返回的数据
+				const resp = window.localStorage.getItem('TokenInfo');
+				if (resp) {
+					// 退出成功
+					// 清除本地用户数据
+					localStorage.removeItem("msm-user");
+					localStorage.removeItem("msm-token");
+					// 回到登录页面
+					router.push("/login");
+				} else {
+					ElMessage({
+						message: resp,
+						type: "warning",
+						duration: 2000  // 弹出停留时间
+					});
+				}
+			// });
+			break;
+		default:
+			break;
+	}
+};
+
 </script>
 
 <template>
@@ -19,7 +62,7 @@ import { isCollapse } from './isCollapse'
             <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
         </el-breadcrumb>
         <!-- 下拉菜单 -->
-        <el-dropdown >
+        <el-dropdown @command="handleDropDownCommand">
             <span class="el-dropdown-link">
                 <el-avatar :size="32" :src="'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'" />
             <el-icon class="el-icon--right">
@@ -29,8 +72,9 @@ import { isCollapse } from './isCollapse'
             <template #dropdown>
             <el-dropdown-menu>
                 <el-dropdown-item>用户</el-dropdown-item>
-                <el-dropdown-item ><a href="/login">登录</a></el-dropdown-item>
-                <el-dropdown-item divided >退出</el-dropdown-item>
+                <!-- <el-dropdown-item ><a href="/login">登录</a></el-dropdown-item> -->
+                <el-dropdown-item command="login">登录</el-dropdown-item>
+                <el-dropdown-item command="logout"  divided >退出</el-dropdown-item>
             </el-dropdown-menu>
             </template>
         </el-dropdown>

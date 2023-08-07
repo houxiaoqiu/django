@@ -28,6 +28,7 @@
 
 <script setup>
 import { Search, ShoppingCart } from "@element-plus/icons-vue";
+
 </script>
 
 <style scoped>
