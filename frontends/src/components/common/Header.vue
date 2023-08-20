@@ -13,13 +13,14 @@
 			</div>
 			<div class='search-buy-login'>
 				<div class='content-search'>
-					<input type="" placeholder="请输入要搜索的课程">
+					<input type="" placeholder="请输入要搜索的内容">
 					<el-icon color='#808080' :size='22'>
 						<search style="width: 22px; height:22px;" />
 					</el-icon>
 				</div>
-				<div class='content-login'>
-					<router-link to="/login">登录 / 注册</router-link>
+				<div class='content-login'>					
+					<router-link to="/login">登录</router-link>
+					<router-link to="/register">注册</router-link>					
 				</div>
 			</div>
 		</div>
@@ -28,7 +29,6 @@
 
 <script setup>
 import { Search, ShoppingCart } from "@element-plus/icons-vue";
-
 </script>
 
 <style scoped>
@@ -88,9 +88,9 @@ header {
 
 .search-buy-login {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
-	width: 650px;
+	width: 550px;
 }
 
 .content-search {
@@ -115,11 +115,13 @@ header {
 	outline: none;
 }
 
-.content-login a {
+.content-login a{
 	font-size: 18px;
 	color: #808080;
 	text-align: center;
 	cursor: pointer;
 	text-decoration: none;
+	margin-left: 10px;
 }
+
 </style>
