@@ -1,12 +1,12 @@
 import { useTokenStore } from '@/store/token';
 import axios, { AxiosRequestHeaders } from 'axios';
 
-//1. 创建axios对象:请求实例
+// 1. 创建axios对象: 请求实例, 二次封装
 const service = axios.create({
   baseURL: import.meta.env.VITE_CVB_API_URL,
 });
 
-//2. 请求拦截器: 加载 token
+// 2. 请求拦截器: 头部加载 token
 service.interceptors.request.use(config => {
   if (!config.headers) {
     config.headers = {} as AxiosRequestHeaders
@@ -19,12 +19,12 @@ service.interceptors.request.use(config => {
   Promise.reject(error);
 });
 
-//3. 响应拦截器
-// service.interceptors.response.use(response => {
-//   //判断code码
-//   return response.data;
-// },error => {
-//   return Promise.reject(error);
-// });
+// 3. 响应拦截器
+service.interceptors.response.use(response => {
+  // if(response.code == ?)    //判断code码
+  return response;
+},error => {
+  return Promise.reject(error);
+});
 
 export default  service

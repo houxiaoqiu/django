@@ -4,7 +4,7 @@ import { useTokenStore } from "@/store/token";
 const routes = [
     {
         path: "/",
-        redirect: "/home"   // 重定向
+        redirect: "/home",   // 重定向
     },
     {
         path: "/login",
