@@ -1,5 +1,5 @@
 // vite.config.js
-import { defineConfig, loadEnv, ConfigEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -16,7 +16,7 @@ export default defineConfig({
       imports:['vue','vue-router'],    //自动导入vue和vue-router相关函数
       resolvers: [
         ElementPlusResolver(),         //自动导入样式组件
-        IconsResolver({               //自动导入图标组件
+        IconsResolver({                //自动导入图标组件
           prefix: 'Icon',
         }),
       ],
@@ -24,13 +24,13 @@ export default defineConfig({
     }),
     Components({
       resolvers: [
-        ElementPlusResolver(),        //自动注册样式组件
-        IconsResolver({               //自动注册图标组件
+        ElementPlusResolver(),         //自动注册样式组件
+        IconsResolver({                //自动注册图标组件
           enabledCollections: ['ep'],
         }),
       ],
     }),
-    Icons({                           //自动安装图表组件
+    Icons({                            //自动安装图表组件
       autoInstall: true,
     }),
   ],

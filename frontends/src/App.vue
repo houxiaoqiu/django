@@ -4,7 +4,6 @@
 
 <script setup lang="ts">
 import "./assets/css/reset200802.css";
-import service from "./utils/api/request"
 
 //接口测试
 // service({

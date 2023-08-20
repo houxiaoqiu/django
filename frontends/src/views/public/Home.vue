@@ -11,12 +11,12 @@
 
     import { ref, defineAsyncComponent } from 'vue'
     import { useIntersectionObserver } from '@vueuse/core'
-    import Header from '../components/common/Header.vue'
-    import NavSwiper from '../components/home/NavSwiper.vue'
-    import Footer from '../components/common/Footer.vue'
+    import Header from '../../components/common/Header.vue'
+    import NavSwiper from '../../components/home/NavSwiper.vue'
+    import Footer from '../../components/common/Footer.vue'
 
     const NewGoodCourse = defineAsyncComponent(() =>
-    import('../components/home/NewGoodCourse.vue')
+    import('../../components/home/NewGoodCourse.vue')
     );
 
     const target = ref(null);

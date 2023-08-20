@@ -78,3 +78,6 @@ vite 前端构建工具
         VITE_CVB_API_URL = http://127.0.0.1:8000
         VITE_USER_API_URL = http://39.97.218.60
 
+导航守卫
+全局前置守卫: 使用 router.beforeEach 注册
+

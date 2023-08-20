@@ -13,16 +13,11 @@ service.interceptors.request.use(config => {
   }
   const tokenStore = useTokenStore()
   config.headers.Authorization = tokenStore.token
-  console.log("request.intercepotrs 拦截器 - tokenStore.token：", tokenStore.token)
+  console.log("tuils/api/request.ts 拦截器 - tokenStore.token：", tokenStore.token)
   return config;
 }, error => {
   Promise.reject(error);
 });
-// service.interceptors.request.use(config => {
-//   return config;
-// }, error => {
-//   Promise.reject(error);
-// });
 
 //3. 响应拦截器
 // service.interceptors.response.use(response => {

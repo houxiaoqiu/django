@@ -44,8 +44,6 @@ const onSubmit = async () => {
         return res.data
     })
 
-    console.log("登录data = ", data)
-
     // 保存 token
     tokenStore.saveToken(data.refresh)
 

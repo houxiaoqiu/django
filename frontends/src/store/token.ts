@@ -15,7 +15,6 @@ export const useTokenStore = defineStore('usertoken', () => {
     // computed 相当于 getters
     const token = computed(() => {
         try {
-            // 如果token是字符串，还没做到json: return JSON.parse(tokenJson.value) 
             return (tokenJson.value || window.localStorage.getItem("TokenInfo") || "")
         } catch (err) {
             ElMessage.error("json字符串格式有误,对象转换失败...")
@@ -26,8 +25,7 @@ export const useTokenStore = defineStore('usertoken', () => {
     // function 相当于 actions
     function saveToken (data: string) {
         tokenJson.value = data
-        // 本地存储
-        window.localStorage.setItem("TokenInfo", data)
+        window.localStorage.setItem("TokenInfo", data)  // 本地存储
     }
     // 向外暴露
     return { token, saveToken }
