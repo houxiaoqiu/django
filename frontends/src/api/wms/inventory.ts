@@ -1,26 +1,26 @@
 /***
- * src/api/shopping.ts
+ * src/api/wms/inventory.ts
  * Mocking client-server processing
  */
-export interface IProduct {
-    id: Number
-    title: String
-    price: Number
-    inventory: Number
+export interface IInventory {
+    id: number
+    title: string
+    price: number
+    inventory: number
 }
 
-const _products: IProduct[] = [
+const _inventories: IInventory[] = [
     {id: 1, title: 'IPad 4 Mini', price: 500.01, inventory: 2},
     {id: 2, title: 'H&M T-Shirt White', price: 10.99, inventory: 20},
     {id: 3, title: 'Charli XCS - Sucker CD', price: 19.99, inventory: 5},
 ]
 
-export const getProducts = async () => {
+export const getInventories = async () => {
     await wait(100)
-    return _products
+    return _inventories
 }
 
-export const buyProducts = async () => {
+export const buyInventories = async () => {
     await wait(100)
     return Math.random() > 0.5
 }

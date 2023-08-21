@@ -1,23 +1,23 @@
 import { defineStore } from "pinia";
-import { getProducts, IProduct } from '@/api/wms/inventory'
+import { getInventories, IInventory } from '@/api/wms/inventory'
 
-export const useProductsStore = defineStore('products', {
+export const useInventoriesStore = defineStore('inventories', {
   state: () => {
     return {
-      all: [] as IProduct[],      //所有商品列表
+      all: [] as IInventory[],      //所有商品列表
     };
   },
 
   getters: {},
 
   actions: {
-    async loadAllProducts () {
-        const res = await getProducts()
+    async loadAllInventories () {
+        const res = await getInventories()
         this.all = res
     },
 
-    reduceProduct (product: IProduct) {
-        const res = this.all.find(item => item.id == product.id )
+    reduceInventory (inventory: IInventory) {
+        const res = this.all.find(item => item.id == inventory.id )
         if (res) {
             res.inventory--
         }
