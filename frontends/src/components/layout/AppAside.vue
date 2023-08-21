@@ -2,7 +2,7 @@
   <el-scrollbar>
     <el-menu unique-opened router :collapse="isCollapse">
       <a href="/" class="logo">
-        <img src="@/assets/img/vite.svg" alt="">
+        <img src="@/assets/img/vite.svg" alt="" />
         <h1>Admin</h1>
       </a>
       <el-sub-menu index="1">
@@ -11,9 +11,9 @@
           <span>系统管理</span>
         </template>
         <el-menu-item index="/publish">
-            <el-icon><i-ep-setting /></el-icon>
-            <span>系统选项</span>
-          </el-menu-item>
+          <el-icon><i-ep-setting /></el-icon>
+          <span>系统选项</span>
+        </el-menu-item>
         <el-sub-menu index="1-4">
           <template #title>
             <el-icon><i-ep-menu /></el-icon>
@@ -38,17 +38,17 @@
           <el-icon><i-ep-menu /></el-icon>
           <span>往来机构人员</span>
         </template>
-        <el-menu-item index="/publish">
-            <el-icon><i-ep-setting /></el-icon>
-            <span>往来机构人员选项</span>
+        <el-menu-item index="/contactoption">
+          <el-icon><i-ep-setting /></el-icon>
+          <span>往来机构人员选项</span>
         </el-menu-item>
-        <el-menu-item index="/publish">
-            <el-icon><i-ep-document /></el-icon>
-            <span>机构</span>
+        <el-menu-item index="/contactorgnization">
+          <el-icon><i-ep-document /></el-icon>
+          <span>机构</span>
         </el-menu-item>
-        <el-menu-item index="/publish">
-            <el-icon><i-ep-document /></el-icon>
-            <span>人员</span>
+        <el-menu-item index="/contactperson">
+          <el-icon><i-ep-document /></el-icon>
+          <span>人员</span>
         </el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="3">
@@ -56,23 +56,23 @@
           <el-icon><i-ep-menu /></el-icon>
           <span>人力资源</span>
         </template>
-        <el-menu-item index="/publish">
-            <el-icon><i-ep-setting /></el-icon>
-            <span>人力资源选项</span>
+        <el-menu-item index="/hroption">
+          <el-icon><i-ep-setting /></el-icon>
+          <span>人力资源选项</span>
         </el-menu-item>
         <el-sub-menu index="3-1">
           <template #title>
             <el-icon><i-ep-menu /></el-icon>
             <span>机构人员</span>
           </template>
-          <el-menu-item index="/publish">
+          <el-menu-item index="/hrorgnization">
             <el-icon><i-ep-document /></el-icon>
             <span>机构</span>
-        </el-menu-item>
-        <el-menu-item index="/publish">
+          </el-menu-item>
+          <el-menu-item index="/hremployee">
             <el-icon><i-ep-document /></el-icon>
             <span>人员</span>
-        </el-menu-item>
+          </el-menu-item>
         </el-sub-menu>
       </el-sub-menu>
       <el-sub-menu index="4">
@@ -115,24 +115,24 @@
             <el-icon><i-ep-menu /></el-icon>
             <span>物资</span>
           </template>
-          <el-menu-item index="/shopping">
-          <el-icon><i-ep-document /></el-icon>
-          <span>计量单位</span>
+          <el-menu-item index="/wmsunit">
+            <el-icon><i-ep-document /></el-icon>
+            <span>计量单位</span>
           </el-menu-item>
-          <el-menu-item index="/shopping">
-          <el-icon><i-ep-document /></el-icon>
-          <span>物料</span>
+          <el-menu-item index="/wmsmaterial">
+            <el-icon><i-ep-document /></el-icon>
+            <span>物料</span>
           </el-menu-item>
-          <el-menu-item index="/shopping">
-          <el-icon><i-ep-document /></el-icon>
-          <span>物料清单</span>
+          <el-menu-item index="/wmsbom">
+            <el-icon><i-ep-document /></el-icon>
+            <span>物料清单</span>
           </el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="/shopping">
+        <el-menu-item index="/wmswherehouse">
           <el-icon><i-ep-document /></el-icon>
           <span>仓库</span>
         </el-menu-item>
-        <el-menu-item index="/shopping">
+        <el-menu-item index="/wmstransfer">
           <el-icon><i-ep-document /></el-icon>
           <span>仓储业务</span>
         </el-menu-item>
@@ -196,11 +196,11 @@
           <el-icon><i-ep-menu /></el-icon>
           <span>应用集成</span>
         </template>
-        <el-menu-item index="/publish">
+        <el-menu-item index="/aimregister">
           <el-icon><i-ep-document /></el-icon>
           <span>应用注册</span>
         </el-menu-item>
-        <el-menu-item index="/publish">
+        <el-menu-item index="/aimsetting">
           <el-icon><i-ep-document /></el-icon>
           <span>应用设置</span>
         </el-menu-item>
@@ -214,14 +214,14 @@
 </template>
   
 <script lang="ts" setup>
-import { isCollapse } from './isCollapse'
+import { isCollapse } from "./isCollapse";
 
-  // const handleOpen = (key: string, keyPath: string[]) => {
-  //   console.log(key, keyPath)
-  // }
-  // const handleClose = (key: string, keyPath: string[]) => {
-  //   console.log(key, keyPath)
-  // }
+// const handleOpen = (key: string, keyPath: string[]) => {
+//   console.log(key, keyPath)
+// }
+// const handleClose = (key: string, keyPath: string[]) => {
+//   console.log(key, keyPath)
+// }
 </script>
   
 <style>

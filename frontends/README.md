@@ -81,3 +81,22 @@ vite 前端构建工具
 导航守卫
 全局前置守卫: 使用 router.beforeEach 注册
 
+![Alt text](1692620134960.png)
+
+目录结构
+public
+src
+    api
+    assets
+    components
+    router
+    store
+    utils
+        aes.js  加密/解密
+    views
+    App.vue
+    main.js
+test
+index.html
+package.json
+vite.config.js

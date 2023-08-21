@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { isCollapse } from '../components/layout/isCollapse'
-//import { RouterView } from 'vue-router'
+import { isCollapse } from '../../components/layout/isCollapse'
+
 </script>
 
 <template>

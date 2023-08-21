@@ -29,7 +29,7 @@ const routes = [
         path: "/admin",
         name: "Admin",
         component: () =>
-            import(/* webpackChunkName: "admin" */ "@/views/Admin.vue"),
+            import(/* webpackChunkName: "admin" */ "@/views/admin/Admin.vue"),
         meta: { requiresAuth: true},     // 要求验证
         children: [
             {
@@ -82,6 +82,42 @@ const routes = [
                     import(/* webpackChunkName: "about" */ "@/components/common/Error.vue"),
             },
             {
+                path: "/contactOption",
+                name: "ContactOption",
+                component: () =>
+                    import(/* webpackChunkName: "contact" */ "@/views/contact/contactOption.vue")
+            },
+            {
+                path: "/contactorgnization",
+                name: "ContactOrgnization",
+                component: () =>
+                    import(/* webpackChunkName: "contact" */ "@/views/contact/ContactOrgnization.vue")
+            },
+            {
+                path: "/contactperson",
+                name: "ContactPerson",
+                component: () =>
+                    import(/* webpackChunkName: "contact" */ "@/views/contact/ContactPerson.vue")
+            },
+            {
+                path: "/hroption",
+                name: "HrOption",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/hr/HrOption.vue")
+            },
+            {
+                path: "/hrorgnization",
+                name: "HrOrgnitation",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/hr/hrOrgnization.vue")
+            },
+            {
+                path: "/hremployee",
+                name: "HrEmployee",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/hr/hrEmployee.vue")
+            },
+            {
                 path: "/wmsoption",
                 name: "WmsOption",
                 component: () =>
@@ -94,16 +130,22 @@ const routes = [
                     import(/* webpackChunkName: "wms" */ "@/views/wms/WmsTransfer.vue")
             },
             {
-                path: "/wmsMaterial",
-                name: "Wmsunit",
+                path: "/wmsmaterial",
+                name: "WmsMaterial",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsMaterial.vue")
+            },
+            {
+                path: "/wmsunit",
+                name: "WmsUnit",
                 component: () =>
                     import(/* webpackChunkName: "wms" */ "@/views/wms/WmsUnit.vue")
             },
             {
-                path: "/wmsunit",
-                name: "WmsTransfer",
+                path: "/wmswherehouse",
+                name: "WmsWherehouse",
                 component: () =>
-                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsTransfer.vue")
+                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsWherehouse.vue")
             },
             {
                 path: "/wmsbom",
@@ -111,6 +153,19 @@ const routes = [
                 component: () =>
                     import(/* webpackChunkName: "wms" */ "@/views/wms/WmsBom.vue")
             },
+            {
+                path: "/aimregister",
+                name: "AimRegister",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/aim/AimRegister.vue")
+            },
+            {
+                path: "/aimsetting",
+                name: "AimSetting",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/aim/AimSetting.vue")
+            },
+            
         ],
     },
 
@@ -138,6 +193,7 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "courseinfo" */ "@/views/CourseInfo.vue"),
     },
+
 ];
 
 const router = createRouter({
