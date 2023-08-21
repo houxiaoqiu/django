@@ -104,9 +104,10 @@ JWT
 功能
     admin 应用管理：合作伙伴：法人, 个人; 用户：角色, 权限, 用户
     hr 人资:  公司, 部门, 雇员 
+    finance 财务：
     mterial 物资：仓库, 货位, 物料分类, 计量单位, 物料
-    sms 销售：
-    pms 采购：
+    sales 销售：
+    purchase 采购：
     mom 生产：
     wms 仓储：
-    dim 数据集成：
+    aim 数据集成：

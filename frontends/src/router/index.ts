@@ -10,13 +10,13 @@ const routes = [
         path: "/login",
         name: "Login",
         component: () =>
-            import(/* webpackChunkName: "login" */ "@/views/login/Login.vue")
+            import(/* webpackChunkName: "login" */ "@/views/admin/Login.vue")
     },
     {
         path: "/register",
         name: "Register",
         component: () =>
-            import(/* webpackChunkName: "register" */ "@/views/register/Register.vue")
+            import(/* webpackChunkName: "register" */ "@/views/admin/Register.vue")
     },
     {
         path: "/home",
@@ -81,9 +81,39 @@ const routes = [
                 component: () => 
                     import(/* webpackChunkName: "about" */ "@/components/common/Error.vue"),
             },
-
+            {
+                path: "/wmsoption",
+                name: "WmsOption",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsOption.vue")
+            },
+            {
+                path: "/wmstransfer",
+                name: "WmsTransfer",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsTransfer.vue")
+            },
+            {
+                path: "/wmsMaterial",
+                name: "Wmsunit",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsUnit.vue")
+            },
+            {
+                path: "/wmsunit",
+                name: "WmsTransfer",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsTransfer.vue")
+            },
+            {
+                path: "/wmsbom",
+                name: "WmsBom",
+                component: () =>
+                    import(/* webpackChunkName: "wms" */ "@/views/wms/WmsBom.vue")
+            },
         ],
     },
+
     {
         path: "/publish",
         name: "Publish",
