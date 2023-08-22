@@ -22,7 +22,7 @@ export const getProducts = async () => {
 
 export const buyProducts = async () => {
     await wait(100)
-    return Math.random() > 0.5
+    return Math.random() > 0.5      // 随机：支付结算 
 }
 
 async function wait(delay: number) {

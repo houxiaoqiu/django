@@ -19,7 +19,7 @@ export const useProductsStore = defineStore('products', {
     reduceProduct (product: IProduct) {
         const res = this.all.find(item => item.id == product.id )
         if (res) {
-            res.inventory--
+            res.inventory
         }
     }
   },

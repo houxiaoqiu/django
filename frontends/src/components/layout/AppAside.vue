@@ -10,7 +10,7 @@
           <el-icon><i-ep-location /></el-icon>
           <span>系统管理</span>
         </template>
-        <el-menu-item index="/publish">
+        <el-menu-item index="/shopping">
           <el-icon><i-ep-setting /></el-icon>
           <span>系统选项</span>
         </el-menu-item>
