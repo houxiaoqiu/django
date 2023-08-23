@@ -1,224 +1,52 @@
 {
-    "total": 16,
-    "columns": [
+    "list": [
         {
-            "templateNamespace": "system",
-            "attributeNamespace": "system",
-            "templateEnName": "InboundAndOutbound",
-            "fullName": "system.InboundAndOutbound.date",
-            "attributeEnName": "date"
+            "startQuantity": 5000,
+            "endQuantity": 5000.23,
+            "period": "2023-08",
+            "unit": "t",
+            "quantity": 5000.23,
+            "material": "常压重油",
+            "cumulationIn": 0.2300000000000182,
+            "cumulationOut": 0,
+            "remark": "密度0.96kg\\cm3",
+            "type": "进库"
         },
         {
-            "templateNamespace": "system",
-            "attributeNamespace": "system",
-            "templateEnName": "InboundAndOutbound",
-            "fullName": "system.InboundAndOutbound.material",
-            "attributeEnName": "material"
+            "startQuantity": 6000,
+            "endQuantity": 5999.96,
+            "period": "2023-08",
+            "unit": "t",
+            "quantity": 6000.04,
+            "material": "柴油",
+            "cumulationIn": 0,
+            "cumulationOut": 0.03999999999999204,
+            "remark": "密度0.84kg\\cm3",
+            "type": "出库"
         },
         {
-            "templateNamespace": "system",
-            "attributeNamespace": "system",
-            "templateEnName": "InboundAndOutbound",
-            "fullName": "system.InboundAndOutbound.type",
-            "attributeEnName": "type"
+            "startQuantity": 7000,
+            "endQuantity": 6999.96,
+            "period": "2023-08",
+            "unit": "t",
+            "quantity": 7000.04,
+            "material": "汽油",
+            "cumulationIn": 0,
+            "cumulationOut": 0.03999999999999204,
+            "remark": "密度0.75kg\\cm3",
+            "type": "出库"
         },
         {
-            "templateNamespace": "system",
-            "attributeNamespace": "system",
-            "templateEnName": "InboundAndOutbound",
-            "fullName": "system.InboundAndOutbound.quantity",
-            "attributeEnName": "quantity"
-        },
-        {
-            "templateNamespace": "system",
-            "attributeNamespace": "system",
-            "templateEnName": "Warehouse",
-            "fullName": "system.Warehouse.unit",
-            "attributeEnName": "unit"
-        },
-        {
-            "templateNamespace": null,
-            "attributeNamespace": null,
-            "templateEnName": null,
-            "fullName": "a",
-            "attributeEnName": "a"
-        },
-        {
-            "templateNamespace": "system",
-            "attributeNamespace": "system",
-            "templateEnName": "Warehouse",
-            "fullName": "system.Warehouse.area",
-            "attributeEnName": "area"
-        },
-        {
-            "templateNamespace": "system",
-            "attributeNamespace": "system",
-            "templateEnName": "Warehouse",
-            "fullName": "system.Warehouse.remark",
-            "attributeEnName": "remark"
+            "startQuantity": 6000,
+            "endQuantity": 6000.1900000000005,
+            "period": "2023-08",
+            "unit": "t",
+            "quantity": 6000.1900000000005,
+            "material": "重质馏分油",
+            "cumulationIn": 0.19000000000005457,
+            "cumulationOut": 0,
+            "remark": "密度0.92kg\\cm3",
+            "type": "进库"
         }
-    ],
-    "items": [
-        [
-            "2023-08-13",
-            "重质馏分油",
-            "进库",
-            1346.24,
-            "t",
-            6000,
-            "原料库",
-            "密度0.92kg\\cm3"
-        ],
-        [
-            "2023-08-13",
-            "常压重油",
-            "进库",
-            17016.57,
-            "t",
-            5000,
-            "原料库",
-            "密度0.96kg\\cm3"
-        ],
-        [
-            "2023-08-13",
-            "汽油",
-            "出库",
-            1843.16,
-            "t",
-            7000,
-            "成品库",
-            "密度0.75kg\\cm3"
-        ],
-        [
-            "2023-08-13",
-            "柴油",
-            "出库",
-            2024.48,
-            "t",
-            6000,
-            "成品库",
-            "密度0.84kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "重质馏分油",
-            "进库",
-            0.049999999999954525,
-            "t",
-            6000,
-            "原料库",
-            "密度0.92kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "常压重油",
-            "进库",
-            0.049999999999954525,
-            "t",
-            5000,
-            "原料库",
-            "密度0.96kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "汽油",
-            "出库",
-            0,
-            "t",
-            7000,
-            "成品库",
-            "密度0.75kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "柴油",
-            "出库",
-            0.010000000000019327,
-            "t",
-            6000,
-            "成品库",
-            "密度0.84kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "重质馏分油",
-            "进库",
-            0.029999999999972715,
-            "t",
-            6000,
-            "原料库",
-            "密度0.92kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "常压重油",
-            "进库",
-            0.03999999999996362,
-            "t",
-            5000,
-            "原料库",
-            "密度0.96kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "汽油",
-            "出库",
-            0.010000000000019327,
-            "t",
-            7000,
-            "成品库",
-            "密度0.75kg\\cm3"
-        ],
-        [
-            "2023-08-18",
-            "柴油",
-            "出库",
-            0.009999999999990905,
-            "t",
-            6000,
-            "成品库",
-            "密度0.84kg\\cm3"
-        ],
-        [
-            "2023-08-17",
-            "重质馏分油",
-            "进库",
-            0.05999999999994543,
-            "t",
-            6000,
-            "原料库",
-            "密度0.92kg\\cm3"
-        ],
-        [
-            "2023-08-17",
-            "常压重油",
-            "进库",
-            0.05999999999994543,
-            "t",
-            5000,
-            "原料库",
-            "密度0.96kg\\cm3"
-        ],
-        [
-            "2023-08-17",
-            "汽油",
-            "出库",
-            0.009999999999990905,
-            "t",
-            7000,
-            "成品库",
-            "密度0.75kg\\cm3"
-        ],
-        [
-            "2023-08-17",
-            "柴油",
-            "出库",
-            0.009999999999990905,
-            "t",
-            6000,
-            "成品库",
-            "密度0.84kg\\cm3"
-        ]
-    ],
-    "empty": false
+    ]
 }

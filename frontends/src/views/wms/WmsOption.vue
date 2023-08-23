@@ -17,7 +17,7 @@
   
 <script lang="ts" setup>
 import { useInventoriesStore } from '@/store/wms/inventory'
-import { useWarehouseStore } from '@/store/wms/werehouse'
+import { useWarehouseStore } from '@/store/wms/warehouse'
 
 const inventoriesStore = useInventoriesStore()
 const warehouseStore = useWarehouseStore()
