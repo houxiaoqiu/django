@@ -18,7 +18,9 @@ from .serial import AddrModelSerializer, StudentModelSerializer,\
 from common.permissions import IsOwnerOrReadOnly
 
 """ 用户登录 """
-class LoginView1(TokenObtainPairView):
+class AdminLoginView(TokenObtainPairView):
+    customTokenObtainPaireSerializer = CustomTokenObtainPairSerializer
+    
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         try:
@@ -26,14 +28,14 @@ class LoginView1(TokenObtainPairView):
         except TokenError as e:
             raise InvalidToken(e.args[0])
         # 自定义成功之后返回的结果
-        result = serializer.validated_data
-        result['id'] = serializer.user.id
-        result['mobile'] = serializer.user.mobile
-        result['email'] = serializer.user.email
-        result['username'] = serializer.user.username
-        result['token'] = result.pop('access')
-        
-        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        response_data = {
+            'code': 200,
+            'message': 'success',
+            'refresh': serializer.validated_data['refresh'],
+            'access': serializer.validated_data['access'],
+            'success': True,
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
     
 class LoginView(TokenObtainPairView):
     
