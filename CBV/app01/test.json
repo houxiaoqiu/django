@@ -1,52 +1,107 @@
-{
-    "list": [
-        {
-            "startQuantity": 5000,
-            "endQuantity": 5000.23,
-            "period": "2023-08",
-            "unit": "t",
-            "quantity": 5000.23,
-            "material": "常压重油",
-            "cumulationIn": 0.2300000000000182,
-            "cumulationOut": 0,
-            "remark": "密度0.96kg\\cm3",
-            "type": "进库"
-        },
-        {
-            "startQuantity": 6000,
-            "endQuantity": 5999.96,
-            "period": "2023-08",
-            "unit": "t",
-            "quantity": 6000.04,
-            "material": "柴油",
-            "cumulationIn": 0,
-            "cumulationOut": 0.03999999999999204,
-            "remark": "密度0.84kg\\cm3",
-            "type": "出库"
-        },
-        {
-            "startQuantity": 7000,
-            "endQuantity": 6999.96,
-            "period": "2023-08",
-            "unit": "t",
-            "quantity": 7000.04,
-            "material": "汽油",
-            "cumulationIn": 0,
-            "cumulationOut": 0.03999999999999204,
-            "remark": "密度0.75kg\\cm3",
-            "type": "出库"
-        },
-        {
-            "startQuantity": 6000,
-            "endQuantity": 6000.1900000000005,
-            "period": "2023-08",
-            "unit": "t",
-            "quantity": 6000.1900000000005,
-            "material": "重质馏分油",
-            "cumulationIn": 0.19000000000005457,
-            "cumulationOut": 0,
-            "remark": "密度0.92kg\\cm3",
-            "type": "进库"
-        }
-    ]
-}
+// 客户端为IE11浏览器时不支持ES6脚本
+// 时间转换时间格式 
+var cdate = scriptUtil.timestampFormat(new Date().valueOf() - 1000 * 60 * 60 * 24, format = 'YYYY-MM-DD');
+// 设置日期组件 = 昨天 
+var DatePicker = scriptUtil.getRegisterReactDom('htDiv-lldtt5s00-79'); 
+DatePicker.setValue(cdate);
+// 设置车间下拉框组件 = 'chlh01'
+var equipId = scriptUtil.getRegisterReactDom('htDiv-lldtt5s00-82');
+equipId.setValue('chlh01');
+// 设置车间下拉框组件 = '催化裂化一车间'  htDiv-lldtt5s00-3627
+var equipName = scriptUtil.getRegisterReactDom('htDiv-lldtt5s00-3627');
+equipName.setValue('催化裂化一车间');
+
+// 获取当前用户的信息  htDiv-lldtt5s00-1924
+scriptUtil.getUserInfo(function (res) {
+  operator = res.userInfo.staffName;
+  var operatorFiled = scriptUtil.getRegisterReactDom('htDiv-lldtt5s00-1924');
+  operatorFiled.setValue(res.userInfo.staffName);
+});
+var operatorFiled = scriptUtil.getRegisterReactDom('htDiv-lldtt5s00-1924');
+var operator = operatorFiled.getValue;
+
+// 设置表格头部
+var table = scriptUtil.getRegisterReactDom('htDiv-lldtt5s00-86');
+var columnHeader = [
+  {
+    customName: '序号',
+    originalName: '_index',
+    width: 50,	
+    align:'center',
+  },
+  {
+    customName: '物料名称',
+    originalName: 'material',
+    align:'center'
+  },
+  {
+    customName: '单位',
+    originalName: 'unit',
+    align:'center'
+  },
+  {
+    customName: '出入库类型',
+    originalName: 'direction',
+    align:'center'
+  },
+  {
+    customName: '上日瞬时值',
+    originalName: 'preDayCumulation',
+    align:'center'
+  },
+  {
+    customName: '本日瞬时值',
+    originalName: 'dayCumulation',
+    align:'center'
+  },
+  {
+    customName: '差值',
+    originalName: 'dailyQuantity',
+    align:'center'
+  },
+  {
+    customName: '操作员',
+    originalName: 'operator',
+    align:'center',
+    editable: true, // 行内编辑
+    handleSave: function(row){
+        
+    },
+    isHandleSave: function(originalName, row, tableData) {
+        return true;
+    },
+    isEditFn: function(keyItem){
+      return false;
+    },
+    isRequired: true,
+//     自定义渲染
+    render: function(text,row,index,table){
+        return '<span>'+operator+'</span>';
+    }
+  },
+  {
+    customName: '备注',
+    originalName: 'remark',
+    align:'center',
+    editable: true, // 行内编辑
+    handleSave: function(row){
+//       console.log('行内编辑保存', row);
+    },
+    isHandleSave: function(originalName, row, tableData) {
+//         console.log('行内编辑是否保存',originalName, row, tableData);
+        return true;
+    },
+    isEditFn: function(keyItem){
+//       console.log('keyItem', keyItem);
+      return true;
+    },
+    isRequired: false
+  }
+];
+table.setColumnHeader(columnHeader);
+
+// 设置表单数据并触发联动 
+var table = scriptUtil.getRegisterReactDom('htDiv-lldtt5s00-86');
+scriptUtil.submitDefaultValue(table, cdate, 1)
+scriptUtil.submitDefaultValue(table, 'chlh01', 1)
+console.log('cdate',cdate)
