@@ -1,5 +1,7 @@
 
 import re
+from django.views import View
+from django import http
 from django.http import HttpResponse
 from rest_framework import status,serializers,mixins
 from rest_framework.response import Response
@@ -58,10 +60,28 @@ class LoginView(TokenObtainPairView):
         }
         return Response(response_data, status=status.HTTP_200_OK)
 
+""" 用户退出 """
+class LogoutView(View):
+    def get(self, request):
+        logout(request=request)
+        # 清理session（redis中的会话，请求对象cookie中的sessionid)
+        # request.session.flush()
+        response = http.JsonResponse({
+            "code": 200,
+            "message": "success",
+            "data": None,
+            "success": True
+        })
+        # 可以删除指定cookie
+        # request.session.clear()
+        # response.delete_cookie('value')
+        return response
+    
+    
 """ 用户登出 """
 def logout_view(request):
     logout(request)
-    return HttpResponse('---已退出')
+    return HttpResponse('--退出--')
 
 """ 用户注册 """
 class RegisterView(APIView):

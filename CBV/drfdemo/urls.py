@@ -9,6 +9,7 @@ from common import FileView
 
 urlpatterns = [
     path('api/login/',views.AdminLoginView.as_view()),       # api/登录
+    path('api/logout/',views.LogoutView.as_view()),       # api/退出
     path('login/',views.LoginView.as_view()),       # 登录
     path('register/',views.RegisterView.as_view()),     # 注册
     path('token/verify/', TokenVerifyView.as_view()),      # 校验 Token
