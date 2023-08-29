@@ -5,8 +5,8 @@ import { loginFormData, loginResult, userProfile } from '@/api/user/type'    // 
 import { GET_TOKEN, REMOVE_TOKEN, SET_TOKEN } from '@/utils/token' // 引入本地存储的工具方法
 
 
-const store = createPinia()
-store.use(piniaPluginPersist)
+// const store = createPinia()
+// store.use(piniaPluginPersist)
 
 // 创建用户仓库
 export const useUserStore = defineStore('User', {

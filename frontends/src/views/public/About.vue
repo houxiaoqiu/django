@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useMainStore } from '@/store/user/index'
+import { useUserStore } from '@/store/user/index'
 import drfdemo from '@/utils/request';
 
 drfdemo({
@@ -26,11 +26,11 @@ drfdemo({
   console.log(res.status)
 })
 
-const mainStore = useMainStore()
+const userStore = useUserStore()
 
-const { count, foo } = storeToRefs(mainStore)
+const { username, avatar } = storeToRefs(userStore)
 
-console.log(mainStore.count)
+console.log(userStore.username)
 
 // const handleChangeState = () => {
 //   mainStore.$patch({
@@ -49,7 +49,7 @@ console.log(mainStore.count)
 
 const handleChangeState = () => {
 
-  mainStore.changeState(10)
+  userStore.userProfile
 
 }
 

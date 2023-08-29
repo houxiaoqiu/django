@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { isCollapse } from './isCollapse'
-import { getUserProfile } from '@/api/users'
+import { getUserProfile } from '@/api/user/users'
 
-const userProfile = ref({ username: "", avatar: "" })
+const userProfile = ref({ name: "", avatar: "" })
 
 getUserProfile().then((res) => {
-    userProfile.value = res.data
-    console.log("getUserProfile", res.data.username)
+    // userProfile.value = res.data
+    console.log("getUserProfile", res.data.data)
 })
 
 const router = useRouter();
