@@ -1,6 +1,6 @@
-import { IProduct, buyProducts } from "@/api/shopping";
+import { IProduct, buyProducts } from "@/api/shopping/shopping";
 import { defineStore } from "pinia";
-import { useProductsStore } from "@/store/shopping";
+import { useProductsStore } from "@/store/shopping/shopping";
 
 // 定义容器属性：增加 quantity，删除 inventory
 type CartProduct = {
@@ -16,11 +16,11 @@ export const useCartStore = defineStore("cart", {
   },
 
   getters: {
-    totalPrice (state) {
-        return state.cartProducts.reduce((total, item) => {
-            return total + item.price * item.quantity
-        }, 0)
-    }
+    totalPrice(state) {
+      return state.cartProducts.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    },
   },
 
   actions: {
@@ -38,24 +38,24 @@ export const useCartStore = defineStore("cart", {
       } else {
         // 购物车没有该商品，添加该商品到购物车
         this.cartProducts.push({
-            id: product.id,
-            title: product.title,
-            price: product.price,
-            quantity: 1
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          quantity: 1,
         });
       }
       // 更新商品库存
-      const productsStore = useProductsStore()
-      productsStore.reduceProduct(product)
+      const productsStore = useProductsStore();
+      productsStore.reduceProduct(product);
     },
 
-    async checkout () {
-        const res = await buyProducts()
-        this.checkoutStatus = res ? "成功" : "失败"
-        // 清空购物车
-        if (res) {
-            this.cartProducts = []
-        }
-    }
+    async checkout() {
+      const res = await buyProducts();
+      this.checkoutStatus = res ? "成功" : "失败";
+      // 清空购物车
+      if (res) {
+        this.cartProducts = [];
+      }
+    },
   },
 });

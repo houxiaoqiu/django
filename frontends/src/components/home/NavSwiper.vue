@@ -138,8 +138,8 @@
 </template>
 
 
-<script setup>
-import courseType from '../../mixins/courseType.js';
+<script setup lang="ts">
+import courseType from '@/mixins/courseType.js';
 let { courseTypeFn } = courseType();
 
 import { ArrowRight } from "@element-plus/icons-vue";

@@ -4,7 +4,6 @@ import router from '@/router/index';
 
 // 创建axios实例
 var baseURL
-
 baseURL = process.env.VUE_APP_API //每个环境所对应的不同的baseURL
 
 const service = axios.create({

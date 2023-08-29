@@ -1,13 +1,13 @@
 <template>
   <h1>this is an about page</h1>
-  <hr/>
+  <hr />
   <p>mainStore.count: {{ mainStore.count }}</p>
   <p>mainStore.foo: {{ mainStore.foo }}</p>
-  <hr/>
-  <p> count: {{  count }}</p>
-  <p> foo: {{  foo }}</p>
-  <p> foo: {{  mainStore.arr }}</p>
-  <hr/>
+  <hr />
+  <p> count: {{ count }}</p>
+  <p> foo: {{ foo }}</p>
+  <p> foo: {{ mainStore.arr }}</p>
+  <hr />
   <p>
     <button @click="handleChangeState">修改数据</button>
   </p>
@@ -15,8 +15,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useMainStore } from '@/store'
-import  drfdemo  from '@/utils/api/request';
+import { useMainStore } from '@/store/user/index'
+import drfdemo from '@/utils/request';
 
 drfdemo({
   method: "GET",
@@ -48,13 +48,11 @@ console.log(mainStore.count)
 //}
 
 const handleChangeState = () => {
-  
+
   mainStore.changeState(10)
 
 }
 
 </script>
 
-<style>
-
-</style>
+<style></style>

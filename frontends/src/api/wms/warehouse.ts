@@ -1,60 +1,59 @@
-import service from "@/utils/api/request"
+import service from "@/utils/request";
 
 // 用户登录-参数类型
 type LoginInfo = {
-    username: string
-    password: string
+  username: string;
+  password: string;
 };
 // 用户登录-返回数据类型
 type LoginResult = {
-    id: number
-    username: string
-    message: string
-    success: boolean
-    refresh: string
-    access: string
-    content: {
-        isUpdatedPassword: boolean
-        portrait: string
-        username: string
-    }
+  id: number;
+  username: string;
+  message: string;
+  success: boolean;
+  refresh: string;
+  access: string;
+  content: {
+    isUpdatedPassword: boolean;
+    portrait: string;
+    username: string;
+  };
 };
 
 // 用户请求登录
 export const login = async (loginInfo: LoginInfo) => {
-    const res = await service<LoginResult>({
-        method: "POST",
-        url: '/drfdemo/login/',
-        data: loginInfo,
-    })
-    return res
+  const res = await service<LoginResult>({
+    method: "POST",
+    url: "/drfdemo/login/",
+    data: loginInfo,
+  });
+  return res;
 };
 
 //获取用户信息
 type UserProfile = {
-    id: number
-    username: string
-    avatar: string 
+  id: number;
+  username: string;
+  avatar: string;
 };
 export const getUserProfile = () => {
-    return service<UserProfile>({
-        method: "GET",
-        url: "/drfdemo/users/1/",
-    })
+  return service<UserProfile>({
+    method: "GET",
+    url: "/drfdemo/users/1/",
+  });
 };
 //获取仓库信息
 type WarehouseProfile = {
-    id: number
-    warehouseCode: string
-    warehouseName: string
+  id: number;
+  warehouseCode: string;
+  warehouseName: string;
 };
 export const getWarehouseProfile = () => {
-    return service<WarehouseProfile>({
-        method: "GET",
-        url: "/drfdemo/warehouses/",
-    })
+  return service<WarehouseProfile>({
+    method: "GET",
+    url: "/drfdemo/warehouses/",
+  });
 };
-
 
 /**
  * 请求类型 application/x-www.form-fulencoded

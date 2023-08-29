@@ -1,7 +1,7 @@
 // import { createApp } from 'vue'
 import App from './App.vue'
-import router from "./router/index"
-import store from './store'
+import router from "@/router/index"
+import store from '@/store/user/index'
 // 全局引用
 import ElementPlus from 'element-plus'
 // 引用所有样式

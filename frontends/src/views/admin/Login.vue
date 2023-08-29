@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { login } from "@/api/users"
 import { FormInstance, FormRules } from "element-plus";
-import { useTokenStore } from "@/store/token"
+import { useTokenStore } from "@/utils/token"
 
 const route = useRoute();
 const router = useRouter();
@@ -139,3 +139,4 @@ const rules = reactive<FormRules>({
 }
 </style>
 
+@/api/xiaoluxian/users@/utils/token@/api/user/users

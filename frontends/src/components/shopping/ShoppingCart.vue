@@ -1,13 +1,13 @@
 <template>
     <div class="cart">
         <h2>你的购物车</h2>
-        <br/>
+        <br />
         <p>
             <i>请添加一些商品到购物车</i>
         </p>
         <ul>
             <li v-for="item in cartStore.cartProducts">
-                {{ item.title }}  - {{ item.price }} X {{ item.quantity }}
+                {{ item.title }} - {{ item.price }} X {{ item.quantity }}
             </li>
         </ul>
         <p>商品总价：{{ cartStore.totalPrice }}</p>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCartStore } from '@/store/cart'
+import { useCartStore } from '@/store/shopping/cart'
 
 const cartStore = useCartStore()
-</script>
+</script>@/store/shopping/cart

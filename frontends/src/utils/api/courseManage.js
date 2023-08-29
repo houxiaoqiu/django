@@ -1,4 +1,4 @@
-import request from './request'
+import request from '@/api/xiaoluxian/request'
 
 //获取1级分类
 export function getFirstCategorys(){

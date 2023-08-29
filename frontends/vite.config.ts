@@ -9,53 +9,73 @@ import IconsResolver from 'unplugin-icons/resolver'
 import path from 'path'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    AutoImport({
-      imports:['vue','vue-router'],    //自动导入vue和vue-router相关函数
-      resolvers: [
-        ElementPlusResolver(),         //自动导入样式组件
-        IconsResolver({                //自动导入图标组件
-          prefix: 'Icon',
-        }),
-      ],
-      eslintrc: {enabled: true},
-    }),
-    Components({
-      resolvers: [
-        ElementPlusResolver(),         //自动注册样式组件
-        IconsResolver({                //自动注册图标组件
-          enabledCollections: ['ep'],
-        }),
-      ],
-    }),
-    Icons({                            //自动安装图表组件
-      autoInstall: true,
-    }),
-  ],
+export default defineConfig(({ command, mode}) => {
+  // 获取各种环境下对应的变量
+  const env = loadEnv(mode, process.cwd() )
+  return {
+    plugins: [
+      vue(),
+      AutoImport({
+        imports:['vue','vue-router'],    //自动导入vue和vue-router相关函数
+        resolvers: [
+          ElementPlusResolver(),         //自动导入样式组件
+          IconsResolver({                //自动导入图标组件
+            prefix: 'Icon',
+          }),
+        ],
+        eslintrc: {enabled: true},
+      }),
+      Components({
+        resolvers: [
+          ElementPlusResolver(),         //自动注册样式组件
+          IconsResolver({                //自动注册图标组件
+            enabledCollections: ['ep'],
+          }),
+        ],
+      }),
+      Icons({                            //自动安装图表组件
+        autoInstall: true,
+      }),
+    ],
 
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname,'src')
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname,'src')
+      },
     },
-  },
 
-  server:{
-		proxy:{
-			'/api': {
-        target: loadEnv("", process.cwd()).VITE_XXLX_API_URL,  //'http://testapi.xuexiluxian.cn',
-        changeOrigin: true,
-      },
-      '/cbv': {
-        target: loadEnv("",process.cwd()).VITE_CVB_API_URL,  //'http://127.0.0.1:8000',
-        changeOrigin: true,
-      },
-      '/drfdemo': {
-        target: loadEnv("",process.cwd()).VITE_CVB_API_URL,  //'http://127.0.0.1:8000',
-        changeOrigin: true,
-      },
-		}
-	},
+    server:{
+      proxy:{
+        '/api': {
+          target: env.VITE_XXLX_API_URL,  //'http://testapi.xuexiluxian.cn',
+          changeOrigin: true,
+        },
+        '/cbv': {
+          target: env.VITE_CVB_API_URL,  //'http://127.0.0.1:8000',
+          changeOrigin: true,
+        },
+        '/drfdemo': {
+          target: env.VITE_CVB_API_URL,  //'http://127.0.0.1:8000',
+          changeOrigin: true,
+        },
+        [env.VITE_APP_BASE_API]: {
+          // 获取数据的服务器地址设置
+          target: env.VITE_8000_VERVE,
+          // 需要代理跨域
+          changeOrigin: true,
+          // 重写路径
+          rewrite: (path) => path.replace(/^\/8000/,''),
+        },
+        [env.VITE_APP_GG_API]: {
+          // 获取数据的服务器地址设置
+          target: env.VITE_GG_SERVE,
+          // 需要代理跨域
+          changeOrigin: true,
+          // 重写路径
+          rewrite: (path) => path.replace(/^\/gg/,''),
+        },
 
+      }
+    },
+  }
 })

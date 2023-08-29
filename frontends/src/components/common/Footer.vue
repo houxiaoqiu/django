@@ -43,9 +43,9 @@
     
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onBeforeMount } from 'vue'
-import { getSetting } from '../../utils/api/courseManage'
+import { getSetting } from '@/utils/api/courseManage'
 
 let copyright = ref('');
 let icp = ref('');
