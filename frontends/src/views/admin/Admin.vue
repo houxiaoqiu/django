@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isCollapse } from '../../components/layout/isCollapse'
+import { isCollapse } from '@/components/layout/isCollapse'
 
 </script>
 
@@ -8,7 +8,7 @@ import { isCollapse } from '../../components/layout/isCollapse'
         <el-container>
             <el-aside :width="isCollapse ? '60px' : '200px'">   
                 <AppAside />
-            </el-aside>
+            </el-aside> 
             <el-container class="header-and-main">
                 <AppHeader />
                 <el-main>
@@ -19,6 +19,7 @@ import { isCollapse } from '../../components/layout/isCollapse'
             </el-container>
         </el-container>
     </div>
+    !!!!!
 </template>
   
 

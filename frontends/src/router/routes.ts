@@ -1,16 +1,17 @@
-import { createRouter, createWebHistory } from "vue-router";
-import { useTokenStore } from "@/utils/token";
+// import { createRouter, createWebHistory } from "vue-router";
+// import { useTokenStore } from "@/utils/token";
 
 export const constantRoute = [
   {
     path: "/",
-    redirect: "/home", // 重定向
+    redirect: "/admin", // 重定向
   },
   {
     path: "/login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/admin/Login.vue"),
+      import(/* webpackChunkName: "login" */ "@/views/User.vue"),
+      // import(/* webpackChunkName: "login" */ "@/views/admin/Login.vue"),
   },
   {
     path: "/register",
@@ -23,14 +24,22 @@ export const constantRoute = [
     name: "Home",
     component: () =>
       import(/* webpackChunkName: "home" */ "@/views/public/Home.vue"),
-    meta: { requiresAuth: true }, // 要求验证
+    meta: { 
+      title: '首页',
+      hidden: false,
+      icon: 'HomeFilled' 
+    }, 
   },
   {
     path: "/admin",
     name: "Admin",
     component: () =>
       import(/* webpackChunkName: "admin" */ "@/views/admin/Admin.vue"),
-    meta: { requiresAuth: true }, // 要求验证
+    meta: { 
+      title: '',
+      hidden: false,
+      icon: ''
+    }, 
     children: [
       {
         path: "",
@@ -96,7 +105,7 @@ export const constantRoute = [
         name: "ContactOption",
         component: () =>
           import(
-            /* webpackChunkName: "contact" */ "@/views/contact/contactOption.vue"
+            /* webpackChunkName: "contact" */ "@/views/contact/ContactOption.vue"
           ),
       },
       {

@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import "./assets/css/reset200802.css";
+import "@/assets/css/reset200802.css";
 
 //接口测试
 // service({

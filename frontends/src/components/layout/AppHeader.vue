@@ -81,7 +81,7 @@ const handleDropDownCommand = (command: string | number | object, row: any) => {
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item command="userProfile">{{ userProfile.username }}</el-dropdown-item>
+                    <el-dropdown-item command="userProfile">{{ userProfile.name }}</el-dropdown-item>
                     <!-- <el-dropdown-item ><a href="/login">登录</a></el-dropdown-item> -->
                     <el-dropdown-item command="login">登录</el-dropdown-item>
                     <el-dropdown-item command="logout" divided>退出</el-dropdown-item>
