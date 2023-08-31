@@ -10,7 +10,7 @@ export const constantRoute = [
     path: "/login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/User.vue"),
+      import(/* webpackChunkName: "login" */ "@/views/login/index.vue"),
       // import(/* webpackChunkName: "login" */ "@/views/admin/Login.vue"),
   },
   {
