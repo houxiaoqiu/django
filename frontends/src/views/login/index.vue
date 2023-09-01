@@ -62,7 +62,7 @@
   //定义变量控制按钮加载效果
   let loading = ref(false)
   //收集账号与密码的数据
-  let loginForm = reactive({ username: 'admin', password: 'atguigu123' })
+  let loginForm = reactive({ username: '13464730744', password: 'HyperNewBee363' })
   //登录按钮回调
   const login = async () => {
     //保证全部表单相校验通过再发请求
@@ -73,6 +73,7 @@
     //通知仓库发登录请求
     //请求成功->首页展示数据的地方
     //请求失败->弹出登录失败信息
+
     try {
       //保证登录成功
       await useStore.userLogin(loginForm)

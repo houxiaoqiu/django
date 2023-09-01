@@ -3,42 +3,43 @@
 
 export const constantRoute = [
   {
-    path: "/",
-    redirect: "/admin", // 重定向
-  },
-  {
     path: "/login",
     name: "Login",
     component: () =>
       import(/* webpackChunkName: "login" */ "@/views/login/index.vue"),
       // import(/* webpackChunkName: "login" */ "@/views/admin/Login.vue"),
+    meta: {
+      title: '登录', //菜单标题
+      hidden: true, //代表路由标题在菜单中是否隐藏  true:隐藏 false:不隐藏
+      icon: 'Promotion', //菜单文字左侧的图标,支持element-plus全部图标
+    },
   },
+  // {
+  //   path: "/register",
+  //   name: "Register",
+  //   component: () =>
+  //     import(/* webpackChunkName: "register" */ "@/views/admin/Register.vue"),
+  // },
+  // {
+  //   path: "/home",
+  //   name: "Home",
+  //   component: () =>
+  //     import(/* webpackChunkName: "home" */ "@/views/public/Home.vue"),
+  //   meta: { 
+  //     title: '首页',
+  //     hidden: false,
+  //     icon: 'HomeFilled' 
+  //   }, 
+  // },
   {
-    path: "/register",
-    name: "Register",
-    component: () =>
-      import(/* webpackChunkName: "register" */ "@/views/admin/Register.vue"),
-  },
-  {
-    path: "/home",
+    path: "/",
     name: "Home",
-    component: () =>
-      import(/* webpackChunkName: "home" */ "@/views/public/Home.vue"),
-    meta: { 
-      title: '首页',
-      hidden: false,
-      icon: 'HomeFilled' 
-    }, 
-  },
-  {
-    path: "/admin",
-    name: "Admin",
     component: () =>
       import(/* webpackChunkName: "admin" */ "@/views/admin/Admin.vue"),
     meta: { 
-      title: '',
+      title: '首页',
       hidden: false,
-      icon: ''
+      icon: 'HomeFilled'
     }, 
     children: [
       {
@@ -193,70 +194,180 @@ export const constantRoute = [
     ],
   },
 
-  {
-    path: "/publish",
-    name: "Publish",
-    component: () =>
-      import(/* webpackChunkName: "publish" */ "@/views/Publish.vue"),
-  },
-  {
-    path: "/userprofile",
-    name: "UserProfile",
-    component: () =>
-      import(/* webpackChunkName: "userprofile" */ "@/views/UserProfile.vue"),
-  },
-  {
-    path: "/course",
-    name: "Course",
-    component: () =>
-      import(/* webpackChunkName: "course" */ "@/views/Course.vue"),
-  },
-  {
-    path: "/course-info/:id",
-    name: "CourseInfo",
-    component: () =>
-      import(/* webpackChunkName: "courseinfo" */ "@/views/CourseInfo.vue"),
-  },
+  // {
+  //   path: "/publish",
+  //   name: "Publish",
+  //   component: () =>
+  //     import(/* webpackChunkName: "publish" */ "@/views/Publish.vue"),
+  // },
+  // {
+  //   path: "/userprofile",
+  //   name: "UserProfile",
+  //   component: () =>
+  //     import(/* webpackChunkName: "userprofile" */ "@/views/UserProfile.vue"),
+  // },
+  // {
+  //   path: "/course",
+  //   name: "Course",
+  //   component: () =>
+  //     import(/* webpackChunkName: "course" */ "@/views/Course.vue"),
+  // },
+  // {
+  //   path: "/course-info/:id",
+  //   name: "CourseInfo",
+  //   component: () =>
+  //     import(/* webpackChunkName: "courseinfo" */ "@/views/CourseInfo.vue"),
+  // },
 ];
 
-// const router = createRouter({
-//   history: createWebHistory(),
-//   routes,
-// });
+//异步路由
+export const asnycRoute = [
+  {
+    path: '/acl',
+    component: () => import('@/layout/index.vue'),
+    name: 'Acl',
+    meta: {
+      title: '系统管理',
+      icon: 'Lock',
+    },
+    redirect: '/acl/user',
+    children: [
+      {
+        path: '/acl/user',
+        component: () => import('@/views/acl/user/index.vue'),
+        name: 'User',
+        meta: {
+          title: '用户管理',
+          icon: 'User',
+        },
+      },
+      {
+        path: '/acl/role',
+        component: () => import('@/views/acl/role/index.vue'),
+        name: 'Role',
+        meta: {
+          title: '角色管理',
+          icon: 'UserFilled',
+        },
+      },
+      {
+        path: '/acl/permission',
+        component: () => import('@/views/acl/permission/index.vue'),
+        name: 'Permission',
+        meta: {
+          title: '菜单管理',
+          icon: 'Monitor',
+        },
+      },
+    ],
+  },
+  {
+    path: '/product',
+    component: () => import('@/layout/index.vue'),
+    name: 'Product',
+    meta: {
+      title: '商品管理',
+      icon: 'Goods',
+    },
+    redirect: '/product/trademark',
+    children: [
+      {
+        path: '/product/trademark',
+        component: () => import('@/views/product/trademark/index.vue'),
+        name: 'Trademark',
+        meta: {
+          title: '品牌管理',
+          icon: 'ShoppingCartFull',
+        },
+      },
+      {
+        path: '/product/attr',
+        component: () => import('@/views/product/attr/index.vue'),
+        name: 'Attr',
+        meta: {
+          title: '属性管理',
+          icon: 'ChromeFilled',
+        },
+      },
+      {
+        path: '/product/spu',
+        component: () => import('@/views/product/spu/index.vue'),
+        name: 'Spu',
+        meta: {
+          title: 'SPU管理',
+          icon: 'Calendar',
+        },
+      },
+      {
+        path: '/product/sku',
+        component: () => import('@/views/product/sku/index.vue'),
+        name: 'Sku',
+        meta: {
+          title: 'SKU管理',
+          icon: 'Orange',
+        },
+      },
+    ],
+  },
+  // {
+  //   path: '/hr',
+  //   component: () => import('@/layout/index.vue'),
+  //   name: 'Product',
+  //   meta: {
+  //     title: '机构人员',
+  //     icon: 'Goods',
+  //   },
+  //   redirect: '/production',
+  //   children: [
+  //     {
+  //       path: '/production',
+  //       component: () => import('@/views/product/trademark/index.vue'),
+  //       name: 'Spu',
+  //       meta: {
+  //         title: '机构人员选项',
+  //         icon: 'ShoppingCartFull',
+  //       },
+  //     },
+  //     {
+  //       path: '/product/attr',
+  //       component: () => import('@/views/product/attr/index.vue'),
+  //       name: 'Spu',
+  //       meta: {
+  //         title: '机构',
+  //         icon: 'ChromeFilled',
+  //       },
+  //     },
+  //     {
+  //       path: '/product/spu',
+  //       component: () => import('@/views/product/spu/index.vue'),
+  //       name: 'Spu',
+  //       meta: {
+  //         title: '人员',
+  //         icon: 'Calendar',
+  //       },
+  //     },
+  //     {
+  //       path: '/product/sku',
+  //       component: () => import('@/views/product/sku/index.vue'),
+  //       name: 'Sku',
+  //       meta: {
+  //         title: '人员',
+  //         icon: 'Orange',
+  //       },
+  //     },
+  //   ],
+  // },
+];
 
-// // 注册方法（一）- 全局前置守卫：页面跳转之前执行（导航守卫）
-// router.beforeEach((to, from, next) => {
-//   const tokenStore = useTokenStore();
-//   const isAuthenticated = tokenStore.token;
-//   console.log("全局前置守卫-tokenStore.token", tokenStore.token);
-
-//   if (to.name !== "Login" && !isAuthenticated) {
-//     ElMessage.warning("未登录，请先登录！");
-//     next({ name: "Login" });
-//   } else next();
-// });
-
-// // 注册方法（二）- 全局解析守卫：在导航被确认之前、所有组件内守卫和异步路由组件被解析之后调用
-// // 这里有一个例子，确保用户可以访问自定义 meta 属性 requiresCamera 的路由
-// // router.beforeResolve(async to => {
-// //     if (to.meta.requiresCamera) {
-// //       try {
-// //         await askForCameraPermission()
-// //       } catch (error) {
-// //         if (error instanceof NotAllowedError) {
-// //           // ... 处理错误，然后取消导航
-// //           return false
-// //         } else {
-// //           // 意料之外的错误，取消导航并把错误传给全局处理器
-// //           throw error
-// //         }
-// //       }
-// //     }
-// // });
-
-// // 后置守卫：
-// router.afterEach((to, from, failure) => {
-//   // if (!failure) sendToAnalytics(to.fullPath)
-// });
-
-//export default router;
+//任意路由
+export const anyRoute = {
+  //任意路由
+  path: '/:pathMatch(.*)*',
+  redirect: '/404',
+  name: 'Any',
+  meta: {
+    title: '任意路由',
+    hidden: true,
+    icon: 'DataLine',
+  },
+}

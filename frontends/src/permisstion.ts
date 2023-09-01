@@ -8,8 +8,8 @@ import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 nprogress.configure({ showSpinner: false })
 //获取用户相关的小仓库内部token数据,去判断用户是否登录成功
-import useUserStore from '@/store/user'
-import pinia from './store'
+import useUserStore from '@/store/modules/user'
+import pinia from '@/store'
 const userStore = useUserStore(pinia)
 //全局守卫:项目当中任意路由切换都会触发的钩子
 //全局前置守卫
@@ -23,6 +23,7 @@ router.beforeEach(async (to: any, from: any, next: any) => {
   const token = userStore.token
   //获取用户名字
   const username = userStore.username
+  console.log('permisstion.ts',userStore)
   console.log('permisstion.ts',token)
   console.log('username',username)
   // 用户登录判断

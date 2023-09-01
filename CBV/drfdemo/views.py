@@ -19,11 +19,28 @@ from .serial import AddrModelSerializer, StudentModelSerializer,\
     UserModelSerializer,CustomTokenObtainPairSerializer
 from common.permissions import IsOwnerOrReadOnly
 
-""" 用户登录 """
-class AdminLoginView(TokenObtainPairView):
+""" api 用户登录 """
+class APILoginView(TokenObtainPairView):
     customTokenObtainPaireSerializer = CustomTokenObtainPairSerializer
     
     def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except TokenError as e:
+            raise InvalidToken(e.args[0])
+        # 自定义成功之后返回的结果
+        response_data = {
+            'code': 200,
+            'message': 'success',
+            'data': serializer.validated_data['access'],
+            'success': True,
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
+ 
+    customTokenObtainPaireSerializer = CustomTokenObtainPairSerializer
+    
+    def get(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         try:
             serializer.is_valid(raise_exception=True)
@@ -60,22 +77,24 @@ class LoginView(TokenObtainPairView):
         }
         return Response(response_data, status=status.HTTP_200_OK)
 
-""" 用户退出 """
-class LogoutView(View):
-    def get(self, request):
-        logout(request=request)
-        # 清理session（redis中的会话，请求对象cookie中的sessionid)
-        # request.session.flush()
-        response = http.JsonResponse({
-            "code": 200,
-            "message": "success",
-            "data": None,
-            "success": True
-        })
-        # 可以删除指定cookie
-        # request.session.clear()
-        # response.delete_cookie('value')
-        return response
+""" api 用户退出 """
+class APILogoutView(TokenObtainPairView):
+    customTokenObtainPaireSerializer = CustomTokenObtainPairSerializer
+    
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except TokenError as e:
+            raise InvalidToken(e.args[0])
+        # 自定义成功之后返回的结果
+        response_data = {
+            'code': 200,
+            'message': 'success',
+            'data': None,
+            'success': True,
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
     
     
 """ 用户登出 """
